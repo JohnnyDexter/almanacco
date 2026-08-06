@@ -1,0 +1,20 @@
+---
+import { languages, locales, localizedPath, type Locale } from '@/i18n/config';
+const { locale, slug = '' } = Astro.props as { locale: Locale; slug?: string };
+---
+<nav class="flex items-center gap-1" aria-label="Language selector">
+  {locales.map((target) => (
+    <a
+      class:list={[
+        'focus-ring rounded-full px-3 py-2 text-[0.68rem] font-bold uppercase tracking-[0.22em]',
+        target === locale ? 'bg-forest text-ivory' : 'text-charcoal/60 hover:text-forest',
+      ]}
+      href={localizedPath(target, slug)}
+      hreflang={target}
+      aria-current={target === locale ? 'page' : undefined}
+      aria-label={languages[target]}
+    >
+      {target}
+    </a>
+  ))}
+</nav>
