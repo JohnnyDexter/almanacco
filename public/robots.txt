@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://johnnydexter.github.io/almanacco/sitemap-index.xml
+Sitemap: https://johnnydexter.github.io/almanacco/sitemap.xml
