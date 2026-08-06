@@ -1,0 +1,17 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { localizedPath, type Locale } from '@/i18n/config';
+import { navItems } from '@/i18n/ui';
+const { locale, slug = '' } = Astro.props as { locale: Locale; slug?: string };
+---
+<header class="sticky top-0 z-40 border-b border-charcoal/10 bg-ivory/90 backdrop-blur-xl">
+  <div class="container-premium flex min-h-20 items-center justify-between gap-5">
+    <a class="focus-ring font-display text-2xl font-bold tracking-[0.22em] text-forest" href={localizedPath(locale)} aria-label="ALMANACCO home">ALMANACCO</a>
+    <nav class="hidden items-center gap-7 text-sm font-semibold text-charcoal/70 lg:flex" aria-label="Primary navigation">
+      {navItems[locale].map(([itemSlug, label]) => (
+        <a class="focus-ring hover:text-forest" href={localizedPath(locale, itemSlug)}>{label}</a>
+      ))}
+    </nav>
+    <LanguageSwitcher locale={locale} slug={slug} />
+  </div>
+</header>
