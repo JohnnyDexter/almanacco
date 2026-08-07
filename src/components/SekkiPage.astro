@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SekkiWidget from "./SekkiWidget.astro";
+import { sekki, formatSekkiDate } from "../data/calendar";
+import { content, type Lang } from "../i18n/content";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = content[lang];
+
+const seasonGroups = [
+  { label: t.sekkiPage.seasons.spring, items: sekki.slice(0, 6).map((s, i) => ({ ...s, index: i })) },
+  { label: t.sekkiPage.seasons.summer, items: sekki.slice(6, 12).map((s, i) => ({ ...s, index: i + 6 })) },
+  { label: t.sekkiPage.seasons.autumn, items: sekki.slice(12, 18).map((s, i) => ({ ...s, index: i + 12 })) },
+  { label: t.sekkiPage.seasons.winter, items: sekki.slice(18, 24).map((s, i) => ({ ...s, index: i + 18 })) },
+];
+---
+
+<BaseLayout lang={lang} slug="sekki">
+  <section class="bg-ivory pt-24">
+    <div class="mx-auto max-w-2xl px-6 text-center">
+      <p class="divider-dot flex items-center justify-center gap-2 font-body text-xs uppercase tracking-[0.2em] text-forest">
+        {t.sekkiPage.kicker}
+      </p>
+      <h1 class="mt-4 font-display text-4xl uppercase tracking-wide text-charcoal sm:text-5xl">
+        {t.sekkiPage.title}
+      </h1>
+      <div class="mt-8 space-y-4 text-left">
+        {t.sekkiPage.intro.map((p) => (
+          <p class="font-body text-base leading-relaxed text-stone-text">{p}</p>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <SekkiWidget lang={lang} showHeading={false} showCta={false} />
+
+  <section class="bg-ivory py-24">
+    <div class="mx-auto max-w-5xl px-6 space-y-16">
+      {seasonGroups.map((group) => (
+        <div>
+          <h2 class="border-b border-brass/30 pb-3 font-display text-xl uppercase tracking-wide text-charcoal">
+            {group.label}
+          </h2>
+          <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {group.items.map((s) => (
+              <div class="border border-brass/30 bg-ivory-soft p-6">
+                <div class="flex items-baseline justify-between gap-3">
+                  <span class="font-display text-2xl text-charcoal">{s.kanji}</span>
+                  <span class="font-subtitle text-base italic text-stone-text">{s.romaji}</span>
+                </div>
+                <p class="mt-2 font-body text-[11px] uppercase tracking-wide text-brass">
+                  {formatSekkiDate(lang, s)}
+                </p>
+                <p class="mt-2 font-body text-sm leading-snug text-stone-text">{s.meaning[lang]}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

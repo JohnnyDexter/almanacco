@@ -21,24 +21,6 @@
   --font-display: "Cinzel", "Shippori Mincho", serif;
   --font-subtitle: "Cormorant Garamond", "Shippori Mincho", serif;
   --font-body: "Inter", "Noto Sans JP", sans-serif;
-
-  /* --- Palette e font della direzione visiva precedente ---
-     Mantenuti solo perché ancora referenziati da Hero/Storia/Prodotti/
-     AlmanaccoStagionale/Contatti, non più montati da nessuna pagina: verranno
-     rimossi quando quei componenti saranno rimappati sulle nuove pagine
-     Shop/Sekki/About/Contact. Non usare questi token in codice nuovo. */
-  --color-cream: #efe6d3;
-  --color-cream-soft: #e6d9bd;
-  --color-cream-panel: #f7f1e2;
-  --color-line: #d9cbae;
-  --color-ink: #292420;
-  --color-ink-soft: #5c5347;
-  --color-olive: #6f5a22;
-  --color-olive-soft: #997c3f;
-  --color-terra: #963f26;
-  --font-mincho: "Zen Old Mincho", "Shippori Mincho", serif;
-  --font-garamond: "EB Garamond", serif;
-  --font-noto: "Noto Sans JP", "Hiragino Sans", sans-serif;
 }
 
 html {

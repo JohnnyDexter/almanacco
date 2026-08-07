@@ -22,11 +22,6 @@ export interface ProductItem {
   image?: string;
 }
 
-export interface PageSkeletonContent {
-  title: string;
-  description: string;
-}
-
 export interface SiteContent {
   htmlLang: string;
   meta: {
@@ -38,25 +33,15 @@ export interface SiteContent {
     shop: string;
     sekki: string;
     journal: string;
+    events: string;
     about: string;
     contact: string;
   };
-  /** Titolo + descrizione placeholder per le pagine ancora scheletriche. */
-  pages: {
-    shop: PageSkeletonContent;
-    sekki: PageSkeletonContent;
-    journal: PageSkeletonContent;
-    about: PageSkeletonContent;
-    contact: PageSkeletonContent;
-  };
   hero: {
-    kicker: string;
     title: string;
-    subtitle: string;
     /** Claim del brand, tenuto identico nelle tre lingue: compare anche nel logo. */
     tagline: string;
     cta: string;
-    wheelCaption: string;
   };
   sekkiWidget: {
     kicker: string;
@@ -76,6 +61,19 @@ export interface SiteContent {
     title: string;
     text: string;
     ctaLabel: string;
+  };
+  journalPage: {
+    kicker: string;
+    title: string;
+    intro: string;
+    articles: { title: string; excerpt: string }[];
+    comingSoonNote: string;
+  };
+  sekkiPage: {
+    kicker: string;
+    title: string;
+    intro: string[];
+    seasons: { spring: string; summer: string; autumn: string; winter: string };
   };
   newsletter: {
     title: string;
@@ -104,6 +102,7 @@ export interface SiteContent {
     eventText: string;
     pairingLabel: string;
     pairingText: string;
+    moreNote: string;
   };
   contatti: {
     kicker: string;
@@ -140,39 +139,14 @@ export const content: Record<Lang, SiteContent> = {
       shop: "ショップ",
       sekki: "節気",
       journal: "ジャーナル",
+      events: "イベント",
       about: "私たちについて",
       contact: "お問い合わせ",
     },
-    pages: {
-      shop: {
-        title: "ショップ",
-        description: "マルケの厳選商品を紹介するページを準備中です。近日公開。",
-      },
-      sekki: {
-        title: "節気",
-        description: "二十四節気とイタリア農事暦を巡るページを準備中です。近日公開。",
-      },
-      journal: {
-        title: "ジャーナル",
-        description: "店主の記録やお知らせを綴るページを準備中です。近日公開。",
-      },
-      about: {
-        title: "私たちについて",
-        description: "Almanacco の物語を紹介するページを準備中です。近日公開。",
-      },
-      contact: {
-        title: "お問い合わせ",
-        description: "アクセス情報のページを準備中です。近日公開。",
-      },
-    },
     hero: {
-      kicker: "横須賀 · マルケの味",
       title: "Almanacco",
-      subtitle:
-        "イタリア中部マルケ州のオリーブオイルとワインを、横須賀の小さな店から。畑の暦と、日本の二十四節気。ふたつの季節のリズムが、ここで出会います。",
       tagline: "INCONTRO TRA CULTURE, CUSTODE DEL TEMPO",
       cta: "コレクションを見る",
-      wheelCaption: "外周＝イタリア農事暦の12か月　内周＝二十四節気",
     },
     sekkiWidget: {
       kicker: "季節のリズム",
@@ -186,8 +160,8 @@ export const content: Record<Lang, SiteContent> = {
       title: "カテゴリー",
       ctaLabel: "セレクションを見る",
       items: [
-        { title: "オリーブオイル", image: "/images/04-olive-valeri.jpg" },
-        { title: "ワイン", image: "/images/05-botti-murola.jpg" },
+        { title: "オイル＆調味料", image: "/images/04-olive-valeri.jpg" },
+        { title: "ワイン＆飲料", image: "/images/05-botti-murola.jpg" },
         { title: "陶器と手仕事" },
         { title: "アルマナッコの日記帳" },
       ],
@@ -197,6 +171,31 @@ export const content: Record<Lang, SiteContent> = {
       title: "物語、場所、出会い",
       text: "マルケの丘陵地帯から横須賀の街角まで。私たちが店に選ぶものを育て、作り、食卓に運ぶ人々の物語です。",
       ctaLabel: "ジャーナルを読む",
+    },
+    journalPage: {
+      kicker: "店の日記から",
+      title: "ジャーナル",
+      intro: "Almanacco から届ける物語、出会った人々、季節ごとの小さな覚え書き。このジャーナルは始まったばかりです。少しずつ記事を重ねていきます。",
+      articles: [
+        {
+          title: "「Almanacco」という名前を選んだ理由",
+          excerpt: "マルケの農事暦と日本の二十四節気、遠く離れた二つの暦がこの店の名前の中で出会うまでの物語。",
+        },
+        {
+          title: "横須賀で迎えた最初の1年",
+          excerpt: "Almanacco の最初の数ヶ月を振り返って。マルケからの最初の荷物、店での最初の集まり、その道のりで学んだこと。",
+        },
+      ],
+      comingSoonNote: "全文はこちらのページに近日公開予定です。",
+    },
+    sekkiPage: {
+      kicker: "季節を刻む暦",
+      title: "二十四節気",
+      intro: [
+        "日本では、二十四節気が昔から季節のリズムを刻んできました。春のはじまりを告げる立春から、一年で最も寒い大寒まで、24の名前が、ひとつの収穫から次の収穫へと移りゆく小さな変化を伝えています。",
+        "それは、マルケ州の農村で「アルマナッコ」が果たしてきた役割と同じです。種をまく時、収穫する時、祭りを祝う時を知ること。生まれた場所は遠く離れていても、過ぎゆく時間に耳を澄ませるという、同じ心から生まれた二つの暦です。",
+      ],
+      seasons: { spring: "春", summer: "夏", autumn: "秋", winter: "冬" },
     },
     newsletter: {
       title: "つながりを保つ",
@@ -259,6 +258,7 @@ export const content: Record<Lang, SiteContent> = {
         "マルケ地方の伝統料理、手打ちタリアテッレのラグーソースがけ。仕上げには、地元で愛される伝統菓子「マットネッラ」を添えました。素朴で滋味深い、農家の食卓そのものの味です。",
       pairingLabel: "ペアリング",
       pairingText: "Cantina Murola のワインと共に。土地の料理には、土地のワインを。",
+      moreNote: "他の会も近日追加予定です。季節ごとにこのページを更新していきます。",
     },
     contatti: {
       kicker: "お店へ",
@@ -296,39 +296,14 @@ export const content: Record<Lang, SiteContent> = {
       shop: "Shop",
       sekki: "Sekki",
       journal: "Journal",
+      events: "Eventi",
       about: "Chi siamo",
       contact: "Contatti",
     },
-    pages: {
-      shop: {
-        title: "Shop",
-        description: "La pagina dedicata ai nostri prodotti è in preparazione. Presto online.",
-      },
-      sekki: {
-        title: "Sekki",
-        description: "La pagina dedicata ai 24 sekki e al calendario agricolo è in preparazione. Presto online.",
-      },
-      journal: {
-        title: "Journal",
-        description: "Il diario di bottega, tra racconti e novità, è in preparazione. Presto online.",
-      },
-      about: {
-        title: "Chi siamo",
-        description: "La pagina che racconta la storia di Almanacco è in preparazione. Presto online.",
-      },
-      contact: {
-        title: "Contatti",
-        description: "La pagina con indirizzo e orari è in preparazione. Presto online.",
-      },
-    },
     hero: {
-      kicker: "Yokosuka · Sapori delle Marche",
       title: "Almanacco",
-      subtitle:
-        "Olio extravergine e vino delle Marche, da una piccola bottega a Yokosuka. Il calendario agricolo italiano e i 24 sekki giapponesi: due modi di scandire le stagioni che qui si incontrano.",
       tagline: "INCONTRO TRA CULTURE, CUSTODE DEL TEMPO",
       cta: "Scopri la collezione",
-      wheelCaption: "Anello esterno: i 12 mesi del calendario agricolo — Anello interno: i 24 sekki",
     },
     sekkiWidget: {
       kicker: "Il ritmo delle stagioni",
@@ -342,10 +317,10 @@ export const content: Record<Lang, SiteContent> = {
       title: "Le nostre categorie",
       ctaLabel: "Scopri la selezione",
       items: [
-        { title: "Olio", image: "/images/04-olive-valeri.jpg" },
-        { title: "Vini", image: "/images/05-botti-murola.jpg" },
+        { title: "Olio & Condimenti", image: "/images/04-olive-valeri.jpg" },
+        { title: "Vini & Bevande", image: "/images/05-botti-murola.jpg" },
         { title: "Ceramica & Artigianato" },
-        { title: "Diario Almanacco" },
+        { title: "Il Diario Almanacco" },
       ],
     },
     journal: {
@@ -353,6 +328,31 @@ export const content: Record<Lang, SiteContent> = {
       title: "Storie, luoghi, incontri",
       text: "Racconti dalle colline marchigiane e dalle strade di Yokosuka: le persone che coltivano, producono e portano in tavola ciò che scegliamo per il negozio.",
       ctaLabel: "Leggi il Journal",
+    },
+    journalPage: {
+      kicker: "Dal diario di bottega",
+      title: "Journal",
+      intro: "Racconti, persone e piccoli appunti di stagione da Almanacco: la nostra rubrica è appena nata e crescerà un articolo alla volta.",
+      articles: [
+        {
+          title: "Perché abbiamo scelto il nome Almanacco",
+          excerpt: "Il racconto di come due calendari lontanissimi — quello contadino delle Marche e i 24 sekki giapponesi — si sono incontrati nel nome di questo negozio.",
+        },
+        {
+          title: "Il nostro primo anno a Yokosuka",
+          excerpt: "Uno sguardo indietro sui primi mesi di Almanacco: le prime spedizioni dalle Marche, i primi incontri in negozio, quello che abbiamo imparato per strada.",
+        },
+      ],
+      comingSoonNote: "Il racconto completo, presto su questa pagina.",
+    },
+    sekkiPage: {
+      kicker: "Il calendario che scandisce le stagioni",
+      title: "I 24 Sekki",
+      intro: [
+        "In Giappone i 24 sekki scandiscono da secoli il ritmo delle stagioni: dal Risshun, l'inizio della primavera, al Daikan, il freddo più intenso dell'anno, ventiquattro nomi segnano i piccoli passaggi che portano da un raccolto all'altro.",
+        "È lo stesso bisogno che, nelle campagne marchigiane, teneva vivo l'almanacco contadino: sapere quando seminare, quando raccogliere, quando festeggiare. Due calendari nati lontanissimi tra loro, che raccontano la stessa attenzione al tempo che passa.",
+      ],
+      seasons: { spring: "Primavera", summer: "Estate", autumn: "Autunno", winter: "Inverno" },
     },
     newsletter: {
       title: "Resta in contatto",
@@ -415,6 +415,7 @@ export const content: Record<Lang, SiteContent> = {
         "Tagliatelle fatte a mano condite con un ragù tradizionale, seguite dalla mattonella, il dolce marchigiano di casa. Un menù semplice e sostanzioso, come quelli delle tavole contadine.",
       pairingLabel: "In abbinamento",
       pairingText: "I vini della Cantina Murola: la cucina del territorio merita il vino dello stesso territorio.",
+      moreNote: "Altri incontri in arrivo: torneremo ad aggiornare questa pagina a ogni nuova stagione.",
     },
     contatti: {
       kicker: "Vieni a trovarci",
@@ -452,39 +453,14 @@ export const content: Record<Lang, SiteContent> = {
       shop: "Shop",
       sekki: "Sekki",
       journal: "Journal",
+      events: "Events",
       about: "About",
       contact: "Contact",
     },
-    pages: {
-      shop: {
-        title: "Shop",
-        description: "Our products page is being prepared. Coming soon.",
-      },
-      sekki: {
-        title: "Sekki",
-        description: "A page on the 24 sekki and the agricultural calendar is being prepared. Coming soon.",
-      },
-      journal: {
-        title: "Journal",
-        description: "Our shop journal, stories and updates, is being prepared. Coming soon.",
-      },
-      about: {
-        title: "About",
-        description: "The page telling Almanacco's story is being prepared. Coming soon.",
-      },
-      contact: {
-        title: "Contact",
-        description: "Our address and hours page is being prepared. Coming soon.",
-      },
-    },
     hero: {
-      kicker: "Yokosuka · Flavors of the Marche",
       title: "Almanacco",
-      subtitle:
-        "Extra virgin olive oil and wine from the Marche, from a small shop in Yokosuka. The Italian agricultural calendar and Japan's 24 sekki: two ways of marking the seasons, meeting here.",
       tagline: "INCONTRO TRA CULTURE, CUSTODE DEL TEMPO",
       cta: "Explore the collection",
-      wheelCaption: "Outer ring: the 12 months of the agricultural calendar — Inner ring: the 24 sekki",
     },
     sekkiWidget: {
       kicker: "The rhythm of the seasons",
@@ -498,10 +474,10 @@ export const content: Record<Lang, SiteContent> = {
       title: "Our categories",
       ctaLabel: "Discover the selection",
       items: [
-        { title: "Olive Oil", image: "/images/04-olive-valeri.jpg" },
-        { title: "Wine", image: "/images/05-botti-murola.jpg" },
+        { title: "Oil & Condiments", image: "/images/04-olive-valeri.jpg" },
+        { title: "Wine & Beverages", image: "/images/05-botti-murola.jpg" },
         { title: "Ceramics & Crafts" },
-        { title: "Almanacco Diary" },
+        { title: "The Almanacco Diary" },
       ],
     },
     journal: {
@@ -509,6 +485,31 @@ export const content: Record<Lang, SiteContent> = {
       title: "Stories, places, encounters",
       text: "Stories from the hills of the Marche and the streets of Yokosuka: the people who grow, make, and bring to the table what we choose for the shop.",
       ctaLabel: "Read the Journal",
+    },
+    journalPage: {
+      kicker: "From the shop journal",
+      title: "Journal",
+      intro: "Stories, people, and seasonal notes from Almanacco: our journal has just begun, and it will grow one article at a time.",
+      articles: [
+        {
+          title: "Why we chose the name Almanacco",
+          excerpt: "The story of how two calendars from opposite sides of the world — the Marche farmers' almanac and Japan's 24 sekki — met in the name of this shop.",
+        },
+        {
+          title: "Our first year in Yokosuka",
+          excerpt: "A look back at Almanacco's first months: the first shipments from the Marche, the first gatherings in the shop, and what we learned along the way.",
+        },
+      ],
+      comingSoonNote: "The full story, coming soon to this page.",
+    },
+    sekkiPage: {
+      kicker: "The calendar that marks the seasons",
+      title: "The 24 Sekki",
+      intro: [
+        "In Japan, the 24 sekki have long marked the rhythm of the seasons: from Risshun, the start of spring, to Daikan, the depth of winter, twenty-four names trace the small shifts that carry one harvest into the next.",
+        "It's the same need that kept the farmers' almanac alive in the Marche countryside: knowing when to sow, when to harvest, when to celebrate. Two calendars born worlds apart, telling the same story of paying attention to passing time.",
+      ],
+      seasons: { spring: "Spring", summer: "Summer", autumn: "Autumn", winter: "Winter" },
     },
     newsletter: {
       title: "Stay in touch",
@@ -571,6 +572,7 @@ export const content: Record<Lang, SiteContent> = {
         "Hand-cut tagliatelle with a traditional ragù, followed by mattonella, the classic Marche dessert. A simple, hearty menu, just like a farmhouse table.",
       pairingLabel: "Paired with",
       pairingText: "Wines from Cantina Murola — food from the land deserves wine from the same land.",
+      moreNote: "More gatherings are on the way: we'll update this page with each new season.",
     },
     contatti: {
       kicker: "Come visit us",

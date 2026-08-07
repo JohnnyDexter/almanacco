@@ -6,9 +6,13 @@ import { withBase, langHref } from "../utils/paths";
 
 interface Props {
   lang: Lang;
+  /** Mostra kicker + titolo del widget. Disattivalo quando il componente è già annidato in una pagina con un proprio titolo (es. la pagina Sekki). */
+  showHeading?: boolean;
+  /** Mostra il link "Scopri di più" verso la pagina Sekki. Disattivalo se il widget è già sulla pagina Sekki stessa. */
+  showCta?: boolean;
 }
 
-const { lang } = Astro.props;
+const { lang, showHeading = true, showCta = true } = Astro.props;
 const t = content[lang];
 
 // Indice calcolato al momento della build: verrà corretto lato client sulla
@@ -20,14 +24,18 @@ const sekkiHref = withBase(langHref(lang, "sekki"));
 
 <section class="border-t border-brass/30 bg-ivory-soft py-24" data-sekki-widget>
   <div class="mx-auto max-w-3xl px-6 text-center">
-    <p class="divider-dot flex items-center justify-center gap-2 font-body text-xs uppercase tracking-[0.2em] text-forest">
-      {t.sekkiWidget.kicker}
-    </p>
-    <h2 class="mt-4 font-display text-3xl uppercase tracking-wide text-charcoal sm:text-4xl">
-      {t.sekkiWidget.title}
-    </h2>
+    {showHeading && (
+      <>
+        <p class="divider-dot flex items-center justify-center gap-2 font-body text-xs uppercase tracking-[0.2em] text-forest">
+          {t.sekkiWidget.kicker}
+        </p>
+        <h2 class="mt-4 font-display text-3xl uppercase tracking-wide text-charcoal sm:text-4xl">
+          {t.sekkiWidget.title}
+        </h2>
+      </>
+    )}
 
-    <div class="mt-12 flex items-center justify-center gap-3 sm:gap-6">
+    <div class={`flex items-center justify-center gap-3 sm:gap-6 ${showHeading ? "mt-12" : ""}`}>
       <button
         type="button"
         data-sekki-prev
@@ -67,12 +75,14 @@ const sekkiHref = withBase(langHref(lang, "sekki"));
       </button>
     </div>
 
-    <a
-      href={sekkiHref}
-      class="mt-10 inline-block border-b border-forest font-body text-sm uppercase tracking-[0.15em] text-forest transition-colors hover:border-charcoal hover:text-charcoal"
-    >
-      {t.sekkiWidget.ctaLabel} →
-    </a>
+    {showCta && (
+      <a
+        href={sekkiHref}
+        class="mt-10 inline-block border-b border-forest font-body text-sm uppercase tracking-[0.15em] text-forest transition-colors hover:border-charcoal hover:text-charcoal"
+      >
+        {t.sekkiWidget.ctaLabel} →
+      </a>
+    )}
   </div>
 </section>
 
