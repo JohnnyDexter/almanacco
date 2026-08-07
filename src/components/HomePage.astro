@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HomeHero from "./HomeHero.astro";
+import SekkiWidget from "./SekkiWidget.astro";
+import CategoryGrid from "./CategoryGrid.astro";
+import JournalTeaser from "./JournalTeaser.astro";
+import Newsletter from "./Newsletter.astro";
+import type { Lang } from "../i18n/content";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<BaseLayout lang={lang} slug="">
+  <HomeHero lang={lang} />
+  <SekkiWidget lang={lang} />
+  <CategoryGrid lang={lang} />
+  <JournalTeaser lang={lang} />
+  <Newsletter lang={lang} />
+</BaseLayout>

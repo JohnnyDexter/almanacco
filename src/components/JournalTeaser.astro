@@ -1,0 +1,39 @@
+---
+import { content, type Lang } from "../i18n/content";
+import { withBase, langHref } from "../utils/paths";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = content[lang];
+---
+
+<section class="border-t border-brass/30 bg-ivory-soft">
+  <div class="mx-auto grid max-w-6xl gap-10 px-6 py-24 lg:grid-cols-2 lg:items-center">
+    <img
+      src={withBase("/images/03-colline-storia.jpg")}
+      alt=""
+      class="aspect-[4/3] w-full border border-brass/30 object-cover lg:aspect-[5/4]"
+      loading="lazy"
+    />
+    <div>
+      <p class="divider-dot flex items-center gap-2 font-body text-xs uppercase tracking-[0.2em] text-forest">
+        {t.journal.kicker}
+      </p>
+      <h2 class="mt-4 font-display text-3xl uppercase tracking-wide text-charcoal sm:text-4xl">
+        {t.journal.title}
+      </h2>
+      <p class="mt-5 max-w-md font-subtitle text-xl italic leading-relaxed text-stone-text">
+        {t.journal.text}
+      </p>
+      <a
+        href={withBase(langHref(lang, "journal"))}
+        class="mt-8 inline-block border-b border-forest font-body text-sm uppercase tracking-[0.15em] text-forest transition-colors hover:border-charcoal hover:text-charcoal"
+      >
+        {t.journal.ctaLabel} →
+      </a>
+    </div>
+  </div>
+</section>
