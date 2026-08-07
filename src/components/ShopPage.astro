@@ -20,10 +20,10 @@ const wineNames = ["Cantina Murola", "Colmone della Marca"];
 const byName = (names: string[]) => t.prodotti.items.filter((item: ProductItem) => names.includes(item.name));
 
 const groups = [
-  { label: t.categories.items[0].title, items: byName(oilNames) },
-  { label: t.categories.items[1].title, items: byName(wineNames) },
-  { label: t.categories.items[2].title, items: [] as ProductItem[] },
-  { label: t.categories.items[3].title, items: [] as ProductItem[] },
+  { slug: "oil-condiments", label: t.categories.items[0].title, items: byName(oilNames) },
+  { slug: "wine-beverages", label: t.categories.items[1].title, items: byName(wineNames) },
+  { slug: "ceramics-crafts", label: t.categories.items[2].title, items: [] as ProductItem[] },
+  { slug: "almanacco-diary", label: t.categories.items[3].title, items: [] as ProductItem[] },
 ];
 ---
 
@@ -44,7 +44,7 @@ const groups = [
 
       <div class="mt-16 space-y-20">
         {groups.map((group) => (
-          <div>
+          <div id={group.slug} class="scroll-mt-28">
             <h2 class="border-b border-brass/30 pb-3 font-display text-xl uppercase tracking-wide text-charcoal">
               {group.label}
             </h2>

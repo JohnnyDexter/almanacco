@@ -14,13 +14,14 @@ const { current, slug = "" } = Astro.props;
 <nav aria-label="Language switcher" class="flex items-center gap-1 font-body text-xs tracking-wide">
   {langs.map((lang, i) => (
     <>
-      {i > 0 && <span class="text-stone" aria-hidden="true">/</span>}
+      {i > 0 && <span data-header-lang-sep aria-hidden="true">/</span>}
       {lang === current ? (
-        <span class="px-1.5 py-1 text-forest" aria-current="page">{langLabels[lang]}</span>
+        <span class="px-1.5 py-1" data-header-lang-current aria-current="page">{langLabels[lang]}</span>
       ) : (
         <a
           href={withBase(langHref(lang, slug))}
-          class="px-1.5 py-1 text-stone-text transition-colors hover:text-charcoal"
+          class="px-1.5 py-1 transition-colors"
+          data-header-lang-link
         >
           {langLabels[lang]}
         </a>

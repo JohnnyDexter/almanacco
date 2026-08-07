@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SekkiWidget from "./SekkiWidget.astro";
-import { sekki, formatSekkiDate } from "../data/calendar";
+import { sekki, formatSekkiDateRange } from "../data/calendar";
 import { content, type Lang } from "../i18n/content";
 
 interface Props {
@@ -20,7 +20,7 @@ const seasonGroups = [
 ---
 
 <BaseLayout lang={lang} slug="sekki">
-  <section class="bg-ivory pt-24">
+  <section id="filosofia" class="scroll-mt-28 bg-ivory pt-24">
     <div class="mx-auto max-w-2xl px-6 text-center">
       <p class="divider-dot flex items-center justify-center gap-2 font-body text-xs uppercase tracking-[0.2em] text-forest">
         {t.sekkiPage.kicker}
@@ -38,7 +38,7 @@ const seasonGroups = [
 
   <SekkiWidget lang={lang} showHeading={false} showCta={false} />
 
-  <section class="bg-ivory py-24">
+  <section id="calendario" class="scroll-mt-28 bg-ivory py-24">
     <div class="mx-auto max-w-5xl px-6 space-y-16">
       {seasonGroups.map((group) => (
         <div>
@@ -53,7 +53,7 @@ const seasonGroups = [
                   <span class="font-subtitle text-base italic text-stone-text">{s.romaji}</span>
                 </div>
                 <p class="mt-2 font-body text-[11px] uppercase tracking-wide text-brass">
-                  {formatSekkiDate(lang, s)}
+                  {formatSekkiDateRange(lang, s.index)}
                 </p>
                 <p class="mt-2 font-body text-sm leading-snug text-stone-text">{s.meaning[lang]}</p>
               </div>

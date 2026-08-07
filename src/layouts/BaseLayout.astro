@@ -38,8 +38,8 @@ const logoUrl = new URL(withBase("/logo.png"), Astro.site).toString();
     <meta property="og:image:height" content="1254" />
   </head>
   <body class="font-body">
-    <Header lang={lang} t={t} slug={slug} />
-    <main>
+    <Header lang={lang} t={t} slug={slug} transparent={slug === ""} />
+    <main class={slug === "" ? "" : "pt-[72px] sm:pt-20"}>
       <slot />
     </main>
     <Footer lang={lang} t={t} />

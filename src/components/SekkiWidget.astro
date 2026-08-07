@@ -1,12 +1,12 @@
 ---
 import AlmanacWheel from "./AlmanacWheel.astro";
-import { sekki, getCurrentSekkiIndex, formatSekkiDate } from "../data/calendar";
+import { sekki, getCurrentSekkiIndex, formatSekkiDateRange } from "../data/calendar";
 import { content, type Lang } from "../i18n/content";
 import { withBase, langHref } from "../utils/paths";
 
 interface Props {
   lang: Lang;
-  /** Mostra kicker + titolo del widget. Disattivalo quando il componente è già annidato in una pagina con un proprio titolo (es. la pagina Sekki). */
+  /** Mostra kicker/titolo/descrizione a fianco della ruota, in un layout a due colonne. Disattivalo quando il componente è già annidato in una pagina con un proprio titolo (es. la pagina Sekki). */
   showHeading?: boolean;
   /** Mostra il link "Scopri di più" verso la pagina Sekki. Disattivalo se il widget è già sulla pagina Sekki stessa. */
   showCta?: boolean;
@@ -23,71 +23,88 @@ const sekkiHref = withBase(langHref(lang, "sekki"));
 ---
 
 <section class="border-t border-brass/30 bg-ivory-soft py-24" data-sekki-widget>
-  <div class="mx-auto max-w-3xl px-6 text-center">
+  <div
+    class={showHeading
+      ? "mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[2fr_3fr] lg:items-center"
+      : "mx-auto max-w-3xl px-6 text-center"}
+  >
     {showHeading && (
-      <>
-        <p class="divider-dot flex items-center justify-center gap-2 font-body text-xs uppercase tracking-[0.2em] text-forest">
+      <div>
+        <p class="divider-dot flex items-center gap-2 font-body text-xs uppercase tracking-[0.2em] text-forest">
           {t.sekkiWidget.kicker}
         </p>
         <h2 class="mt-4 font-display text-3xl uppercase tracking-wide text-charcoal sm:text-4xl">
           {t.sekkiWidget.title}
         </h2>
-      </>
+        <p class="mt-5 max-w-sm font-subtitle text-xl italic leading-relaxed text-stone-text">
+          {t.sekkiWidget.description}
+        </p>
+        {showCta && (
+          <a
+            href={sekkiHref}
+            class="mt-8 inline-block border-b border-forest font-body text-sm uppercase tracking-[0.15em] text-forest transition-colors hover:border-charcoal hover:text-charcoal"
+          >
+            {t.sekkiWidget.ctaLabel} →
+          </a>
+        )}
+      </div>
     )}
 
-    <div class={`flex items-center justify-center gap-3 sm:gap-6 ${showHeading ? "mt-12" : ""}`}>
-      <button
-        type="button"
-        data-sekki-prev
-        aria-label={t.sekkiWidget.prevLabel}
-        class="flex h-10 w-10 shrink-0 items-center justify-center border border-brass/50 text-charcoal transition-colors hover:border-forest hover:text-forest"
-      >
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
-          <polyline points="15 18 9 12 15 6" />
-        </svg>
-      </button>
+    <div>
+      <div class="flex items-center justify-center gap-3 sm:gap-6">
+        <button
+          type="button"
+          data-sekki-prev
+          aria-label={t.sekkiWidget.prevLabel}
+          class="flex h-10 w-10 shrink-0 items-center justify-center border border-brass/50 text-charcoal transition-colors hover:border-forest hover:text-forest"
+        >
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
 
-      <div class="relative mx-auto w-full max-w-sm sm:max-w-md">
-        <AlmanacWheel lang={lang} highlightIndex={buildIndex} />
-        <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div class="flex w-40 flex-col items-center text-center sm:w-48">
-            <span data-field="kanji" class="font-display text-3xl text-charcoal sm:text-4xl">{current.kanji}</span>
-            <span data-field="romaji" class="mt-1 font-subtitle text-lg italic text-stone-text">{current.romaji}</span>
-            <span data-field="date" class="mt-2 font-body text-[11px] uppercase tracking-wide text-brass">
-              {formatSekkiDate(lang, current)}
-            </span>
-            <span data-field="meaning" class="mt-2 font-body text-xs leading-snug text-stone-text">
-              {current.meaning[lang]}
-            </span>
+        <div class="relative mx-auto w-full max-w-sm sm:max-w-md">
+          <AlmanacWheel lang={lang} highlightIndex={buildIndex} />
+          <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
+            <div class="flex w-40 flex-col items-center text-center sm:w-48">
+              <span data-field="kanji" class="font-display text-3xl text-charcoal sm:text-4xl">{current.kanji}</span>
+              <span data-field="romaji" class="mt-1 font-subtitle text-lg italic text-stone-text">{current.romaji}</span>
+              <span data-field="date" class="mt-2 font-body text-[11px] uppercase tracking-wide text-brass">
+                {formatSekkiDateRange(lang, buildIndex)}
+              </span>
+              <span data-field="meaning" class="mt-2 font-body text-xs leading-snug text-stone-text">
+                {current.meaning[lang]}
+              </span>
+            </div>
           </div>
         </div>
+
+        <button
+          type="button"
+          data-sekki-next
+          aria-label={t.sekkiWidget.nextLabel}
+          class="flex h-10 w-10 shrink-0 items-center justify-center border border-brass/50 text-charcoal transition-colors hover:border-forest hover:text-forest"
+        >
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="9 6 15 12 9 18" />
+          </svg>
+        </button>
       </div>
 
-      <button
-        type="button"
-        data-sekki-next
-        aria-label={t.sekkiWidget.nextLabel}
-        class="flex h-10 w-10 shrink-0 items-center justify-center border border-brass/50 text-charcoal transition-colors hover:border-forest hover:text-forest"
-      >
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
-          <polyline points="9 6 15 12 9 18" />
-        </svg>
-      </button>
+      {!showHeading && showCta && (
+        <a
+          href={sekkiHref}
+          class="mt-10 inline-block border-b border-forest font-body text-sm uppercase tracking-[0.15em] text-forest transition-colors hover:border-charcoal hover:text-charcoal"
+        >
+          {t.sekkiWidget.ctaLabel} →
+        </a>
+      )}
     </div>
-
-    {showCta && (
-      <a
-        href={sekkiHref}
-        class="mt-10 inline-block border-b border-forest font-body text-sm uppercase tracking-[0.15em] text-forest transition-colors hover:border-charcoal hover:text-charcoal"
-      >
-        {t.sekkiWidget.ctaLabel} →
-      </a>
-    )}
   </div>
 </section>
 
 <script>
-  import { sekki, getCurrentSekkiIndex, formatSekkiDate } from "../data/calendar";
+  import { sekki, getCurrentSekkiIndex, formatSekkiDateRange } from "../data/calendar";
   import type { Lang } from "../i18n/content";
 
   function initSekkiWidget(section: Element) {
@@ -107,7 +124,7 @@ const sekkiHref = withBase(langHref(lang, "sekki"));
       const s = sekki[index];
       kanjiEl!.textContent = s.kanji;
       romajiEl!.textContent = s.romaji;
-      dateEl!.textContent = formatSekkiDate(lang, s);
+      dateEl!.textContent = formatSekkiDateRange(lang, index);
       meaningEl!.textContent = s.meaning[lang] ?? s.meaning.en;
 
       wheel!.querySelectorAll<SVGLineElement>("[data-sekki-tick]").forEach((el) => {

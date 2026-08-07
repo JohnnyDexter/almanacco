@@ -46,6 +46,7 @@ export interface SiteContent {
   sekkiWidget: {
     kicker: string;
     title: string;
+    description: string;
     prevLabel: string;
     nextLabel: string;
     ctaLabel: string;
@@ -121,7 +122,8 @@ export interface SiteContent {
   footer: {
     tagline: string;
     rights: string;
-    columnTitle: string;
+    philosophyLabel: string;
+    calendarLabel: string;
     paymentsLabel: string;
     /** Testo prima del link "IKITARIA" nel credito di fondo pagina. */
     creditPrefix: string;
@@ -157,6 +159,7 @@ export const content: Record<Lang, SiteContent> = {
     sekkiWidget: {
       kicker: "季節のリズム",
       title: "今の節気",
+      description: "日本で時を刻む二十四節気の暦。ここでマルケのアルマナッコと出会います。",
       prevLabel: "前の節気",
       nextLabel: "次の節気",
       ctaLabel: "もっと詳しく",
@@ -287,7 +290,8 @@ export const content: Record<Lang, SiteContent> = {
     footer: {
       tagline: "マルケの畑から、横須賀の暦へ。",
       rights: "All rights reserved.",
-      columnTitle: "探す",
+      philosophyLabel: "考え方",
+      calendarLabel: "暦",
       paymentsLabel: "お支払い方法（近日対応）",
       creditPrefix: "Almanacco は ",
       creditSuffix: " のプロジェクトです",
@@ -318,6 +322,7 @@ export const content: Record<Lang, SiteContent> = {
     sekkiWidget: {
       kicker: "Il ritmo delle stagioni",
       title: "Il sekki del momento",
+      description: "Il calendario delle 24 micro-stagioni che scandisce il tempo in Giappone, e che qui incontra l'almanacco marchigiano.",
       prevLabel: "Sekki precedente",
       nextLabel: "Sekki successivo",
       ctaLabel: "Scopri di più",
@@ -448,7 +453,8 @@ export const content: Record<Lang, SiteContent> = {
     footer: {
       tagline: "Dai campi delle Marche all'almanacco di Yokosuka.",
       rights: "Tutti i diritti riservati.",
-      columnTitle: "Esplora",
+      philosophyLabel: "La Filosofia",
+      calendarLabel: "Il Calendario",
       paymentsLabel: "Metodi di pagamento (in arrivo)",
       creditPrefix: "Almanacco è un progetto di ",
       creditSuffix: "",
@@ -479,6 +485,7 @@ export const content: Record<Lang, SiteContent> = {
     sekkiWidget: {
       kicker: "The rhythm of the seasons",
       title: "The current sekki",
+      description: "The calendar of 24 micro-seasons that marks time in Japan, meeting the Marche almanac here.",
       prevLabel: "Previous sekki",
       nextLabel: "Next sekki",
       ctaLabel: "Learn more",
@@ -609,7 +616,8 @@ export const content: Record<Lang, SiteContent> = {
     footer: {
       tagline: "From the fields of the Marche to the Yokosuka almanac.",
       rights: "All rights reserved.",
-      columnTitle: "Explore",
+      philosophyLabel: "The Philosophy",
+      calendarLabel: "The Calendar",
       paymentsLabel: "Payment methods (coming soon)",
       creditPrefix: "Almanacco is a project by ",
       creditSuffix: "",

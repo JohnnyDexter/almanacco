@@ -76,10 +76,35 @@ export function getCurrentSekkiIndex(date: Date = new Date()): number {
   return current;
 }
 
-/** Formatta la data approssimativa di inizio di un sekki nella lingua richiesta. */
-export function formatSekkiDate(lang: keyof MonthLabel, s: Sekki): string {
-  const monthName = italianMonths[s.month - 1];
-  if (lang === "ja") return `${monthName.ja}${s.day}日ごろ`;
-  if (lang === "it") return `${s.day} ${monthName.it.toLowerCase()} circa`;
-  return `Around ${monthName.en} ${s.day}`;
+const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+/** Formatta l'intervallo di date (inizio del sekki -> giorno prima del successivo). */
+export function formatSekkiDateRange(lang: keyof MonthLabel, index: number): string {
+  const s = sekki[index];
+  const next = sekki[(index + 1) % sekki.length];
+
+  let endMonth = next.month;
+  let endDay = next.day - 1;
+  if (endDay < 1) {
+    endMonth = endMonth === 1 ? 12 : endMonth - 1;
+    endDay = DAYS_IN_MONTH[endMonth - 1];
+  }
+
+  const startName = italianMonths[s.month - 1];
+  const endName = italianMonths[endMonth - 1];
+  const sameMonth = s.month === endMonth;
+
+  if (lang === "ja") {
+    return sameMonth
+      ? `${startName.ja}${s.day}日〜${endDay}日ごろ`
+      : `${startName.ja}${s.day}日〜${endName.ja}${endDay}日ごろ`;
+  }
+  if (lang === "it") {
+    return sameMonth
+      ? `${s.day}–${endDay} ${startName.it.toLowerCase()} circa`
+      : `${s.day} ${startName.it.toLowerCase()} – ${endDay} ${endName.it.toLowerCase()} circa`;
+  }
+  return sameMonth
+    ? `${startName.en} ${s.day}–${endDay}`
+    : `${startName.en} ${s.day} – ${endName.en} ${endDay}`;
 }
