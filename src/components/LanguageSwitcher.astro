@@ -1,24 +1,26 @@
 ---
-import { langs, langLabels, langPaths, type Lang } from "../i18n/content";
-import { withBase } from "../utils/paths";
+import { langs, langLabels, type Lang } from "../i18n/content";
+import { withBase, langHref } from "../utils/paths";
 
 interface Props {
   current: Lang;
+  /** Slug della pagina corrente, per restare sulla stessa pagina cambiando lingua. */
+  slug?: string;
 }
 
-const { current } = Astro.props;
+const { current, slug = "" } = Astro.props;
 ---
 
-<nav aria-label="Language switcher" class="flex items-center gap-1 font-noto text-xs tracking-wide">
+<nav aria-label="Language switcher" class="flex items-center gap-1 font-body text-xs tracking-wide">
   {langs.map((lang, i) => (
     <>
-      {i > 0 && <span class="text-line" aria-hidden="true">/</span>}
+      {i > 0 && <span class="text-stone" aria-hidden="true">/</span>}
       {lang === current ? (
-        <span class="px-1.5 py-1 text-olive" aria-current="page">{langLabels[lang]}</span>
+        <span class="px-1.5 py-1 text-forest" aria-current="page">{langLabels[lang]}</span>
       ) : (
         <a
-          href={withBase(langPaths[lang])}
-          class="px-1.5 py-1 text-ink-soft transition-colors hover:text-ink"
+          href={withBase(langHref(lang, slug))}
+          class="px-1.5 py-1 text-stone-text transition-colors hover:text-charcoal"
         >
           {langLabels[lang]}
         </a>
