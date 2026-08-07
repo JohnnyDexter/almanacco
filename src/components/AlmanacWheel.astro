@@ -4,12 +4,11 @@ import type { Lang } from "../i18n/content";
 
 interface Props {
   lang: Lang;
-  caption?: string;
   /** Indice (0-23) del sekki da evidenziare, per il widget "sekki del momento". */
   highlightIndex?: number;
 }
 
-const { lang, caption, highlightIndex } = Astro.props;
+const { lang, highlightIndex } = Astro.props;
 
 const size = 480;
 const cx = size / 2;
@@ -68,7 +67,7 @@ const tickAnglesOuter = italianMonths.map((_, i) => i * monthStep);
 const tickAnglesInner = sekki.map((_, i) => i * sekkiStep);
 ---
 
-<figure class="mx-auto flex w-full max-w-lg flex-col items-center gap-4" aria-labelledby={caption ? "almanac-wheel-caption" : undefined}>
+<figure class="mx-auto flex w-full max-w-lg flex-col items-center gap-4">
   <svg
     viewBox={`0 0 ${size} ${size}`}
     role="img"
@@ -149,9 +148,4 @@ const tickAnglesInner = sekki.map((_, i) => i * sekkiStep);
       );
     })}
   </svg>
-  {caption && (
-    <figcaption id="almanac-wheel-caption" class="text-center font-body text-xs tracking-wide text-stone-text">
-      {caption}
-    </figcaption>
-  )}
 </figure>

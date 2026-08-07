@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { content, type Lang } from "../i18n/content";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = content[lang];
+---
+
+<BaseLayout lang={lang} slug="journal">
+  <section class="bg-ivory py-24">
+    <div class="mx-auto max-w-3xl px-6">
+      <p class="divider-dot flex items-center gap-2 font-body text-xs uppercase tracking-[0.2em] text-forest">
+        {t.journalPage.kicker}
+      </p>
+      <h1 class="mt-4 font-display text-4xl uppercase tracking-wide text-charcoal sm:text-5xl">
+        {t.journalPage.title}
+      </h1>
+      <p class="mt-6 font-subtitle text-xl italic leading-relaxed text-stone-text">
+        {t.journalPage.intro}
+      </p>
+
+      <div class="mt-14 space-y-8">
+        {t.journalPage.articles.map((article) => (
+          <article class="border border-brass/30 bg-ivory-soft p-8">
+            <h2 class="font-subtitle text-2xl italic text-charcoal">{article.title}</h2>
+            <p class="mt-4 font-body text-sm leading-relaxed text-stone-text">{article.excerpt}</p>
+            <p class="mt-5 font-body text-xs uppercase tracking-[0.1em] text-brass">
+              {t.journalPage.comingSoonNote}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -6,7 +6,7 @@ import { withBase, langHref } from "../utils/paths";
 interface Props {
   lang: Lang;
   t: SiteContent;
-  /** Slug della pagina corrente: "" per Home, "shop", "sekki", "journal", "about", "contact". */
+  /** Slug della pagina corrente: "" per Home, "shop", "sekki", "journal", "events", "about", "contact". */
   slug?: string;
 }
 
@@ -17,6 +17,7 @@ const navItems = [
   { slug: "shop", label: t.nav.shop },
   { slug: "sekki", label: t.nav.sekki },
   { slug: "journal", label: t.nav.journal },
+  { slug: "events", label: t.nav.events },
   { slug: "about", label: t.nav.about },
   { slug: "contact", label: t.nav.contact },
 ];
@@ -36,7 +37,7 @@ const navItems = [
 
     <nav
       aria-label="Sezioni"
-      class="hidden flex-1 items-center justify-center gap-7 font-display text-xs uppercase tracking-[0.15em] text-charcoal md:flex"
+      class="hidden flex-1 items-center justify-center gap-4 font-display text-xs uppercase tracking-[0.1em] text-charcoal lg:flex lg:gap-6"
     >
       {navItems.map((item) => (
         <a
@@ -73,7 +74,7 @@ const navItems = [
         </button>
       </div>
 
-      <details class="relative md:hidden">
+      <details class="relative lg:hidden">
         <summary
           class="flex cursor-pointer list-none items-center p-1 text-charcoal [&::-webkit-details-marker]:hidden"
           aria-label="Menu"

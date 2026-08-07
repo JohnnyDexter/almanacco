@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { content, type Lang } from "../i18n/content";
+import { withBase, langHref } from "../utils/paths";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = content[lang];
+---
+
+<BaseLayout lang={lang} slug="about">
+  <section class="border-b border-brass/30">
+    <img
+      src={withBase("/images/03-colline-storia.jpg")}
+      alt=""
+      class="h-[45vh] w-full object-cover"
+      loading="eager"
+    />
+  </section>
+
+  <section class="bg-ivory py-24">
+    <div class="mx-auto max-w-2xl px-6">
+      <p class="divider-dot flex items-center gap-2 font-body text-xs uppercase tracking-[0.2em] text-forest">
+        {t.storia.kicker}
+      </p>
+      <h1 class="mt-4 font-display text-4xl uppercase tracking-wide text-charcoal sm:text-5xl">
+        {t.storia.title}
+      </h1>
+      <div class="mt-10 space-y-6">
+        {t.storia.paragraphs.map((p) => (
+          <p class="font-body text-base leading-relaxed text-stone-text">{p}</p>
+        ))}
+      </div>
+
+      <a
+        href={withBase(langHref(lang, "shop"))}
+        class="mt-12 inline-block bg-forest px-8 py-3 font-body text-sm uppercase tracking-[0.15em] text-ivory transition-colors hover:bg-forest/85"
+      >
+        {t.categories.ctaLabel} →
+      </a>
+    </div>
+  </section>
+</BaseLayout>
