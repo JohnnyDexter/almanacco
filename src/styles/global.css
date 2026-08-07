@@ -33,13 +33,6 @@ body {
   color: var(--color-cream);
 }
 
-.bg-wash {
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(111, 90, 34, 0.10), transparent),
-    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(150, 63, 38, 0.06), transparent),
-    var(--color-cream);
-}
-
 .divider-dot::before {
   content: "";
   display: inline-block;
