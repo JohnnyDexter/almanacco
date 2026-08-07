@@ -18,6 +18,8 @@ export interface ProductItem {
   name: string;
   category: string;
   description: string;
+  /** Percorso dell'immagine in public/, es. "/images/04-olive-valeri.jpg". Se assente, la card mostra un placeholder. */
+  image?: string;
 }
 
 export interface SiteContent {
@@ -120,12 +122,14 @@ export const content: Record<Lang, SiteContent> = {
           category: "エキストラバージンオリーブオイル",
           description:
             "マルケ州の在来品種「ミニョーラ（Mignola）」から搾られたエキストラバージンオリーブオイル。青々とした香りとほのかな辛みが特徴で、収穫からすぐに搾油する昔ながらの製法を守っています。",
+          image: "/images/04-olive-valeri.jpg",
         },
         {
           name: "Cantina Murola",
           category: "ワイン",
           description:
             "マルケ州の小さな家族経営ワイナリー、ムローラ醸造所のワイン。畑仕事から瓶詰めまで家族の手で行われ、土地の個性をそのまま映した味わいです。",
+          image: "/images/05-botti-murola.jpg",
         },
         {
           name: "Colmone della Marca",
@@ -215,12 +219,14 @@ export const content: Record<Lang, SiteContent> = {
           category: "Olio extravergine d'oliva",
           description:
             "Olio extravergine spremuto dalla cultivar autoctona Mignola. Note erbacee decise e un finale leggermente piccante, frutto di una molitura rapida che segue ancora i tempi della raccolta.",
+          image: "/images/04-olive-valeri.jpg",
         },
         {
           name: "Cantina Murola",
           category: "Vino",
           description:
             "I vini della Cantina Murola, piccola realtà familiare marchigiana dove la vigna e la cantina sono ancora affari di famiglia, dalla potatura all'imbottigliamento.",
+          image: "/images/05-botti-murola.jpg",
         },
         {
           name: "Colmone della Marca",
@@ -310,12 +316,14 @@ export const content: Record<Lang, SiteContent> = {
           category: "Extra virgin olive oil",
           description:
             "Extra virgin olive oil pressed from the native Mignola cultivar. Bold, grassy notes and a lightly peppery finish, the result of rapid milling that still follows the pace of the harvest.",
+          image: "/images/04-olive-valeri.jpg",
         },
         {
           name: "Cantina Murola",
           category: "Wine",
           description:
             "Wines from Cantina Murola, a small family-run winery in the Marche where the vineyard and the cellar are still a family affair, from pruning to bottling.",
+          image: "/images/05-botti-murola.jpg",
         },
         {
           name: "Colmone della Marca",

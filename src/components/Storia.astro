@@ -1,5 +1,6 @@
 ---
 import type { SiteContent, Lang } from "../i18n/content";
+import { withBase } from "../utils/paths";
 
 interface Props {
   lang: Lang;
@@ -10,15 +11,25 @@ const { t } = Astro.props;
 ---
 
 <section id="storia" class="border-t border-line/70 bg-cream">
-  <div class="mx-auto max-w-3xl px-6 py-20">
-    <p class="divider-dot flex items-center gap-2 font-noto text-xs uppercase tracking-[0.2em] text-terra">
-      {t.storia.kicker}
-    </p>
-    <h2 class="mt-4 font-mincho text-3xl text-ink sm:text-4xl">{t.storia.title}</h2>
-    <div class="mt-8 space-y-5">
-      {t.storia.paragraphs.map((p) => (
-        <p class="font-noto text-base leading-relaxed text-ink-soft">{p}</p>
-      ))}
+  <div class="mx-auto max-w-5xl px-6 py-20">
+    <div class="grid gap-10 lg:grid-cols-[3fr_2fr] lg:items-start">
+      <div>
+        <p class="divider-dot flex items-center gap-2 font-noto text-xs uppercase tracking-[0.2em] text-terra">
+          {t.storia.kicker}
+        </p>
+        <h2 class="mt-4 font-mincho text-3xl text-ink sm:text-4xl">{t.storia.title}</h2>
+        <div class="mt-8 space-y-5">
+          {t.storia.paragraphs.map((p) => (
+            <p class="font-noto text-base leading-relaxed text-ink-soft">{p}</p>
+          ))}
+        </div>
+      </div>
+      <img
+        src={withBase("/images/03-colline-storia.jpg")}
+        alt=""
+        class="aspect-[4/5] w-full border border-line/70 object-cover lg:sticky lg:top-24"
+        loading="lazy"
+      />
     </div>
   </div>
 </section>
