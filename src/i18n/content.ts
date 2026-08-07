@@ -110,6 +110,8 @@ export interface SiteContent {
     shopName: string;
     addressLabel: string;
     addressLines: string[];
+    emailLabel: string;
+    email: string;
     hoursLabel: string;
     hoursValue: string;
     socialLabel: string;
@@ -121,6 +123,10 @@ export interface SiteContent {
     rights: string;
     columnTitle: string;
     paymentsLabel: string;
+    /** Testo prima del link "IKITARIA" nel credito di fondo pagina. */
+    creditPrefix: string;
+    /** Testo dopo il link "IKITARIA" (può essere vuoto). */
+    creditSuffix: string;
   };
   /** Etichetta breve usata come kicker nelle pagine ancora scheletriche. */
   comingSoonLabel: string;
@@ -270,6 +276,8 @@ export const content: Record<Lang, SiteContent> = {
         "神奈川県横須賀市田浦町1-54",
         "月見台住宅 A29",
       ],
+      emailLabel: "メール",
+      email: "info@ikitaria.com",
       hoursLabel: "営業時間",
       hoursValue: "近日公開予定",
       socialLabel: "SNS",
@@ -281,6 +289,8 @@ export const content: Record<Lang, SiteContent> = {
       rights: "All rights reserved.",
       columnTitle: "探す",
       paymentsLabel: "お支払い方法（近日対応）",
+      creditPrefix: "Almanacco は ",
+      creditSuffix: " のプロジェクトです",
     },
     comingSoonLabel: "近日公開",
   },
@@ -427,6 +437,8 @@ export const content: Record<Lang, SiteContent> = {
         "1-54 Taura-cho, Yokosuka",
         "Kanagawa 237-0075, Giappone",
       ],
+      emailLabel: "Email",
+      email: "info@ikitaria.com",
       hoursLabel: "Orari",
       hoursValue: "In arrivo",
       socialLabel: "Social",
@@ -438,6 +450,8 @@ export const content: Record<Lang, SiteContent> = {
       rights: "Tutti i diritti riservati.",
       columnTitle: "Esplora",
       paymentsLabel: "Metodi di pagamento (in arrivo)",
+      creditPrefix: "Almanacco è un progetto di ",
+      creditSuffix: "",
     },
     comingSoonLabel: "In arrivo",
   },
@@ -584,6 +598,8 @@ export const content: Record<Lang, SiteContent> = {
         "1-54 Taura-cho, Yokosuka",
         "Kanagawa 237-0075, Japan",
       ],
+      emailLabel: "Email",
+      email: "info@ikitaria.com",
       hoursLabel: "Hours",
       hoursValue: "Coming soon",
       socialLabel: "Social",
@@ -595,6 +611,8 @@ export const content: Record<Lang, SiteContent> = {
       rights: "All rights reserved.",
       columnTitle: "Explore",
       paymentsLabel: "Payment methods (coming soon)",
+      creditPrefix: "Almanacco is a project by ",
+      creditSuffix: "",
     },
     comingSoonLabel: "Coming soon",
   },

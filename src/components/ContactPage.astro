@@ -37,6 +37,13 @@ const t = content[lang];
               <p>{line}</p>
             ))}
           </address>
+
+          <p class="mt-6 font-body text-xs uppercase tracking-[0.15em] text-brass">{t.contatti.emailLabel}</p>
+          <p class="mt-2 font-body text-sm leading-relaxed">
+            <a href={`mailto:${t.contatti.email}`} class="text-stone-text underline decoration-brass/50 underline-offset-2 transition-colors hover:text-forest">
+              {t.contatti.email}
+            </a>
+          </p>
         </div>
 
         <div>
