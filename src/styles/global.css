@@ -1,9 +1,32 @@
-@import url("https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600&family=Shippori+Mincho:wght@400;600;800&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;600;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap");
 @import "tailwindcss";
 
 @theme {
-  /* Palette chiara ispirata al logo: sfondo washi crema, inchiostro carbone,
-     oro-oliva opaco come accento secondario, rosso hanko usato con parsimonia. */
+  /* Nuova direzione visiva: avorio caldo, nero carbone, verde bosco (accenti forti),
+     ottone (dettagli/bordi), terracotta (accento puntuale), grigio pietra (muted). */
+  --color-ivory: #f4f1eb;
+  --color-ivory-soft: #ece5d6;
+  --color-panel: #faf8f3;
+  --color-charcoal: #1f1f1d;
+  --color-forest: #233126;
+  --color-brass: #b08a5a;
+  --color-terracotta: #a46a4c;
+  --color-stone: #b7b2aa;
+  /* Variante leggibile di "pietra" per testo secondario: il colore di brand #B7B2AA
+     ha contrasto troppo basso su fondo avorio per essere usato come testo (~1.9:1). */
+  --color-stone-text: #65594a;
+
+  /* Cinzel/Cormorant Garamond non coprono i glifi giapponesi: il fallback verso i
+     mincho già in uso mantiene un registro "serif elegante" coerente anche in JA. */
+  --font-display: "Cinzel", "Shippori Mincho", serif;
+  --font-subtitle: "Cormorant Garamond", "Shippori Mincho", serif;
+  --font-body: "Inter", "Noto Sans JP", sans-serif;
+
+  /* --- Palette e font della direzione visiva precedente ---
+     Mantenuti solo perché ancora referenziati da Hero/Storia/Prodotti/
+     AlmanaccoStagionale/Contatti, non più montati da nessuna pagina: verranno
+     rimossi quando quei componenti saranno rimappati sulle nuove pagine
+     Shop/Sekki/About/Contact. Non usare questi token in codice nuovo. */
   --color-cream: #efe6d3;
   --color-cream-soft: #e6d9bd;
   --color-cream-panel: #f7f1e2;
@@ -13,7 +36,6 @@
   --color-olive: #6f5a22;
   --color-olive-soft: #997c3f;
   --color-terra: #963f26;
-
   --font-mincho: "Zen Old Mincho", "Shippori Mincho", serif;
   --font-garamond: "EB Garamond", serif;
   --font-noto: "Noto Sans JP", "Hiragino Sans", sans-serif;
@@ -24,13 +46,13 @@ html {
 }
 
 body {
-  background-color: var(--color-cream);
-  color: var(--color-ink);
+  background-color: var(--color-ivory);
+  color: var(--color-charcoal);
 }
 
 ::selection {
-  background-color: var(--color-olive);
-  color: var(--color-cream);
+  background-color: var(--color-forest);
+  color: var(--color-ivory);
 }
 
 .divider-dot::before {
@@ -39,5 +61,5 @@ body {
   width: 6px;
   height: 6px;
   border-radius: 9999px;
-  background-color: var(--color-terra);
+  background-color: var(--color-terracotta);
 }

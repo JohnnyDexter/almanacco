@@ -22,6 +22,11 @@ export interface ProductItem {
   image?: string;
 }
 
+export interface PageSkeletonContent {
+  title: string;
+  description: string;
+}
+
 export interface SiteContent {
   htmlLang: string;
   meta: {
@@ -29,10 +34,20 @@ export interface SiteContent {
     description: string;
   };
   nav: {
-    storia: string;
-    prodotti: string;
-    almanacco: string;
-    contatti: string;
+    home: string;
+    shop: string;
+    sekki: string;
+    journal: string;
+    about: string;
+    contact: string;
+  };
+  /** Titolo + descrizione placeholder per le pagine ancora scheletriche. */
+  pages: {
+    shop: PageSkeletonContent;
+    sekki: PageSkeletonContent;
+    journal: PageSkeletonContent;
+    about: PageSkeletonContent;
+    contact: PageSkeletonContent;
   };
   hero: {
     kicker: string;
@@ -78,6 +93,8 @@ export interface SiteContent {
     tagline: string;
     rights: string;
   };
+  /** Etichetta breve usata come kicker nelle pagine ancora scheletriche. */
+  comingSoonLabel: string;
 }
 
 export const content: Record<Lang, SiteContent> = {
@@ -89,10 +106,34 @@ export const content: Record<Lang, SiteContent> = {
         "神奈川県横須賀市にあるイタリア食材店 Almanacco。イタリア・マルケ州のオリーブオイルとワインを、日本の季節の暦とともにお届けします。",
     },
     nav: {
-      storia: "物語",
-      prodotti: "商品",
-      almanacco: "季節の暦",
-      contatti: "アクセス",
+      home: "ホーム",
+      shop: "ショップ",
+      sekki: "節気",
+      journal: "ジャーナル",
+      about: "私たちについて",
+      contact: "お問い合わせ",
+    },
+    pages: {
+      shop: {
+        title: "ショップ",
+        description: "マルケの厳選商品を紹介するページを準備中です。近日公開。",
+      },
+      sekki: {
+        title: "節気",
+        description: "二十四節気とイタリア農事暦を巡るページを準備中です。近日公開。",
+      },
+      journal: {
+        title: "ジャーナル",
+        description: "店主の記録やお知らせを綴るページを準備中です。近日公開。",
+      },
+      about: {
+        title: "私たちについて",
+        description: "Almanacco の物語を紹介するページを準備中です。近日公開。",
+      },
+      contact: {
+        title: "お問い合わせ",
+        description: "アクセス情報のページを準備中です。近日公開。",
+      },
     },
     hero: {
       kicker: "横須賀 · マルケの味",
@@ -177,6 +218,7 @@ export const content: Record<Lang, SiteContent> = {
       tagline: "マルケの畑から、横須賀の暦へ。",
       rights: "All rights reserved.",
     },
+    comingSoonLabel: "近日公開",
   },
   it: {
     htmlLang: "it",
@@ -186,10 +228,34 @@ export const content: Record<Lang, SiteContent> = {
         "Almanacco è la bottega a Yokosuka, Giappone, che porta l'olio extravergine e il vino delle Marche, seguendo il ritmo delle stagioni tra Italia e Giappone.",
     },
     nav: {
-      storia: "Storia",
-      prodotti: "Prodotti",
-      almanacco: "Almanacco stagionale",
-      contatti: "Contatti",
+      home: "Home",
+      shop: "Shop",
+      sekki: "Sekki",
+      journal: "Journal",
+      about: "Chi siamo",
+      contact: "Contatti",
+    },
+    pages: {
+      shop: {
+        title: "Shop",
+        description: "La pagina dedicata ai nostri prodotti è in preparazione. Presto online.",
+      },
+      sekki: {
+        title: "Sekki",
+        description: "La pagina dedicata ai 24 sekki e al calendario agricolo è in preparazione. Presto online.",
+      },
+      journal: {
+        title: "Journal",
+        description: "Il diario di bottega, tra racconti e novità, è in preparazione. Presto online.",
+      },
+      about: {
+        title: "Chi siamo",
+        description: "La pagina che racconta la storia di Almanacco è in preparazione. Presto online.",
+      },
+      contact: {
+        title: "Contatti",
+        description: "La pagina con indirizzo e orari è in preparazione. Presto online.",
+      },
     },
     hero: {
       kicker: "Yokosuka · Sapori delle Marche",
@@ -274,6 +340,7 @@ export const content: Record<Lang, SiteContent> = {
       tagline: "Dai campi delle Marche all'almanacco di Yokosuka.",
       rights: "Tutti i diritti riservati.",
     },
+    comingSoonLabel: "In arrivo",
   },
   en: {
     htmlLang: "en",
@@ -283,10 +350,34 @@ export const content: Record<Lang, SiteContent> = {
         "Almanacco is a small shop in Yokosuka, Japan, bringing extra virgin olive oil and wine from the Marche region, following the rhythm of the seasons between Italy and Japan.",
     },
     nav: {
-      storia: "Story",
-      prodotti: "Products",
-      almanacco: "Seasonal almanac",
-      contatti: "Contact",
+      home: "Home",
+      shop: "Shop",
+      sekki: "Sekki",
+      journal: "Journal",
+      about: "About",
+      contact: "Contact",
+    },
+    pages: {
+      shop: {
+        title: "Shop",
+        description: "Our products page is being prepared. Coming soon.",
+      },
+      sekki: {
+        title: "Sekki",
+        description: "A page on the 24 sekki and the agricultural calendar is being prepared. Coming soon.",
+      },
+      journal: {
+        title: "Journal",
+        description: "Our shop journal, stories and updates, is being prepared. Coming soon.",
+      },
+      about: {
+        title: "About",
+        description: "The page telling Almanacco's story is being prepared. Coming soon.",
+      },
+      contact: {
+        title: "Contact",
+        description: "Our address and hours page is being prepared. Coming soon.",
+      },
     },
     hero: {
       kicker: "Yokosuka · Flavors of the Marche",
@@ -371,5 +462,6 @@ export const content: Record<Lang, SiteContent> = {
       tagline: "From the fields of the Marche to the Yokosuka almanac.",
       rights: "All rights reserved.",
     },
+    comingSoonLabel: "Coming soon",
   },
 };
