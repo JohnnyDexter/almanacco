@@ -1,0 +1,146 @@
+---
+import { italianMonths, sekki, type MonthLabel } from "../data/calendar";
+import type { Lang } from "../i18n/content";
+
+interface Props {
+  lang: Lang;
+  caption: string;
+}
+
+const { lang, caption } = Astro.props;
+
+const size = 440;
+const cx = size / 2;
+const cy = size / 2;
+
+const outerRadius = 190;
+const outerLabelRadius = 168;
+const innerRadius = 122;
+const innerLabelRadius = 100;
+const coreRadius = 58;
+
+function toRad(deg: number) {
+  return (deg * Math.PI) / 180;
+}
+
+function pointOnCircle(radius: number, angleDeg: number) {
+  const rad = toRad(angleDeg - 90);
+  return {
+    x: cx + radius * Math.cos(rad),
+    y: cy + radius * Math.sin(rad),
+  };
+}
+
+function labelTransform(angleDeg: number, radius: number) {
+  const flip = angleDeg > 90 && angleDeg < 270;
+  const pos = pointOnCircle(radius, angleDeg);
+  const rotation = flip ? angleDeg - 90 + 180 : angleDeg - 90;
+  return `rotate(${rotation} ${pos.x} ${pos.y})`;
+}
+
+const monthStep = 360 / italianMonths.length;
+const monthItems = italianMonths.map((m: MonthLabel, i: number) => {
+  const angle = i * monthStep;
+  const pos = pointOnCircle(outerLabelRadius, angle);
+  return {
+    label: m[lang],
+    x: pos.x,
+    y: pos.y,
+    transform: labelTransform(angle, outerLabelRadius),
+  };
+});
+
+const sekkiStep = 360 / sekki.length;
+const sekkiItems = sekki.map((s, i) => {
+  const angle = i * sekkiStep;
+  const pos = pointOnCircle(innerLabelRadius, angle);
+  return {
+    label: s.kanji,
+    x: pos.x,
+    y: pos.y,
+    transform: labelTransform(angle, innerLabelRadius),
+  };
+});
+
+const tickAnglesOuter = italianMonths.map((_, i) => i * monthStep);
+const tickAnglesInner = sekki.map((_, i) => i * sekkiStep);
+---
+
+<figure class="mx-auto flex w-full max-w-md flex-col items-center gap-4" aria-labelledby="almanac-wheel-caption">
+  <svg
+    viewBox={`0 0 ${size} ${size}`}
+    role="img"
+    aria-label="Ruota dell'almanacco: 12 mesi del calendario agricolo italiano e 24 sekki giapponesi"
+    class="h-auto w-full"
+  >
+    <circle cx={cx} cy={cy} r={outerRadius} fill="none" stroke="var(--color-indigo-line)" stroke-width="1" />
+    <circle cx={cx} cy={cy} r={innerRadius} fill="none" stroke="var(--color-indigo-line)" stroke-width="1" />
+    <circle cx={cx} cy={cy} r={coreRadius} fill="none" stroke="var(--color-olive-soft)" stroke-width="1" />
+
+    {tickAnglesOuter.map((angle) => {
+      const inner = pointOnCircle(outerRadius - 10, angle);
+      const outer = pointOnCircle(outerRadius, angle);
+      return (
+        <line
+          x1={inner.x}
+          y1={inner.y}
+          x2={outer.x}
+          y2={outer.y}
+          stroke="var(--color-olive)"
+          stroke-width="1"
+          opacity="0.55"
+        />
+      );
+    })}
+
+    {tickAnglesInner.map((angle) => {
+      const inner = pointOnCircle(innerRadius - 6, angle);
+      const outer = pointOnCircle(innerRadius, angle);
+      return (
+        <line
+          x1={inner.x}
+          y1={inner.y}
+          x2={outer.x}
+          y2={outer.y}
+          stroke="var(--color-paper-dim)"
+          stroke-width="0.75"
+          opacity="0.5"
+        />
+      );
+    })}
+
+    {monthItems.map((item) => (
+      <text
+        x={item.x}
+        y={item.y}
+        transform={item.transform}
+        text-anchor="middle"
+        dominant-baseline="middle"
+        class="fill-olive font-garamond"
+        font-size="13"
+        letter-spacing="0.5"
+      >
+        {item.label}
+      </text>
+    ))}
+
+    {sekkiItems.map((item) => (
+      <text
+        x={item.x}
+        y={item.y}
+        transform={item.transform}
+        text-anchor="middle"
+        dominant-baseline="middle"
+        class="fill-paper-dim font-noto"
+        font-size="11"
+      >
+        {item.label}
+      </text>
+    ))}
+
+    <circle cx={cx} cy={cy} r="2" fill="var(--color-terra)" />
+  </svg>
+  <figcaption id="almanac-wheel-caption" class="text-center font-noto text-xs tracking-wide text-paper-dim">
+    {caption}
+  </figcaption>
+</figure>

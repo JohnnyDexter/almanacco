@@ -1,0 +1,27 @@
+---
+import { langs, langLabels, langPaths, type Lang } from "../i18n/content";
+
+interface Props {
+  current: Lang;
+}
+
+const { current } = Astro.props;
+---
+
+<nav aria-label="Language switcher" class="flex items-center gap-1 font-noto text-xs tracking-wide">
+  {langs.map((lang, i) => (
+    <>
+      {i > 0 && <span class="text-indigo-line" aria-hidden="true">/</span>}
+      {lang === current ? (
+        <span class="px-1.5 py-1 text-olive" aria-current="page">{langLabels[lang]}</span>
+      ) : (
+        <a
+          href={langPaths[lang]}
+          class="px-1.5 py-1 text-paper-dim transition-colors hover:text-paper"
+        >
+          {langLabels[lang]}
+        </a>
+      )}
+    </>
+  ))}
+</nav>

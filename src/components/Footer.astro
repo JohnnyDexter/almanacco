@@ -1,0 +1,19 @@
+---
+import type { SiteContent, Lang } from "../i18n/content";
+
+interface Props {
+  lang: Lang;
+  t: SiteContent;
+}
+
+const { t } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-indigo-line/70 bg-night-soft">
+  <div class="mx-auto flex max-w-5xl flex-col gap-2 px-6 py-8 text-center font-noto text-xs text-paper-dim sm:flex-row sm:justify-between sm:text-left">
+    <p class="font-mincho tracking-widest text-paper">Almanacco</p>
+    <p>{t.footer.tagline}</p>
+    <p>&copy; {year} Almanacco. {t.footer.rights}</p>
+  </div>
+</footer>
