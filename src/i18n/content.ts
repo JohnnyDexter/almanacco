@@ -113,7 +113,7 @@ export const content: Record<Lang, SiteContent> = {
       kicker: "畑から棚へ",
       title: "商品",
       intro:
-        "マルケ州の生産者から届く、オリーブオイルとワイン。大量生産ではなく、家族や小さな生産者が丁寧に作るものだけを選んでいます。",
+        "マルケ州の生産者から届く、オリーブオイル、ワイン、パスタ。大量生産ではなく、家族や小さな生産者が丁寧に作るものだけを選んでいます。",
       items: [
         {
           name: "Frantoio Valeri",
@@ -132,6 +132,12 @@ export const content: Record<Lang, SiteContent> = {
           category: "ワイン",
           description:
             "ファットリア・コルモーネが手がけるワイン「Colmone della Marca」。マルケの丘陵地帯らしい、果実味と穏やかな酸のバランスが持ち味です。",
+        },
+        {
+          name: "Pasta Mancini",
+          category: "パスタ",
+          description:
+            "マルケ州の職人的パスタ工房マンチーニ。ブロンズダイスによる押し出し成形と、低温でじっくり時間をかけた乾燥が特徴で、小麦本来の香りをそのまま生かしています。",
         },
       ],
     },
@@ -202,7 +208,7 @@ export const content: Record<Lang, SiteContent> = {
       kicker: "Dal campo allo scaffale",
       title: "Prodotti",
       intro:
-        "Selezioniamo olio e vino direttamente da piccoli produttori marchigiani, spesso a conduzione familiare, che lavorano lontano dalla grande distribuzione.",
+        "Selezioniamo olio, vino e pasta direttamente da piccoli produttori marchigiani, spesso a conduzione familiare, che lavorano lontano dalla grande distribuzione.",
       items: [
         {
           name: "Frantoio Valeri",
@@ -221,6 +227,12 @@ export const content: Record<Lang, SiteContent> = {
           category: "Vino",
           description:
             "Il vino Colmone della Marca, firmato dalla Fattoria Colmone: frutto pieno e acidità equilibrata, l'impronta tipica delle colline marchigiane.",
+        },
+        {
+          name: "Pasta Mancini",
+          category: "Pasta",
+          description:
+            "Il pastificio artigianale Mancini, nelle Marche, noto per la trafilatura al bronzo e per un'essiccazione lenta a bassa temperatura, che preservano tutto il profumo del grano.",
         },
       ],
     },
@@ -291,7 +303,7 @@ export const content: Record<Lang, SiteContent> = {
       kicker: "From the field to the shelf",
       title: "Products",
       intro:
-        "We source olive oil and wine directly from small producers in the Marche, often family-run, working outside the reach of large-scale distribution.",
+        "We source olive oil, wine, and pasta directly from small producers in the Marche, often family-run, working outside the reach of large-scale distribution.",
       items: [
         {
           name: "Frantoio Valeri",
@@ -310,6 +322,12 @@ export const content: Record<Lang, SiteContent> = {
           category: "Wine",
           description:
             "Colmone della Marca, produced by Fattoria Colmone: full fruit and balanced acidity, the signature of the Marche hills.",
+        },
+        {
+          name: "Pasta Mancini",
+          category: "Pasta",
+          description:
+            "Pasta from the Mancini workshop in the Marche, known for bronze-die extrusion and slow, low-temperature drying that preserve the full aroma of the wheat.",
         },
       ],
     },

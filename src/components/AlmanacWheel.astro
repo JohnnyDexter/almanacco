@@ -73,8 +73,8 @@ const tickAnglesInner = sekki.map((_, i) => i * sekkiStep);
     aria-label="Ruota dell'almanacco: 12 mesi del calendario agricolo italiano e 24 sekki giapponesi"
     class="h-auto w-full"
   >
-    <circle cx={cx} cy={cy} r={outerRadius} fill="none" stroke="var(--color-indigo-line)" stroke-width="1" />
-    <circle cx={cx} cy={cy} r={innerRadius} fill="none" stroke="var(--color-indigo-line)" stroke-width="1" />
+    <circle cx={cx} cy={cy} r={outerRadius} fill="none" stroke="var(--color-line)" stroke-width="1" />
+    <circle cx={cx} cy={cy} r={innerRadius} fill="none" stroke="var(--color-line)" stroke-width="1" />
     <circle cx={cx} cy={cy} r={coreRadius} fill="none" stroke="var(--color-olive-soft)" stroke-width="1" />
 
     {tickAnglesOuter.map((angle) => {
@@ -102,7 +102,7 @@ const tickAnglesInner = sekki.map((_, i) => i * sekkiStep);
           y1={inner.y}
           x2={outer.x}
           y2={outer.y}
-          stroke="var(--color-paper-dim)"
+          stroke="var(--color-ink-soft)"
           stroke-width="0.75"
           opacity="0.5"
         />
@@ -131,7 +131,7 @@ const tickAnglesInner = sekki.map((_, i) => i * sekkiStep);
         transform={item.transform}
         text-anchor="middle"
         dominant-baseline="middle"
-        class="fill-paper-dim font-noto"
+        class="fill-ink-soft font-noto"
         font-size="11"
       >
         {item.label}
@@ -140,7 +140,7 @@ const tickAnglesInner = sekki.map((_, i) => i * sekkiStep);
 
     <circle cx={cx} cy={cy} r="2" fill="var(--color-terra)" />
   </svg>
-  <figcaption id="almanac-wheel-caption" class="text-center font-noto text-xs tracking-wide text-paper-dim">
+  <figcaption id="almanac-wheel-caption" class="text-center font-noto text-xs tracking-wide text-ink-soft">
     {caption}
   </figcaption>
 </figure>
