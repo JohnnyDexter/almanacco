@@ -1,5 +1,6 @@
 ---
 import { langs, langLabels, langPaths, type Lang } from "../i18n/content";
+import { withBase } from "../utils/paths";
 
 interface Props {
   current: Lang;
@@ -16,7 +17,7 @@ const { current } = Astro.props;
         <span class="px-1.5 py-1 text-olive" aria-current="page">{langLabels[lang]}</span>
       ) : (
         <a
-          href={langPaths[lang]}
+          href={withBase(langPaths[lang])}
           class="px-1.5 py-1 text-paper-dim transition-colors hover:text-paper"
         >
           {langLabels[lang]}

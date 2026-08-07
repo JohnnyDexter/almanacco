@@ -1,6 +1,7 @@
 ---
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import type { SiteContent, Lang } from "../i18n/content";
+import { withBase } from "../utils/paths";
 
 interface Props {
   lang: Lang;
@@ -12,7 +13,7 @@ const { lang, t } = Astro.props;
 
 <header class="sticky top-0 z-30 border-b border-indigo-line/70 bg-night/85 backdrop-blur">
   <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-    <a href={`/${lang}/`} class="font-mincho text-lg tracking-widest text-paper">
+    <a href={withBase(`/${lang}/`)} class="font-mincho text-lg tracking-widest text-paper">
       Almanacco
     </a>
     <nav aria-label="Sezioni" class="hidden gap-6 font-noto text-sm text-paper-dim md:flex">
