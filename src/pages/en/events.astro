@@ -1,8 +1,0 @@
----
-import StaticPage from '@/components/StaticPage.astro';
-import { pageCopy } from '@/i18n/ui';
-const [title, description] = pageCopy.en.events;
----
-<StaticPage locale="en" slug="events" title={title} description={description}>
-  <p class="leading-8 text-charcoal/70">{description}</p>
-</StaticPage>
