@@ -1,19 +1,60 @@
 ---
 import type { SiteContent, Lang } from "../i18n/content";
+import { withBase, langHref } from "../utils/paths";
 
 interface Props {
   lang: Lang;
   t: SiteContent;
 }
 
-const { t } = Astro.props;
+const { lang, t } = Astro.props;
 const year = new Date().getFullYear();
+
+const navItems = [
+  { slug: "shop", label: t.nav.shop },
+  { slug: "sekki", label: t.nav.sekki },
+  { slug: "journal", label: t.nav.journal },
+  { slug: "about", label: t.nav.about },
+  { slug: "contact", label: t.nav.contact },
+];
+
+const paymentBadges = ["Visa", "Mastercard", "Amex", "PayPal"];
 ---
 
-<footer class="border-t border-brass/30 bg-ivory-soft">
-  <div class="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-8 text-center font-body text-xs text-stone-text sm:flex-row sm:justify-between sm:text-left">
-    <p class="font-display tracking-widest text-charcoal">Almanacco</p>
-    <p>{t.footer.tagline}</p>
-    <p>&copy; {year} Almanacco. {t.footer.rights}</p>
+<footer class="border-t border-brass/30 bg-charcoal text-ivory">
+  <div class="mx-auto grid max-w-6xl gap-12 px-6 py-16 sm:grid-cols-3">
+    <div>
+      <img src={withBase("/logo-swallow.png")} alt="Almanacco" class="h-10 w-auto" width="594" height="563" />
+      <p class="mt-4 font-display tracking-widest text-ivory">Almanacco</p>
+      <p class="mt-2 max-w-xs font-body text-xs leading-relaxed text-ivory/60">{t.footer.tagline}</p>
+    </div>
+
+    <div>
+      <p class="font-body text-xs uppercase tracking-[0.15em] text-brass">{t.footer.columnTitle}</p>
+      <nav class="mt-4 flex flex-col gap-2.5 font-body text-sm text-ivory/80">
+        {navItems.map((item) => (
+          <a href={withBase(langHref(lang, item.slug))} class="w-fit transition-colors hover:text-ivory">
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+
+    <div>
+      <p class="font-body text-xs uppercase tracking-[0.15em] text-brass">{t.footer.paymentsLabel}</p>
+      <div class="mt-4 flex flex-wrap gap-2">
+        {paymentBadges.map((name) => (
+          <span class="border border-ivory/25 px-2.5 py-1 font-body text-[10px] uppercase tracking-wide text-ivory/60">
+            {name}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-ivory/15">
+    <div class="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-6 text-center font-body text-xs text-ivory/50 sm:flex-row sm:justify-between sm:text-left">
+      <p>&copy; {year} Almanacco. {t.footer.rights}</p>
+    </div>
   </div>
 </footer>

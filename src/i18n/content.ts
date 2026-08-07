@@ -53,8 +53,36 @@ export interface SiteContent {
     kicker: string;
     title: string;
     subtitle: string;
+    /** Claim del brand, tenuto identico nelle tre lingue: compare anche nel logo. */
+    tagline: string;
     cta: string;
     wheelCaption: string;
+  };
+  sekkiWidget: {
+    kicker: string;
+    title: string;
+    prevLabel: string;
+    nextLabel: string;
+    ctaLabel: string;
+  };
+  categories: {
+    kicker: string;
+    title: string;
+    ctaLabel: string;
+    items: { title: string; image?: string }[];
+  };
+  journal: {
+    kicker: string;
+    title: string;
+    text: string;
+    ctaLabel: string;
+  };
+  newsletter: {
+    title: string;
+    text: string;
+    placeholder: string;
+    ctaLabel: string;
+    disabledNote: string;
   };
   storia: {
     kicker: string;
@@ -92,6 +120,8 @@ export interface SiteContent {
   footer: {
     tagline: string;
     rights: string;
+    columnTitle: string;
+    paymentsLabel: string;
   };
   /** Etichetta breve usata come kicker nelle pagine ancora scheletriche. */
   comingSoonLabel: string;
@@ -140,8 +170,40 @@ export const content: Record<Lang, SiteContent> = {
       title: "Almanacco",
       subtitle:
         "イタリア中部マルケ州のオリーブオイルとワインを、横須賀の小さな店から。畑の暦と、日本の二十四節気。ふたつの季節のリズムが、ここで出会います。",
-      cta: "商品を見る",
+      tagline: "INCONTRO TRA CULTURE, CUSTODE DEL TEMPO",
+      cta: "コレクションを見る",
       wheelCaption: "外周＝イタリア農事暦の12か月　内周＝二十四節気",
+    },
+    sekkiWidget: {
+      kicker: "季節のリズム",
+      title: "今の節気",
+      prevLabel: "前の節気",
+      nextLabel: "次の節気",
+      ctaLabel: "もっと詳しく",
+    },
+    categories: {
+      kicker: "畑から店先へ",
+      title: "カテゴリー",
+      ctaLabel: "セレクションを見る",
+      items: [
+        { title: "オリーブオイル", image: "/images/04-olive-valeri.jpg" },
+        { title: "ワイン", image: "/images/05-botti-murola.jpg" },
+        { title: "陶器と手仕事" },
+        { title: "アルマナッコの日記帳" },
+      ],
+    },
+    journal: {
+      kicker: "店の日記から",
+      title: "物語、場所、出会い",
+      text: "マルケの丘陵地帯から横須賀の街角まで。私たちが店に選ぶものを育て、作り、食卓に運ぶ人々の物語です。",
+      ctaLabel: "ジャーナルを読む",
+    },
+    newsletter: {
+      title: "つながりを保つ",
+      text: "季節のお知らせ、新着情報、次の会のご案内。急がず、店からゆっくりお届けします。",
+      placeholder: "メールアドレス",
+      ctaLabel: "登録する",
+      disabledNote: "登録機能は近日公開です",
     },
     storia: {
       kicker: "なぜ「アルマナッコ」なのか",
@@ -217,6 +279,8 @@ export const content: Record<Lang, SiteContent> = {
     footer: {
       tagline: "マルケの畑から、横須賀の暦へ。",
       rights: "All rights reserved.",
+      columnTitle: "探す",
+      paymentsLabel: "お支払い方法（近日対応）",
     },
     comingSoonLabel: "近日公開",
   },
@@ -262,8 +326,40 @@ export const content: Record<Lang, SiteContent> = {
       title: "Almanacco",
       subtitle:
         "Olio extravergine e vino delle Marche, da una piccola bottega a Yokosuka. Il calendario agricolo italiano e i 24 sekki giapponesi: due modi di scandire le stagioni che qui si incontrano.",
-      cta: "Scopri i prodotti",
+      tagline: "INCONTRO TRA CULTURE, CUSTODE DEL TEMPO",
+      cta: "Scopri la collezione",
       wheelCaption: "Anello esterno: i 12 mesi del calendario agricolo — Anello interno: i 24 sekki",
+    },
+    sekkiWidget: {
+      kicker: "Il ritmo delle stagioni",
+      title: "Il sekki del momento",
+      prevLabel: "Sekki precedente",
+      nextLabel: "Sekki successivo",
+      ctaLabel: "Scopri di più",
+    },
+    categories: {
+      kicker: "Dal campo alla bottega",
+      title: "Le nostre categorie",
+      ctaLabel: "Scopri la selezione",
+      items: [
+        { title: "Olio", image: "/images/04-olive-valeri.jpg" },
+        { title: "Vini", image: "/images/05-botti-murola.jpg" },
+        { title: "Ceramica & Artigianato" },
+        { title: "Diario Almanacco" },
+      ],
+    },
+    journal: {
+      kicker: "Dal diario di bottega",
+      title: "Storie, luoghi, incontri",
+      text: "Racconti dalle colline marchigiane e dalle strade di Yokosuka: le persone che coltivano, producono e portano in tavola ciò che scegliamo per il negozio.",
+      ctaLabel: "Leggi il Journal",
+    },
+    newsletter: {
+      title: "Resta in contatto",
+      text: "Novità di stagione, nuovi arrivi e le date dei prossimi incontri: dritte dalla bottega, senza fretta.",
+      placeholder: "La tua email",
+      ctaLabel: "Iscriviti",
+      disabledNote: "Iscrizione in arrivo",
     },
     storia: {
       kicker: "Perché si chiama Almanacco",
@@ -339,6 +435,8 @@ export const content: Record<Lang, SiteContent> = {
     footer: {
       tagline: "Dai campi delle Marche all'almanacco di Yokosuka.",
       rights: "Tutti i diritti riservati.",
+      columnTitle: "Esplora",
+      paymentsLabel: "Metodi di pagamento (in arrivo)",
     },
     comingSoonLabel: "In arrivo",
   },
@@ -384,8 +482,40 @@ export const content: Record<Lang, SiteContent> = {
       title: "Almanacco",
       subtitle:
         "Extra virgin olive oil and wine from the Marche, from a small shop in Yokosuka. The Italian agricultural calendar and Japan's 24 sekki: two ways of marking the seasons, meeting here.",
-      cta: "Explore the products",
+      tagline: "INCONTRO TRA CULTURE, CUSTODE DEL TEMPO",
+      cta: "Explore the collection",
       wheelCaption: "Outer ring: the 12 months of the agricultural calendar — Inner ring: the 24 sekki",
+    },
+    sekkiWidget: {
+      kicker: "The rhythm of the seasons",
+      title: "The current sekki",
+      prevLabel: "Previous sekki",
+      nextLabel: "Next sekki",
+      ctaLabel: "Learn more",
+    },
+    categories: {
+      kicker: "From the field to the shop",
+      title: "Our categories",
+      ctaLabel: "Discover the selection",
+      items: [
+        { title: "Olive Oil", image: "/images/04-olive-valeri.jpg" },
+        { title: "Wine", image: "/images/05-botti-murola.jpg" },
+        { title: "Ceramics & Crafts" },
+        { title: "Almanacco Diary" },
+      ],
+    },
+    journal: {
+      kicker: "From the shop journal",
+      title: "Stories, places, encounters",
+      text: "Stories from the hills of the Marche and the streets of Yokosuka: the people who grow, make, and bring to the table what we choose for the shop.",
+      ctaLabel: "Read the Journal",
+    },
+    newsletter: {
+      title: "Stay in touch",
+      text: "Seasonal news, new arrivals, and dates for upcoming gatherings — straight from the shop, at our own pace.",
+      placeholder: "Your email",
+      ctaLabel: "Subscribe",
+      disabledNote: "Sign-up coming soon",
     },
     storia: {
       kicker: "Why we're called Almanacco",
@@ -461,6 +591,8 @@ export const content: Record<Lang, SiteContent> = {
     footer: {
       tagline: "From the fields of the Marche to the Yokosuka almanac.",
       rights: "All rights reserved.",
+      columnTitle: "Explore",
+      paymentsLabel: "Payment methods (coming soon)",
     },
     comingSoonLabel: "Coming soon",
   },

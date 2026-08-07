@@ -1,0 +1,44 @@
+---
+import { content, type Lang } from "../i18n/content";
+import { withBase, langHref } from "../utils/paths";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = content[lang];
+---
+
+<section class="relative flex min-h-[90vh] items-center justify-center overflow-hidden">
+  <img
+    src={withBase("/images/01-negozio.jpg")}
+    alt=""
+    class="absolute inset-0 h-full w-full object-cover"
+    loading="eager"
+  />
+  <div class="absolute inset-0 bg-charcoal/60" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/30 to-charcoal/50" aria-hidden="true"></div>
+
+  <div class="relative z-10 flex flex-col items-center px-6 py-24 text-center">
+    <img
+      src={withBase("/logo-swallow.png")}
+      alt=""
+      class="h-16 w-auto sm:h-20"
+      width="594"
+      height="563"
+    />
+    <h1 class="mt-6 font-display text-5xl uppercase tracking-[0.08em] text-ivory sm:text-6xl">
+      {t.hero.title}
+    </h1>
+    <p class="mt-5 max-w-lg font-subtitle text-xl italic tracking-wide text-ivory/90 sm:text-2xl">
+      {t.hero.tagline}
+    </p>
+    <a
+      href={withBase(langHref(lang, "shop"))}
+      class="mt-10 inline-block bg-forest px-9 py-3.5 font-body text-sm uppercase tracking-[0.15em] text-ivory transition-colors hover:bg-forest/85"
+    >
+      {t.hero.cta}
+    </a>
+  </div>
+</section>
