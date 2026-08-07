@@ -13,6 +13,7 @@ const { lang } = Astro.props;
 const t = content[lang];
 
 const hreflangUrl = (path: string) => new URL(withBase(path), Astro.site).toString();
+const logoUrl = new URL(withBase("/logo.png"), Astro.site).toString();
 ---
 
 <!doctype html>
@@ -20,7 +21,7 @@ const hreflangUrl = (path: string) => new URL(withBase(path), Astro.site).toStri
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
+    <link rel="icon" type="image/png" href={withBase("/logo.png")} />
     <title>{t.meta.title}</title>
     <meta name="description" content={t.meta.description} />
     <link rel="alternate" hreflang="ja" href={hreflangUrl(langPaths.ja)} />
@@ -30,6 +31,9 @@ const hreflangUrl = (path: string) => new URL(withBase(path), Astro.site).toStri
     <meta property="og:title" content={t.meta.title} />
     <meta property="og:description" content={t.meta.description} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content={logoUrl} />
+    <meta property="og:image:width" content="1254" />
+    <meta property="og:image:height" content="1254" />
   </head>
   <body class="font-noto">
     <Header lang={lang} t={t} />

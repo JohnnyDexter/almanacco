@@ -2,15 +2,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-night: #0b0e1a;
-  --color-night-soft: #10142a;
-  --color-night-panel: #161a33;
-  --color-indigo-line: #2a2f52;
-  --color-olive: #b3944a;
-  --color-olive-soft: #8c7538;
-  --color-terra: #a6432f;
-  --color-paper: #ece7db;
-  --color-paper-dim: #b8b3a6;
+  /* Palette chiara ispirata al logo: sfondo washi crema, inchiostro carbone,
+     oro-oliva opaco come accento secondario, rosso hanko usato con parsimonia. */
+  --color-cream: #efe6d3;
+  --color-cream-soft: #e6d9bd;
+  --color-cream-panel: #f7f1e2;
+  --color-line: #d9cbae;
+  --color-ink: #292420;
+  --color-ink-soft: #5c5347;
+  --color-olive: #6f5a22;
+  --color-olive-soft: #997c3f;
+  --color-terra: #963f26;
 
   --font-mincho: "Zen Old Mincho", "Shippori Mincho", serif;
   --font-garamond: "EB Garamond", serif;
@@ -22,20 +24,20 @@ html {
 }
 
 body {
-  background-color: var(--color-night);
-  color: var(--color-paper);
+  background-color: var(--color-cream);
+  color: var(--color-ink);
 }
 
 ::selection {
   background-color: var(--color-olive);
-  color: var(--color-night);
+  color: var(--color-cream);
 }
 
 .bg-wash {
   background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(179, 148, 74, 0.09), transparent),
-    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(166, 67, 47, 0.06), transparent),
-    var(--color-night);
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(111, 90, 34, 0.10), transparent),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(150, 63, 38, 0.06), transparent),
+    var(--color-cream);
 }
 
 .divider-dot::before {
