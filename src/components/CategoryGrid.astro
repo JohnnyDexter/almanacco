@@ -22,38 +22,37 @@ const shopHref = withBase(langHref(lang, "shop"));
       </h2>
     </div>
 
-    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
       {t.categories.items.map((item, i) => (
-        <a href={shopHref} class="group relative block aspect-[3/4] overflow-hidden bg-ivory-soft">
-          {item.image ? (
-            <img
-              src={withBase(item.image)}
-              alt={item.title}
-              class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-          ) : (
-            <div class="absolute inset-0 flex items-center justify-center bg-ivory-soft" aria-hidden="true">
-              {i === 2 ? (
-                <svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="var(--color-brass)" stroke-width="1.2">
-                  <path d="M22 14h20l-3 12c3 3 5 8 5 13 0 9-6 15-12 15s-12-6-12-15c0-5 2-10 5-13l-3-12Z" />
-                  <path d="M22 14c0-3 2-5 10-5s10 2 10 5" />
-                </svg>
-              ) : (
-                <svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="var(--color-brass)" stroke-width="1.2">
-                  <path d="M14 16c8-3 14-3 18 0v34c-4-3-10-3-18 0V16Z" />
-                  <path d="M50 16c-8-3-14-3-18 0v34c4-3 10-3 18 0V16Z" />
-                </svg>
-              )}
-            </div>
-          )}
-          <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/10 to-transparent"></div>
-          <div class="absolute inset-x-0 bottom-0 flex flex-col items-start gap-1 p-5">
-            <h3 class="font-display text-lg uppercase tracking-wide text-ivory">{item.title}</h3>
-            <span class="font-body text-xs uppercase tracking-[0.1em] text-ivory/80 transition-colors group-hover:text-ivory">
-              {t.categories.ctaLabel} →
-            </span>
+        <a href={shopHref} class="group block">
+          <div class="relative aspect-square overflow-hidden bg-ivory-soft">
+            {item.image ? (
+              <img
+                src={withBase(item.image)}
+                alt={item.title}
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            ) : (
+              <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                {i === 2 ? (
+                  <svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="var(--color-brass)" stroke-width="1.2">
+                    <path d="M22 14h20l-3 12c3 3 5 8 5 13 0 9-6 15-12 15s-12-6-12-15c0-5 2-10 5-13l-3-12Z" />
+                    <path d="M22 14c0-3 2-5 10-5s10 2 10 5" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="var(--color-brass)" stroke-width="1.2">
+                    <path d="M14 16c8-3 14-3 18 0v34c-4-3-10-3-18 0V16Z" />
+                    <path d="M50 16c-8-3-14-3-18 0v34c4-3 10-3 18 0V16Z" />
+                  </svg>
+                )}
+              </div>
+            )}
           </div>
+          <h3 class="mt-4 font-display text-base uppercase tracking-wide text-charcoal">{item.title}</h3>
+          <span class="mt-1 flex items-center gap-1 font-body text-xs uppercase tracking-[0.1em] text-forest transition-colors group-hover:text-charcoal">
+            {t.categories.ctaLabel} →
+          </span>
         </a>
       ))}
     </div>

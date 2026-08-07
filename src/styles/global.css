@@ -45,3 +45,73 @@ body {
   border-radius: 9999px;
   background-color: var(--color-terracotta);
 }
+
+/* Header fisso: trasparente sull'hero della Home, solido altrove e dopo lo scroll. */
+[data-header] {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--color-ivory);
+}
+
+[data-header][data-scrolled="true"] {
+  background-color: color-mix(in srgb, var(--color-ivory) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-color: color-mix(in srgb, var(--color-brass) 30%, transparent);
+  color: var(--color-charcoal);
+}
+
+[data-header-link] {
+  color: inherit;
+}
+
+[data-header][data-scrolled="true"] [data-header-link]:hover {
+  color: var(--color-forest);
+}
+
+[data-header][data-scrolled="false"] [data-header-link]:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+[data-header-link][aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+[data-header-iconbar] {
+  border-color: color-mix(in srgb, currentColor 30%, transparent);
+}
+
+[data-header-icon] {
+  color: inherit;
+}
+
+[data-header-lang-sep] {
+  color: color-mix(in srgb, currentColor 35%, transparent);
+}
+
+[data-header-lang-link] {
+  color: color-mix(in srgb, currentColor 65%, transparent);
+}
+
+[data-header-lang-link]:hover {
+  color: currentColor;
+}
+
+[data-header-lang-current] {
+  color: currentColor;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+[data-header-logo-dark] {
+  display: none;
+}
+
+[data-header][data-scrolled="true"] [data-header-logo-dark] {
+  display: block;
+}
+
+[data-header][data-scrolled="true"] [data-header-logo-light] {
+  display: none;
+}
