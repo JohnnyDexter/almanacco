@@ -1,22 +1,21 @@
 {
   "name": "almanacco",
+  "type": "module",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
-  "description": "Premium multilingual Astro website for ALMANACCO.",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "latest",
-    "astro": "latest",
-    "tailwindcss": "^3.4.17",
-    "postcss": "latest",
-    "autoprefixer": "latest",
-    "typescript": "latest"
+    "astro": "^5.1.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@tailwindcss/vite": "^4.0.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.2"
+  }
 }

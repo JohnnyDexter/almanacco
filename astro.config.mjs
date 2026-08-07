@@ -1,11 +1,15 @@
-import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
+import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
 
-const site = process.env.SITE_URL ?? 'https://johnnydexter.github.io/almanacco';
+const base = "/almanacco";
 
 export default defineConfig({
-  site,
-  base: '/almanacco',
-  trailingSlash: 'always',
-  integrations: [sitemap()],
+  site: "https://johnnydexter.github.io",
+  base,
+  redirects: {
+    "/": `${base}/ja/`,
+  },
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

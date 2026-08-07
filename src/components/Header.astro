@@ -1,17 +1,27 @@
 ---
-import LanguageSwitcher from './LanguageSwitcher.astro';
-import { localizedPath, type Locale } from '@/i18n/config';
-import { navItems } from '@/i18n/ui';
-const { locale, slug = '' } = Astro.props as { locale: Locale; slug?: string };
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import type { SiteContent, Lang } from "../i18n/content";
+import { withBase } from "../utils/paths";
+
+interface Props {
+  lang: Lang;
+  t: SiteContent;
+}
+
+const { lang, t } = Astro.props;
 ---
-<header class="sticky top-0 z-40 border-b border-charcoal/10 bg-ivory/90 backdrop-blur-xl">
-  <div class="container-premium flex min-h-20 items-center justify-between gap-5">
-    <a class="focus-ring font-display text-2xl font-bold tracking-[0.22em] text-forest" href={localizedPath(locale)} aria-label="ALMANACCO home">ALMANACCO</a>
-    <nav class="hidden items-center gap-7 text-sm font-semibold text-charcoal/70 lg:flex" aria-label="Primary navigation">
-      {navItems[locale].map(([itemSlug, label]) => (
-        <a class="focus-ring hover:text-forest" href={localizedPath(locale, itemSlug)}>{label}</a>
-      ))}
+
+<header class="sticky top-0 z-30 border-b border-indigo-line/70 bg-night/85 backdrop-blur">
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+    <a href={withBase(`/${lang}/`)} class="font-mincho text-lg tracking-widest text-paper">
+      Almanacco
+    </a>
+    <nav aria-label="Sezioni" class="hidden gap-6 font-noto text-sm text-paper-dim md:flex">
+      <a href="#storia" class="transition-colors hover:text-olive">{t.nav.storia}</a>
+      <a href="#prodotti" class="transition-colors hover:text-olive">{t.nav.prodotti}</a>
+      <a href="#almanacco" class="transition-colors hover:text-olive">{t.nav.almanacco}</a>
+      <a href="#contatti" class="transition-colors hover:text-olive">{t.nav.contatti}</a>
     </nav>
-    <LanguageSwitcher locale={locale} slug={slug} />
+    <LanguageSwitcher current={lang} />
   </div>
 </header>

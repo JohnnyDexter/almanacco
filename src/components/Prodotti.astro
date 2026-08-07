@@ -1,0 +1,30 @@
+---
+import type { SiteContent, Lang } from "../i18n/content";
+
+interface Props {
+  lang: Lang;
+  t: SiteContent;
+}
+
+const { t } = Astro.props;
+---
+
+<section id="prodotti" class="border-t border-indigo-line/70 bg-night-soft">
+  <div class="mx-auto max-w-5xl px-6 py-20">
+    <p class="divider-dot flex items-center gap-2 font-noto text-xs uppercase tracking-[0.2em] text-terra">
+      {t.prodotti.kicker}
+    </p>
+    <h2 class="mt-4 font-mincho text-3xl text-paper sm:text-4xl">{t.prodotti.title}</h2>
+    <p class="mt-4 max-w-2xl font-noto text-base leading-relaxed text-paper-dim">{t.prodotti.intro}</p>
+
+    <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {t.prodotti.items.map((item) => (
+        <article class="flex flex-col gap-3 border border-indigo-line/70 bg-night p-6">
+          <span class="font-noto text-xs uppercase tracking-[0.15em] text-olive">{item.category}</span>
+          <h3 class="font-garamond text-2xl italic text-paper">{item.name}</h3>
+          <p class="font-noto text-sm leading-relaxed text-paper-dim">{item.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

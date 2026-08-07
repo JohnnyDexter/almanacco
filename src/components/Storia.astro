@@ -1,0 +1,24 @@
+---
+import type { SiteContent, Lang } from "../i18n/content";
+
+interface Props {
+  lang: Lang;
+  t: SiteContent;
+}
+
+const { t } = Astro.props;
+---
+
+<section id="storia" class="border-t border-indigo-line/70 bg-night">
+  <div class="mx-auto max-w-3xl px-6 py-20">
+    <p class="divider-dot flex items-center gap-2 font-noto text-xs uppercase tracking-[0.2em] text-terra">
+      {t.storia.kicker}
+    </p>
+    <h2 class="mt-4 font-mincho text-3xl text-paper sm:text-4xl">{t.storia.title}</h2>
+    <div class="mt-8 space-y-5">
+      {t.storia.paragraphs.map((p) => (
+        <p class="font-noto text-base leading-relaxed text-paper-dim">{p}</p>
+      ))}
+    </div>
+  </div>
+</section>

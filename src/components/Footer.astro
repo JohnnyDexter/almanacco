@@ -1,22 +1,19 @@
 ---
-import { localizedPath, type Locale } from '@/i18n/config';
-import { navItems } from '@/i18n/ui';
-const { locale } = Astro.props as { locale: Locale };
+import type { SiteContent, Lang } from "../i18n/content";
+
+interface Props {
+  lang: Lang;
+  t: SiteContent;
+}
+
+const { t } = Astro.props;
+const year = new Date().getFullYear();
 ---
-<footer class="bg-charcoal text-ivory">
-  <div class="container-premium grid gap-12 py-16 lg:grid-cols-[1.2fr_1fr_1fr]">
-    <section>
-      <p class="font-display text-4xl font-semibold tracking-[0.18em]">ALMANACCO</p>
-      <p class="mt-5 max-w-sm text-sm leading-7 text-ivory/65">Italian craft, seasonal taste, and quiet hospitality curated for Japan.</p>
-    </section>
-    <nav class="grid grid-cols-2 gap-x-8 gap-y-3 text-sm text-ivory/70" aria-label="Footer navigation">
-      {navItems[locale].map(([itemSlug, label]) => <a class="hover:text-brass" href={localizedPath(locale, itemSlug)}>{label}</a>)}
-    </nav>
-    <section class="text-sm leading-7 text-ivory/65">
-      <p class="text-ivory">Tokyo showroom</p>
-      <p>Jingumae, Shibuya-ku, Tokyo</p>
-      <p>hello@almanacco.jp</p>
-    </section>
+
+<footer class="border-t border-indigo-line/70 bg-night-soft">
+  <div class="mx-auto flex max-w-5xl flex-col gap-2 px-6 py-8 text-center font-noto text-xs text-paper-dim sm:flex-row sm:justify-between sm:text-left">
+    <p class="font-mincho tracking-widest text-paper">Almanacco</p>
+    <p>{t.footer.tagline}</p>
+    <p>&copy; {year} Almanacco. {t.footer.rights}</p>
   </div>
-  <div class="container-premium border-t border-ivory/10 py-6 text-xs text-ivory/50">© {new Date().getFullYear()} ALMANACCO. All rights reserved.</div>
 </footer>

@@ -1,1 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title"><title id="title">ALMANACCO favicon</title><rect width="64" height="64" rx="32" fill="#244536"/><path d="M20 46 31.2 16h1.6L44 46h-5.4l-2.4-6.8H27.8L25.4 46H20Zm9.3-11.1h5.4L32 27.1l-2.7 7.8Z" fill="#F7F1E6"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <circle cx="32" cy="32" r="30" fill="#0d1120"/>
+  <circle cx="32" cy="32" r="24" fill="none" stroke="#b3944a" stroke-width="1.5"/>
+  <circle cx="32" cy="32" r="14" fill="none" stroke="#b3944a" stroke-width="1.5"/>
+  <circle cx="32" cy="8" r="2.2" fill="#a63d2f"/>
+</svg>
