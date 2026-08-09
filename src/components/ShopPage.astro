@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { content, type Lang, type ProductItem } from "../i18n/content";
 import { withBase } from "../utils/paths";
+import { productSlug } from "../data/sekkiProducts";
 
 interface Props {
   lang: Lang;
@@ -52,7 +53,7 @@ const groups = [
             {group.items.length > 0 ? (
               <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {group.items.map((item) => (
-                  <article class="flex flex-col border border-brass/30 bg-ivory-soft">
+                  <article id={productSlug(item.name)} class="flex scroll-mt-28 flex-col border border-brass/30 bg-ivory-soft">
                     {item.image ? (
                       <img
                         src={withBase(item.image)}

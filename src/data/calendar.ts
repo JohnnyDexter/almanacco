@@ -62,21 +62,40 @@ export const sekki: Sekki[] = [
   { kanji: "大寒", romaji: "Daikan", month: 1, day: 20, meaning: { ja: "一年で最も寒い頃", it: "Il gelo più intenso dell'anno", en: "Great cold" } },
 ];
 
+const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+// Giorni cumulativi prima di ogni mese (anno non bisestile: le date dei
+// sekki sono comunque medie approssimative, un giorno di scarto non conta).
+const CUM_DAYS_BEFORE_MONTH = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+
+function dayOfYear(month: number, day: number): number {
+  return CUM_DAYS_BEFORE_MONTH[month - 1] + day;
+}
+
+// Ruota il giorno dell'anno in modo che Risshun (il primo sekki, inizio
+// primavera) sia il giorno 0: così l'ordine dei 24 sekki è sempre crescente,
+// anche per gli ultimi due (Shōkan e Daikan, che cadono in gennaio) che
+// altrimenti "tornerebbero indietro" rispetto a dicembre.
+const RISSHUN_OFFSET = dayOfYear(sekki[0].month, sekki[0].day);
+
+function rotatedDayOfYear(month: number, day: number): number {
+  return (dayOfYear(month, day) - RISSHUN_OFFSET + 365) % 365;
+}
+
 /** Indice (0-23) del sekki corrente in base alla data fornita (default: oggi). */
 export function getCurrentSekkiIndex(date: Date = new Date()): number {
-  const m = date.getMonth() + 1;
-  const d = date.getDate();
+  const target = rotatedDayOfYear(date.getMonth() + 1, date.getDate());
   let current = sekki.length - 1;
   for (let i = 0; i < sekki.length; i++) {
     const s = sekki[i];
-    if (m > s.month || (m === s.month && d >= s.day)) {
+    if (rotatedDayOfYear(s.month, s.day) <= target) {
       current = i;
+    } else {
+      break;
     }
   }
   return current;
 }
-
-const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 /** Formatta l'intervallo di date (inizio del sekki -> giorno prima del successivo). */
 export function formatSekkiDateRange(lang: keyof MonthLabel, index: number): string {
