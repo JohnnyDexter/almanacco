@@ -1,6 +1,7 @@
 ---
 import { content, type Lang } from "../i18n/content";
 import { withBase, langHref } from "../utils/paths";
+import BackgroundMotif from "./BackgroundMotif.astro";
 
 interface Props {
   lang: Lang;
@@ -11,36 +12,29 @@ const t = content[lang];
 ---
 
 <section class="relative flex min-h-[90vh] items-center justify-center overflow-hidden">
-  <img
-    src={withBase("/images/01-negozio.jpg")}
-    alt=""
-    class="absolute inset-0 h-full w-full object-cover"
-    loading="eager"
-  />
-  <div class="absolute inset-0 bg-charcoal/65" aria-hidden="true"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-charcoal/75 via-charcoal/40 to-charcoal/55" aria-hidden="true"></div>
+  <BackgroundMotif labelItaly={t.hero.mapLabelItaly} labelJapan={t.hero.mapLabelJapan} />
 
   <div class="relative z-10 flex flex-col items-center px-6 py-24 text-center">
     <div class="relative flex items-center justify-center">
       <div
-        class="absolute h-24 w-24 rounded-full border border-brass/30 bg-ivory/15 sm:h-28 sm:w-28"
+        class="absolute h-24 w-24 rounded-full border border-brass/40 bg-brass/10 sm:h-28 sm:w-28"
         aria-hidden="true"
       ></div>
       <img
-        src={withBase("/logo-swallow-light.png")}
+        src={withBase("/logo-swallow.png")}
         alt=""
         class="relative h-16 w-auto sm:h-20"
         width="594"
         height="563"
       />
     </div>
-    <h1 class="mt-6 font-display text-5xl uppercase tracking-[0.08em] text-ivory sm:text-6xl">
+    <h1 class="mt-6 font-display text-5xl uppercase tracking-[0.08em] text-charcoal sm:text-6xl">
       {t.hero.title}
     </h1>
-    <p class="mt-5 max-w-lg font-subtitle text-xl italic tracking-wide text-ivory/90 sm:text-2xl">
+    <p class="mt-5 max-w-lg font-subtitle text-xl italic tracking-wide text-forest sm:text-2xl">
       {t.hero.subtitle}
     </p>
-    <p class="mt-4 max-w-md font-body text-base leading-relaxed text-ivory/85 sm:text-lg">
+    <p class="mt-4 max-w-md font-body text-base leading-relaxed text-stone-text sm:text-lg">
       {t.hero.text}
     </p>
     <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row">
@@ -52,7 +46,7 @@ const t = content[lang];
       </a>
       <a
         href={withBase(langHref(lang, "journal"))}
-        class="inline-block border border-ivory/70 px-9 py-3.5 font-body text-sm uppercase tracking-[0.15em] text-ivory transition-colors hover:border-ivory hover:bg-ivory/10"
+        class="inline-block border border-charcoal/50 px-9 py-3.5 font-body text-sm uppercase tracking-[0.15em] text-charcoal transition-colors hover:border-charcoal hover:bg-charcoal/5"
       >
         {t.hero.ctaSecondary} →
       </a>
@@ -69,12 +63,12 @@ const t = content[lang];
         opacity="0.85"
       />
       <image
-        href={withBase("/logo-swallow-light.png")}
+        href={withBase("/logo-swallow.png")}
         x="900"
         y="0"
         width="90"
         height="85"
-        opacity="0.95"
+        opacity="0.85"
       />
     </svg>
   </div>
