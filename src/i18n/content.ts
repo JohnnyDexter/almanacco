@@ -39,9 +39,10 @@ export interface SiteContent {
   };
   hero: {
     title: string;
-    /** Claim del brand, tenuto identico nelle tre lingue: compare anche nel logo. */
-    tagline: string;
-    cta: string;
+    subtitle: string;
+    text: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
   };
   sekkiWidget: {
     kicker: string;
@@ -153,13 +154,15 @@ export const content: Record<Lang, SiteContent> = {
     },
     hero: {
       title: "Almanacco",
-      tagline: "INCONTRO TRA CULTURE, CUSTODE DEL TEMPO",
-      cta: "コレクションを見る",
+      subtitle: "イタリアから、季節とともに。",
+      text: "横須賀にあるイタリアの小さな店。マルケ州から届く、オイルとワイン、工芸品、そして物語。",
+      ctaPrimary: "お店を見る",
+      ctaSecondary: "ジャーナルを読む",
     },
     sekkiWidget: {
       kicker: "季節のリズム",
-      title: "今の節気",
-      description: "日本で時を刻む二十四節気の暦。ここでマルケのアルマナッコと出会います。",
+      title: "二十四節気",
+      description: "日本の暦が刻む二十四の節気。Almanacco はこの暦を通して、日本とイタリア、季節の移ろいを伝えます。",
       prevLabel: "前の節気",
       nextLabel: "次の節気",
       ctaLabel: "もっと詳しく",
@@ -316,13 +319,15 @@ export const content: Record<Lang, SiteContent> = {
     },
     hero: {
       title: "Almanacco",
-      tagline: "INCONTRO TRA CULTURE, CUSTODE DEL TEMPO",
-      cta: "Scopri la collezione",
+      subtitle: "Dall'Italia, attraverso le stagioni.",
+      text: "Una bottega italiana a Yokosuka. Olio, vino, artigianato e storie dalle Marche.",
+      ctaPrimary: "Scopri la bottega",
+      ctaSecondary: "Leggi il diario",
     },
     sekkiWidget: {
       kicker: "Il ritmo delle stagioni",
-      title: "Il sekki del momento",
-      description: "Il calendario delle 24 micro-stagioni che scandisce il tempo in Giappone, e che qui incontra l'almanacco marchigiano.",
+      title: "I 24 sekki",
+      description: "Il calendario delle 24 stagioni solari giapponesi, attraverso cui ALMANACCO racconta il passaggio del tempo tra Giappone e Italia.",
       prevLabel: "Sekki precedente",
       nextLabel: "Sekki successivo",
       ctaLabel: "Scopri di più",
@@ -479,13 +484,15 @@ export const content: Record<Lang, SiteContent> = {
     },
     hero: {
       title: "Almanacco",
-      tagline: "INCONTRO TRA CULTURE, CUSTODE DEL TEMPO",
-      cta: "Explore the collection",
+      subtitle: "From Italy, through the seasons.",
+      text: "An Italian shop in Yokosuka. Oil, wine, craft, and stories from the Marche.",
+      ctaPrimary: "Discover the shop",
+      ctaSecondary: "Read the journal",
     },
     sekkiWidget: {
       kicker: "The rhythm of the seasons",
-      title: "The current sekki",
-      description: "The calendar of 24 micro-seasons that marks time in Japan, meeting the Marche almanac here.",
+      title: "The 24 sekki",
+      description: "The calendar of Japan's 24 solar seasons, through which ALMANACCO tells the passing of time between Japan and Italy.",
       prevLabel: "Previous sekki",
       nextLabel: "Next sekki",
       ctaLabel: "Learn more",
