@@ -23,7 +23,7 @@ const t = content[lang];
 
       <img
         src={withBase("/images/01-negozio.jpg")}
-        alt={t.contatti.shopName}
+        alt={t.contatti.imageAlt}
         class="mt-10 aspect-[16/9] w-full border border-brass/30 object-cover"
         loading="lazy"
       />
@@ -31,14 +31,14 @@ const t = content[lang];
       <div class="mt-12 grid gap-10 sm:grid-cols-2">
         <div>
           <h2 class="font-subtitle text-2xl italic text-charcoal">{t.contatti.shopName}</h2>
-          <p class="mt-4 font-body text-xs uppercase tracking-[0.15em] text-brass">{t.contatti.addressLabel}</p>
+          <p class="mt-4 font-body text-xs uppercase tracking-[0.15em] text-brass-text">{t.contatti.addressLabel}</p>
           <address class="mt-2 space-y-0.5 font-body text-sm not-italic leading-relaxed text-stone-text">
             {t.contatti.addressLines.map((line) => (
               <p>{line}</p>
             ))}
           </address>
 
-          <p class="mt-6 font-body text-xs uppercase tracking-[0.15em] text-brass">{t.contatti.emailLabel}</p>
+          <p class="mt-6 font-body text-xs uppercase tracking-[0.15em] text-brass-text">{t.contatti.emailLabel}</p>
           <p class="mt-2 font-body text-sm leading-relaxed">
             <a href={`mailto:${t.contatti.email}`} class="text-stone-text underline decoration-brass/50 underline-offset-2 transition-colors hover:text-forest">
               {t.contatti.email}
@@ -47,10 +47,10 @@ const t = content[lang];
         </div>
 
         <div>
-          <p class="font-body text-xs uppercase tracking-[0.15em] text-brass">{t.contatti.hoursLabel}</p>
+          <p class="font-body text-xs uppercase tracking-[0.15em] text-brass-text">{t.contatti.hoursLabel}</p>
           <p class="mt-2 font-body text-sm leading-relaxed text-stone-text">{t.contatti.hoursValue}</p>
 
-          <p class="mt-6 font-body text-xs uppercase tracking-[0.15em] text-brass">{t.contatti.socialLabel}</p>
+          <p class="mt-6 font-body text-xs uppercase tracking-[0.15em] text-brass-text">{t.contatti.socialLabel}</p>
           <p class="mt-2 font-body text-sm leading-relaxed text-stone-text">{t.contatti.socialValue}</p>
         </div>
       </div>

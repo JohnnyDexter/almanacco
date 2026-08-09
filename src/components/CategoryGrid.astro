@@ -29,7 +29,7 @@ const shopHref = withBase(langHref(lang, "shop"));
             {item.image ? (
               <img
                 src={withBase(item.image)}
-                alt={item.title}
+                alt={item.imageAlt ?? item.title}
                 class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
@@ -47,7 +47,7 @@ const shopHref = withBase(langHref(lang, "shop"));
                     <path d="M22 14c0-3 2-5 10-5s10 2 10 5" />
                   </svg>
                 </div>
-                <span class="absolute bottom-3 left-3 border border-brass/40 bg-ivory/85 px-2 py-1 font-body text-[10px] uppercase tracking-[0.15em] text-brass">
+                <span class="absolute bottom-3 left-3 border border-brass/40 bg-ivory/85 px-2 py-1 font-body text-[10px] uppercase tracking-[0.15em] text-brass-text">
                   {t.comingSoonLabel}
                 </span>
               </>
