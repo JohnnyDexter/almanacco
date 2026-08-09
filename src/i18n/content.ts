@@ -118,6 +118,12 @@ export interface SiteContent {
     title: string;
     paragraphs: string[];
     imageAlt: string;
+    foundersCaption: string;
+    foundersImageAlt: string;
+    behindScenesKicker: string;
+    /** Nota onesta: il negozio è ancora in allestimento, non va presentato come finito. */
+    behindScenesNote: string;
+    behindScenesImages: { src: string; alt: string }[];
   };
   prodotti: {
     kicker: string;
@@ -135,6 +141,10 @@ export interface SiteContent {
     pairingLabel: string;
     pairingText: string;
     moreNote: string;
+    eventImageAlt: string;
+    groupImageAlt: string;
+    tastingImageAlt: string;
+    gallery: { src: string; alt: string }[];
   };
   /** Teaser eventi in homepage: riusa il singolo evento reale di `almanacco`, con intestazione e CTA proprie. */
   eventsTeaser: {
@@ -252,7 +262,7 @@ export const content: Record<Lang, SiteContent> = {
       title: "ふたつの国、ひとつの暮らし方。",
       text: "マルケの丘から横須賀の街角まで。時間との向き合い方を教えてくれる産品や物語、日々の所作を集めています。",
       ctaLabel: "私たちについて",
-      imageAltItaly: "マルケ州、黄金色の麦畑が広がる丘陵地帯",
+      imageAltItaly: "マルケ州、ぶどう畑の間を通る未舗装の道",
       imageAltJapan: "夜、灯りがともる横須賀のAlmanaccoの店先と庭",
     },
     journal: {
@@ -260,7 +270,7 @@ export const content: Record<Lang, SiteContent> = {
       title: "物語、場所、出会い",
       text: "マルケの丘陵地帯から横須賀の街角まで。私たちが店に選ぶものを育て、作り、食卓に運ぶ人々の物語です。",
       ctaLabel: "ジャーナルを読む",
-      imageAlt: "夕暮れのマルケの丘陵、オリーブの木々と畑",
+      imageAlt: "マルケの丘に沈む夕日",
     },
     journalPage: {
       kicker: "店の日記から",
@@ -305,6 +315,17 @@ export const content: Record<Lang, SiteContent> = {
         "私たちの店の名前を「Almanacco」としたのは、この二つの暦を並べて見せたかったからです。横須賀で暮らす私たちが、マルケ州の畑で摘まれたオリーブとぶどうを、季節の言葉とともにお届けする。それが、この小さな店の役目だと思っています。",
       ],
       imageAlt: "マルケ州の丘陵地帯を望む風景",
+      foundersCaption: "共同創業者のジョバンニとイクヤ",
+      foundersImageAlt: "マルケ州イエージ駅にて、ジョバンニとイクヤ",
+      behindScenesKicker: "舞台裏",
+      behindScenesNote:
+        "Almanaccoの店舗は現在準備中です。この写真は工事中の様子で、完成した店内ではありません。",
+      behindScenesImages: [
+        { src: "/images/about/cantiere-gazebo.jpg", alt: "店舗の内装工事中、屋外の作業スペースとタープ、道具類" },
+        { src: "/images/about/cantiere-notte.jpg", alt: "夜、建設中の店舗の木造フレーム" },
+        { src: "/images/about/cantiere-macchina-caffe.jpg", alt: "工事中の店内。エスプレッソマシンはすでに設置されている" },
+        { src: "/images/about/cantiere-scaffale.jpg", alt: "まだ準備中の店内にある木製の棚とスツール" },
+      ],
     },
     prodotti: {
       kicker: "畑から棚へ",
@@ -317,8 +338,8 @@ export const content: Record<Lang, SiteContent> = {
           category: "エキストラバージンオリーブオイル",
           description:
             "マルケ州の在来品種「ミニョーラ（Mignola）」から搾られたエキストラバージンオリーブオイル。青々とした香りとほのかな辛みが特徴で、収穫からすぐに搾油する昔ながらの製法を守っています。",
-          image: "/images/04-olive-valeri.jpg",
-          imageAlt: "Frantoio Valeriのオイル用に摘みたての黒と緑のオリーブ",
+          image: "/images/events/olio-valeri-evento.jpg",
+          imageAlt: "Frantoio Valeriのエキストラバージンオリーブオイル缶",
         },
         {
           name: "Cantina Murola",
@@ -333,12 +354,16 @@ export const content: Record<Lang, SiteContent> = {
           category: "ワイン",
           description:
             "ファットリア・コルモーネが手がけるワイン「Colmone della Marca」。マルケの丘陵地帯らしい、果実味と穏やかな酸のバランスが持ち味です。",
+          image: "/images/marche/bottiglie-tappi.jpg",
+          imageAlt: "上から見たワインボトル、色とりどりのキャップシール",
         },
         {
           name: "Pasta Mancini",
           category: "パスタ",
           description:
             "マルケ州の職人的パスタ工房マンチーニ。ブロンズダイスによる押し出し成形と、低温でじっくり時間をかけた乾燥が特徴で、小麦本来の香りをそのまま生かしています。",
+          image: "/images/marche/mietitrebbia-mancini.jpg",
+          imageAlt: "マルケ州の小麦畑で働くコンバイン",
         },
       ],
     },
@@ -354,6 +379,18 @@ export const content: Record<Lang, SiteContent> = {
       pairingLabel: "ペアリング",
       pairingText: "Cantina Murola のワインと共に。土地の料理には、土地のワインを。",
       moreNote: "他の会も近日追加予定です。季節ごとにこのページを更新していきます。",
+      eventImageAlt: "上から見たタリアテッレ・アル・ラグー。イベントで提供された一皿",
+      groupImageAlt: "東京でのイベントの参加者たち。手前にジョバンニ",
+      tastingImageAlt: "イベント中の試飲の一コマ",
+      gallery: [
+        { src: "/images/events/cottura-ragu-pasta.jpg", alt: "煮込み中のラグーと、湯切り前の手打ちタリアテッレ" },
+        { src: "/images/events/cottura-ragu-carote.jpg", alt: "にんじん入りのラグーをコンロで煮込む様子" },
+        { src: "/images/events/interno-locale.jpg", alt: "イベント当日の会場内、木製のカウンター" },
+        { src: "/images/events/interno-locale-cassetta.jpg", alt: "会場のカウンターに置かれた木箱と商品" },
+        { src: "/images/events/mattonella-dettaglio.jpg", alt: "食後に提供されたマルケ風マットネッラ" },
+        { src: "/images/events/mattonella-vino.jpg", alt: "ワインと共に並ぶマルケ風マットネッラ" },
+        { src: "/images/events/olio-valeri-evento.jpg", alt: "イベントに持ち込まれたFrantoio Valeriのオイル缶" },
+      ],
     },
     eventsTeaser: {
       kicker: "お店から",
@@ -469,7 +506,7 @@ export const content: Record<Lang, SiteContent> = {
       title: "Due paesi. Un modo di vivere.",
       text: "Dalle colline delle Marche alle strade di Yokosuka, raccogliamo prodotti, storie e gesti che raccontano un modo diverso di vivere il tempo.",
       ctaLabel: "Scopri chi siamo",
-      imageAltItaly: "Colline delle Marche con campi di grano dorato",
+      imageAltItaly: "Una strada sterrata tra i filari di vigna delle Marche",
       imageAltJapan: "Il negozio Almanacco a Yokosuka illuminato di sera, con il giardino",
     },
     journal: {
@@ -477,7 +514,7 @@ export const content: Record<Lang, SiteContent> = {
       title: "Storie, luoghi, incontri",
       text: "Racconti dalle colline marchigiane e dalle strade di Yokosuka: le persone che coltivano, producono e portano in tavola ciò che scegliamo per il negozio.",
       ctaLabel: "Leggi il Journal",
-      imageAlt: "Colline marchigiane al tramonto, tra ulivi e campi",
+      imageAlt: "Tramonto sulle colline marchigiane",
     },
     journalPage: {
       kicker: "Dal diario di bottega",
@@ -522,6 +559,17 @@ export const content: Record<Lang, SiteContent> = {
         "Abbiamo chiamato questo negozio Almanacco proprio per mettere questi due calendari fianco a fianco. Da Yokosuka, portiamo l'olio e il vino raccolti nei campi delle Marche insieme al racconto delle stagioni che li hanno fatti nascere: è questo, in fondo, il senso di questa piccola bottega.",
       ],
       imageAlt: "Vista panoramica delle colline marchigiane",
+      foundersCaption: "Giovanni e Ikuya, co-fondatori di IKITARIA",
+      foundersImageAlt: "Giovanni e Ikuya alla stazione di Jesi, nelle Marche",
+      behindScenesKicker: "Dietro le quinte",
+      behindScenesNote:
+        "Il negozio Almanacco è in fase di allestimento: queste foto raccontano il cantiere, non ancora il negozio finito.",
+      behindScenesImages: [
+        { src: "/images/about/cantiere-gazebo.jpg", alt: "Area di lavoro all'aperto durante l'allestimento del negozio, con gazebo e attrezzi" },
+        { src: "/images/about/cantiere-notte.jpg", alt: "La struttura in legno del negozio in costruzione, di notte" },
+        { src: "/images/about/cantiere-macchina-caffe.jpg", alt: "L'interno del negozio durante i lavori, con la macchina del caffè già installata" },
+        { src: "/images/about/cantiere-scaffale.jpg", alt: "Scaffali e sgabelli in legno nel negozio ancora in allestimento" },
+      ],
     },
     prodotti: {
       kicker: "Dal campo allo scaffale",
@@ -534,8 +582,8 @@ export const content: Record<Lang, SiteContent> = {
           category: "Olio extravergine d'oliva",
           description:
             "Olio extravergine spremuto dalla cultivar autoctona Mignola. Note erbacee decise e un finale leggermente piccante, frutto di una molitura rapida che segue ancora i tempi della raccolta.",
-          image: "/images/04-olive-valeri.jpg",
-          imageAlt: "Olive nere e verdi appena raccolte per l'olio Frantoio Valeri",
+          image: "/images/events/olio-valeri-evento.jpg",
+          imageAlt: "Le taniche dell'olio extravergine Frantoio Valeri",
         },
         {
           name: "Cantina Murola",
@@ -550,12 +598,16 @@ export const content: Record<Lang, SiteContent> = {
           category: "Vino",
           description:
             "Il vino Colmone della Marca, firmato dalla Fattoria Colmone: frutto pieno e acidità equilibrata, l'impronta tipica delle colline marchigiane.",
+          image: "/images/marche/bottiglie-tappi.jpg",
+          imageAlt: "Bottiglie di vino viste dall'alto, con le capsule colorate",
         },
         {
           name: "Pasta Mancini",
           category: "Pasta",
           description:
             "Il pastificio artigianale Mancini, nelle Marche, noto per la trafilatura al bronzo e per un'essiccazione lenta a bassa temperatura, che preservano tutto il profumo del grano.",
+          image: "/images/marche/mietitrebbia-mancini.jpg",
+          imageAlt: "Una mietitrebbia al lavoro in un campo di grano nelle Marche",
         },
       ],
     },
@@ -571,6 +623,18 @@ export const content: Record<Lang, SiteContent> = {
       pairingLabel: "In abbinamento",
       pairingText: "I vini della Cantina Murola: la cucina del territorio merita il vino dello stesso territorio.",
       moreNote: "Altri incontri in arrivo: torneremo ad aggiornare questa pagina a ogni nuova stagione.",
+      eventImageAlt: "Tagliatelle al ragù viste dall'alto, il piatto servito all'evento",
+      groupImageAlt: "Il gruppo dell'evento a Tokyo, con Giovanni in primo piano",
+      tastingImageAlt: "Un momento di degustazione durante l'evento",
+      gallery: [
+        { src: "/images/events/cottura-ragu-pasta.jpg", alt: "Il ragù in cottura e le tagliatelle fatte a mano, pronte per essere scolate" },
+        { src: "/images/events/cottura-ragu-carote.jpg", alt: "Il ragù con carote in cottura sul fornello" },
+        { src: "/images/events/interno-locale.jpg", alt: "L'interno del locale durante l'evento, con il bancone in legno" },
+        { src: "/images/events/interno-locale-cassetta.jpg", alt: "Una cassetta di legno con prodotti sul bancone del locale" },
+        { src: "/images/events/mattonella-dettaglio.jpg", alt: "La mattonella marchigiana servita a fine pasto" },
+        { src: "/images/events/mattonella-vino.jpg", alt: "La mattonella marchigiana con un bicchiere di vino" },
+        { src: "/images/events/olio-valeri-evento.jpg", alt: "Le taniche dell'olio Frantoio Valeri portate all'evento" },
+      ],
     },
     eventsTeaser: {
       kicker: "Dalla bottega",
@@ -685,7 +749,7 @@ export const content: Record<Lang, SiteContent> = {
       title: "Two countries. One way of living.",
       text: "From the hills of the Marche to the streets of Yokosuka, we gather products, stories, and gestures that speak of a different way to experience time.",
       ctaLabel: "Discover who we are",
-      imageAltItaly: "Hills of the Marche with golden wheat fields",
+      imageAltItaly: "A dirt road between rows of vines in the Marche",
       imageAltJapan: "The Almanacco shop in Yokosuka lit up in the evening, with its garden",
     },
     journal: {
@@ -693,7 +757,7 @@ export const content: Record<Lang, SiteContent> = {
       title: "Stories, places, encounters",
       text: "Stories from the hills of the Marche and the streets of Yokosuka: the people who grow, make, and bring to the table what we choose for the shop.",
       ctaLabel: "Read the Journal",
-      imageAlt: "Marche hills at sunset, among olive trees and fields",
+      imageAlt: "Sunset over the hills of the Marche",
     },
     journalPage: {
       kicker: "From the shop journal",
@@ -738,6 +802,17 @@ export const content: Record<Lang, SiteContent> = {
         "We named this shop Almanacco to place these two calendars side by side. From Yokosuka, we bring olive oil and wine harvested in the fields of the Marche, together with the story of the seasons that shaped them — that, in the end, is what this small shop is about.",
       ],
       imageAlt: "Panoramic view of the Marche hills",
+      foundersCaption: "Giovanni and Ikuya, co-founders of IKITARIA",
+      foundersImageAlt: "Giovanni and Ikuya at the Jesi train station, in the Marche",
+      behindScenesKicker: "Behind the scenes",
+      behindScenesNote:
+        "The Almanacco shop is still being built: these photos show the work in progress, not the finished shop.",
+      behindScenesImages: [
+        { src: "/images/about/cantiere-gazebo.jpg", alt: "Outdoor work area during the shop's build-out, with a gazebo and tools" },
+        { src: "/images/about/cantiere-notte.jpg", alt: "The shop's wooden frame under construction, at night" },
+        { src: "/images/about/cantiere-macchina-caffe.jpg", alt: "Inside the shop during construction, with the espresso machine already installed" },
+        { src: "/images/about/cantiere-scaffale.jpg", alt: "Wooden shelving and stools in the still-unfinished shop" },
+      ],
     },
     prodotti: {
       kicker: "From the field to the shelf",
@@ -750,8 +825,8 @@ export const content: Record<Lang, SiteContent> = {
           category: "Extra virgin olive oil",
           description:
             "Extra virgin olive oil pressed from the native Mignola cultivar. Bold, grassy notes and a lightly peppery finish, the result of rapid milling that still follows the pace of the harvest.",
-          image: "/images/04-olive-valeri.jpg",
-          imageAlt: "Freshly harvested black and green olives for Frantoio Valeri oil",
+          image: "/images/events/olio-valeri-evento.jpg",
+          imageAlt: "Cans of Frantoio Valeri extra virgin olive oil",
         },
         {
           name: "Cantina Murola",
@@ -766,12 +841,16 @@ export const content: Record<Lang, SiteContent> = {
           category: "Wine",
           description:
             "Colmone della Marca, produced by Fattoria Colmone: full fruit and balanced acidity, the signature of the Marche hills.",
+          image: "/images/marche/bottiglie-tappi.jpg",
+          imageAlt: "Wine bottles seen from above, with colorful foil capsules",
         },
         {
           name: "Pasta Mancini",
           category: "Pasta",
           description:
             "Pasta from the Mancini workshop in the Marche, known for bronze-die extrusion and slow, low-temperature drying that preserve the full aroma of the wheat.",
+          image: "/images/marche/mietitrebbia-mancini.jpg",
+          imageAlt: "A combine harvester at work in a wheat field in the Marche",
         },
       ],
     },
@@ -787,6 +866,18 @@ export const content: Record<Lang, SiteContent> = {
       pairingLabel: "Paired with",
       pairingText: "Wines from Cantina Murola — food from the land deserves wine from the same land.",
       moreNote: "More gatherings are on the way: we'll update this page with each new season.",
+      eventImageAlt: "Tagliatelle al ragù seen from above, the dish served at the event",
+      groupImageAlt: "The event group in Tokyo, with Giovanni in the foreground",
+      tastingImageAlt: "A tasting moment during the event",
+      gallery: [
+        { src: "/images/events/cottura-ragu-pasta.jpg", alt: "The ragù cooking, and hand-cut tagliatelle ready to be drained" },
+        { src: "/images/events/cottura-ragu-carote.jpg", alt: "Ragù with carrots cooking on the stove" },
+        { src: "/images/events/interno-locale.jpg", alt: "The venue's interior during the event, with its wooden counter" },
+        { src: "/images/events/interno-locale-cassetta.jpg", alt: "A wooden crate of products on the venue's counter" },
+        { src: "/images/events/mattonella-dettaglio.jpg", alt: "The mattonella marchigiana served at the end of the meal" },
+        { src: "/images/events/mattonella-vino.jpg", alt: "The mattonella marchigiana with a glass of wine" },
+        { src: "/images/events/olio-valeri-evento.jpg", alt: "Cans of Frantoio Valeri oil brought to the event" },
+      ],
     },
     eventsTeaser: {
       kicker: "From the shop",
