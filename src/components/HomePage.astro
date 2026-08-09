@@ -5,6 +5,7 @@ import SekkiWidget from "./SekkiWidget.astro";
 import CategoryGrid from "./CategoryGrid.astro";
 import ItalyJapan from "./ItalyJapan.astro";
 import JournalTeaser from "./JournalTeaser.astro";
+import EventsTeaser from "./EventsTeaser.astro";
 import Newsletter from "./Newsletter.astro";
 import type { Lang } from "../i18n/content";
 
@@ -21,5 +22,6 @@ const { lang } = Astro.props;
   <CategoryGrid lang={lang} />
   <ItalyJapan lang={lang} />
   <JournalTeaser lang={lang} />
+  <EventsTeaser lang={lang} />
   <Newsletter lang={lang} />
 </BaseLayout>

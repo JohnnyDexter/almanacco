@@ -27,7 +27,7 @@ const seasonalProductName = sekkiProductNames[buildIndex];
 const seasonalProduct = t.prodotti.items.find((p) => p.name === seasonalProductName)!;
 ---
 
-<section class="border-t border-brass/30 bg-ivory-soft py-24" data-sekki-widget>
+<section id="sekki-corrente" class="scroll-mt-28 border-t border-brass/30 bg-ivory-soft py-24" data-sekki-widget>
   <div
     class={showHeading
       ? "mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[2fr_3fr] lg:items-center"
