@@ -1,6 +1,7 @@
 ---
 import AlmanacWheel from "./AlmanacWheel.astro";
 import { sekki, getCurrentSekkiIndex, formatSekkiDateRange } from "../data/calendar";
+import { sekkiProductNames, productSlug } from "../data/sekkiProducts";
 import { content, type Lang } from "../i18n/content";
 import { withBase, langHref } from "../utils/paths";
 
@@ -20,6 +21,10 @@ const t = content[lang];
 const buildIndex = getCurrentSekkiIndex();
 const current = sekki[buildIndex];
 const sekkiHref = withBase(langHref(lang, "sekki"));
+const shopHref = withBase(langHref(lang, "shop"));
+
+const seasonalProductName = sekkiProductNames[buildIndex];
+const seasonalProduct = t.prodotti.items.find((p) => p.name === seasonalProductName)!;
 ---
 
 <section class="border-t border-brass/30 bg-ivory-soft py-24" data-sekki-widget>
@@ -91,10 +96,26 @@ const sekkiHref = withBase(langHref(lang, "sekki"));
         </button>
       </div>
 
+      <div class="mt-10 border-t border-brass/20 pt-6 text-center">
+        <p class="font-body text-[10px] uppercase tracking-[0.2em] text-brass">
+          {t.sekkiWidget.seasonalProductLabel}
+        </p>
+        <a
+          data-field="product-link"
+          href={`${shopHref}#${productSlug(seasonalProduct.name)}`}
+          class="mt-2 inline-flex items-center gap-1.5 font-subtitle text-lg italic text-charcoal transition-colors hover:text-forest"
+        >
+          <span data-field="product-name">{seasonalProduct.name}</span> →
+        </a>
+        <p data-field="product-category" class="mt-1 font-body text-xs text-stone-text">
+          {seasonalProduct.category}
+        </p>
+      </div>
+
       {!showHeading && showCta && (
         <a
           href={sekkiHref}
-          class="mt-10 inline-block border-b border-forest font-body text-sm uppercase tracking-[0.15em] text-forest transition-colors hover:border-charcoal hover:text-charcoal"
+          class="mt-6 inline-block border-b border-forest font-body text-sm uppercase tracking-[0.15em] text-forest transition-colors hover:border-charcoal hover:text-charcoal"
         >
           {t.sekkiWidget.ctaLabel} →
         </a>
@@ -105,10 +126,14 @@ const sekkiHref = withBase(langHref(lang, "sekki"));
 
 <script>
   import { sekki, getCurrentSekkiIndex, formatSekkiDateRange } from "../data/calendar";
-  import type { Lang } from "../i18n/content";
+  import { sekkiProductNames, productSlug } from "../data/sekkiProducts";
+  import { content, type Lang } from "../i18n/content";
+  import { withBase, langHref } from "../utils/paths";
 
   function initSekkiWidget(section: Element) {
     const lang = (document.documentElement.lang || "en").slice(0, 2) as Lang;
+    const t = content[lang] ?? content.en;
+    const shopHref = withBase(langHref(lang, "shop"));
     const wheel = section.querySelector<SVGSVGElement>("[data-sekki-wheel]");
     const kanjiEl = section.querySelector<HTMLElement>('[data-field="kanji"]');
     const romajiEl = section.querySelector<HTMLElement>('[data-field="romaji"]');
@@ -116,6 +141,9 @@ const sekkiHref = withBase(langHref(lang, "sekki"));
     const meaningEl = section.querySelector<HTMLElement>('[data-field="meaning"]');
     const prevBtn = section.querySelector<HTMLButtonElement>("[data-sekki-prev]");
     const nextBtn = section.querySelector<HTMLButtonElement>("[data-sekki-next]");
+    const productLinkEl = section.querySelector<HTMLAnchorElement>('[data-field="product-link"]');
+    const productNameEl = section.querySelector<HTMLElement>('[data-field="product-name"]');
+    const productCategoryEl = section.querySelector<HTMLElement>('[data-field="product-category"]');
     if (!wheel || !kanjiEl || !romajiEl || !dateEl || !meaningEl || !prevBtn || !nextBtn) return;
 
     let index = getCurrentSekkiIndex();
@@ -126,6 +154,16 @@ const sekkiHref = withBase(langHref(lang, "sekki"));
       romajiEl!.textContent = s.romaji;
       dateEl!.textContent = formatSekkiDateRange(lang, index);
       meaningEl!.textContent = s.meaning[lang] ?? s.meaning.en;
+
+      if (productLinkEl && productNameEl && productCategoryEl) {
+        const productName = sekkiProductNames[index];
+        const product = t.prodotti.items.find((p) => p.name === productName);
+        if (product) {
+          productNameEl.textContent = product.name;
+          productCategoryEl.textContent = product.category;
+          productLinkEl.href = `${shopHref}#${productSlug(product.name)}`;
+        }
+      }
 
       wheel!.querySelectorAll<SVGLineElement>("[data-sekki-tick]").forEach((el) => {
         const i = Number(el.dataset.sekkiTick);

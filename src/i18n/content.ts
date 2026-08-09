@@ -51,12 +51,20 @@ export interface SiteContent {
     prevLabel: string;
     nextLabel: string;
     ctaLabel: string;
+    /** Etichetta del blocco "prodotto della stagione" collegato al sekki corrente. */
+    seasonalProductLabel: string;
   };
   categories: {
     kicker: string;
     title: string;
+    /** CTA generica, usata fuori dalla griglia (es. in fondo alla pagina Chi siamo). */
     ctaLabel: string;
-    items: { title: string; image?: string }[];
+    items: { title: string; image?: string; ctaLabel: string }[];
+  };
+  italyJapan: {
+    title: string;
+    text: string;
+    ctaLabel: string;
   };
   journal: {
     kicker: string;
@@ -166,17 +174,23 @@ export const content: Record<Lang, SiteContent> = {
       prevLabel: "前の節気",
       nextLabel: "次の節気",
       ctaLabel: "もっと詳しく",
+      seasonalProductLabel: "今の季節のおすすめ",
     },
     categories: {
       kicker: "畑から店先へ",
       title: "カテゴリー",
       ctaLabel: "セレクションを見る",
       items: [
-        { title: "オイル＆調味料", image: "/images/04-olive-valeri.jpg" },
-        { title: "ワイン＆飲料", image: "/images/05-botti-murola.jpg" },
-        { title: "陶器と手仕事" },
-        { title: "アルマナッコの日記帳" },
+        { title: "オイル＆調味料", image: "/images/04-olive-valeri.jpg", ctaLabel: "オイルを見る" },
+        { title: "ワイン＆飲料", image: "/images/05-botti-murola.jpg", ctaLabel: "カンティーナをのぞく" },
+        { title: "陶器と手仕事", ctaLabel: "作り手を知る" },
+        { title: "アルマナッコの日記帳", ctaLabel: "日記を読む" },
       ],
+    },
+    italyJapan: {
+      title: "ふたつの国、ひとつの暮らし方。",
+      text: "マルケの丘から横須賀の街角まで。時間との向き合い方を教えてくれる産品や物語、日々の所作を集めています。",
+      ctaLabel: "私たちについて",
     },
     journal: {
       kicker: "店の日記から",
@@ -331,17 +345,23 @@ export const content: Record<Lang, SiteContent> = {
       prevLabel: "Sekki precedente",
       nextLabel: "Sekki successivo",
       ctaLabel: "Scopri di più",
+      seasonalProductLabel: "Prodotto della stagione",
     },
     categories: {
       kicker: "Dal campo alla bottega",
       title: "Le nostre categorie",
       ctaLabel: "Scopri la selezione",
       items: [
-        { title: "Olio & Condimenti", image: "/images/04-olive-valeri.jpg" },
-        { title: "Vini & Bevande", image: "/images/05-botti-murola.jpg" },
-        { title: "Ceramica & Artigianato" },
-        { title: "Il Diario Almanacco" },
+        { title: "Olio & Condimenti", image: "/images/04-olive-valeri.jpg", ctaLabel: "Scopri gli oli" },
+        { title: "Vini & Bevande", image: "/images/05-botti-murola.jpg", ctaLabel: "Entra in cantina" },
+        { title: "Ceramica & Artigianato", ctaLabel: "Conosci gli artigiani" },
+        { title: "Il Diario Almanacco", ctaLabel: "Leggi il diario" },
       ],
+    },
+    italyJapan: {
+      title: "Due paesi. Un modo di vivere.",
+      text: "Dalle colline delle Marche alle strade di Yokosuka, raccogliamo prodotti, storie e gesti che raccontano un modo diverso di vivere il tempo.",
+      ctaLabel: "Scopri chi siamo",
     },
     journal: {
       kicker: "Dal diario di bottega",
@@ -496,17 +516,23 @@ export const content: Record<Lang, SiteContent> = {
       prevLabel: "Previous sekki",
       nextLabel: "Next sekki",
       ctaLabel: "Learn more",
+      seasonalProductLabel: "This season's pick",
     },
     categories: {
       kicker: "From the field to the shop",
       title: "Our categories",
       ctaLabel: "Discover the selection",
       items: [
-        { title: "Oil & Condiments", image: "/images/04-olive-valeri.jpg" },
-        { title: "Wine & Beverages", image: "/images/05-botti-murola.jpg" },
-        { title: "Ceramics & Crafts" },
-        { title: "The Almanacco Diary" },
+        { title: "Oil & Condiments", image: "/images/04-olive-valeri.jpg", ctaLabel: "Discover the oils" },
+        { title: "Wine & Beverages", image: "/images/05-botti-murola.jpg", ctaLabel: "Step into the cellar" },
+        { title: "Ceramics & Crafts", ctaLabel: "Meet the artisans" },
+        { title: "The Almanacco Diary", ctaLabel: "Read the diary" },
       ],
+    },
+    italyJapan: {
+      title: "Two countries. One way of living.",
+      text: "From the hills of the Marche to the streets of Yokosuka, we gather products, stories, and gestures that speak of a different way to experience time.",
+      ctaLabel: "Discover who we are",
     },
     journal: {
       kicker: "From the shop journal",
