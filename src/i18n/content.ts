@@ -338,8 +338,8 @@ export const content: Record<Lang, SiteContent> = {
           category: "エキストラバージンオリーブオイル",
           description:
             "マルケ州の在来品種「ミニョーラ（Mignola）」から搾られたエキストラバージンオリーブオイル。青々とした香りとほのかな辛みが特徴で、収穫からすぐに搾油する昔ながらの製法を守っています。",
-          image: "/images/events/olio-valeri-evento.jpg",
-          imageAlt: "Frantoio Valeriのエキストラバージンオリーブオイル缶",
+          image: "/images/04-olive-valeri.jpg",
+          imageAlt: "Frantoio Valeriのオイル用に摘みたての黒と緑のオリーブ",
         },
         {
           name: "Cantina Murola",
@@ -582,8 +582,8 @@ export const content: Record<Lang, SiteContent> = {
           category: "Olio extravergine d'oliva",
           description:
             "Olio extravergine spremuto dalla cultivar autoctona Mignola. Note erbacee decise e un finale leggermente piccante, frutto di una molitura rapida che segue ancora i tempi della raccolta.",
-          image: "/images/events/olio-valeri-evento.jpg",
-          imageAlt: "Le taniche dell'olio extravergine Frantoio Valeri",
+          image: "/images/04-olive-valeri.jpg",
+          imageAlt: "Olive nere e verdi appena raccolte per l'olio Frantoio Valeri",
         },
         {
           name: "Cantina Murola",
@@ -825,8 +825,8 @@ export const content: Record<Lang, SiteContent> = {
           category: "Extra virgin olive oil",
           description:
             "Extra virgin olive oil pressed from the native Mignola cultivar. Bold, grassy notes and a lightly peppery finish, the result of rapid milling that still follows the pace of the harvest.",
-          image: "/images/events/olio-valeri-evento.jpg",
-          imageAlt: "Cans of Frantoio Valeri extra virgin olive oil",
+          image: "/images/04-olive-valeri.jpg",
+          imageAlt: "Freshly harvested black and green olives for Frantoio Valeri oil",
         },
         {
           name: "Cantina Murola",
