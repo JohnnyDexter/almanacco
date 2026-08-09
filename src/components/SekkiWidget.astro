@@ -74,7 +74,7 @@ const seasonalProduct = t.prodotti.items.find((p) => p.name === seasonalProductN
             <div class="flex w-48 flex-col items-center text-center sm:w-52">
               <span data-field="kanji" class="font-display text-4xl text-charcoal sm:text-4xl">{current.kanji}</span>
               <span data-field="romaji" class="mt-1 font-subtitle text-xl italic text-stone-text sm:text-lg">{current.romaji}</span>
-              <span data-field="date" class="mt-2 font-body text-xs uppercase tracking-wide text-brass sm:text-[11px]">
+              <span data-field="date" class="mt-2 font-body text-xs uppercase tracking-wide text-brass-text sm:text-[11px]">
                 {formatSekkiDateRange(lang, buildIndex)}
               </span>
               <span data-field="meaning" class="mt-2 font-body text-sm leading-snug text-stone-text sm:text-xs">
@@ -97,7 +97,7 @@ const seasonalProduct = t.prodotti.items.find((p) => p.name === seasonalProductN
       </div>
 
       <div class="mt-10 border-t border-brass/20 pt-6 text-center">
-        <p class="font-body text-[10px] uppercase tracking-[0.2em] text-brass">
+        <p class="font-body text-[10px] uppercase tracking-[0.2em] text-brass-text">
           {t.sekkiWidget.seasonalProductLabel}
         </p>
         <a

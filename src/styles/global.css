@@ -15,6 +15,12 @@
   /* Variante leggibile di "pietra" per testo secondario: il colore di brand #B7B2AA
      ha contrasto troppo basso su fondo avorio per essere usato come testo (~1.9:1). */
   --color-stone-text: #65594a;
+  /* Varianti leggibili di ottone/terracotta per testo (etichette, kicker): i colori di
+     brand hanno contrasto insufficiente su avorio (~2.8:1 e ~3.9:1, sotto la soglia AA
+     4.5:1 per testo piccolo). Bordi, icone e dettagli decorativi restano su --color-brass
+     e --color-terracotta, dove il contrasto non è testo e la regola AA non si applica. */
+  --color-brass-text: #7d603c;
+  --color-terracotta-text: #83543c;
 
   /* Cinzel/Cormorant Garamond non coprono i glifi giapponesi: il fallback verso i
      mincho già in uso mantiene un registro "serif elegante" coerente anche in JA. */
@@ -30,6 +36,16 @@ html {
 body {
   background-color: var(--color-ivory);
   color: var(--color-charcoal);
+}
+
+/* Focus visibile in tastiera su qualsiasi sfondo: l'anello avorio è leggibile sulle
+   sezioni scure (hero, verde bosco), l'anello verde bosco è leggibile su quelle chiare
+   (avorio). Uno dei due sparisce nel proprio sfondo, l'altro resta sempre visibile. */
+:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--color-ivory),
+    0 0 0 4px var(--color-forest);
 }
 
 ::selection {

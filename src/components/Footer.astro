@@ -48,7 +48,7 @@ const paymentBadges = ["Visa", "Mastercard", "Apple Pay", "PayPal"];
     </div>
 
     <div>
-      <p class="font-body text-xs uppercase tracking-[0.15em] text-brass">{t.nav.shop}</p>
+      <p class="font-body text-xs uppercase tracking-[0.15em] text-brass-text">{t.nav.shop}</p>
       <nav class="mt-4 flex flex-col gap-2.5 font-body text-sm text-stone-text">
         {shopLinks.map((item) => (
           <a href={item.href} class="w-fit transition-colors hover:text-charcoal">{item.label}</a>
@@ -57,7 +57,7 @@ const paymentBadges = ["Visa", "Mastercard", "Apple Pay", "PayPal"];
     </div>
 
     <div>
-      <p class="font-body text-xs uppercase tracking-[0.15em] text-brass">{t.nav.sekki}</p>
+      <p class="font-body text-xs uppercase tracking-[0.15em] text-brass-text">{t.nav.sekki}</p>
       <nav class="mt-4 flex flex-col gap-2.5 font-body text-sm text-stone-text">
         {sekkiLinks.map((item) => (
           <a href={item.href} class="w-fit transition-colors hover:text-charcoal">{item.label}</a>
@@ -66,7 +66,7 @@ const paymentBadges = ["Visa", "Mastercard", "Apple Pay", "PayPal"];
     </div>
 
     <div>
-      <p class="font-body text-xs uppercase tracking-[0.15em] text-brass">Almanacco</p>
+      <p class="font-body text-xs uppercase tracking-[0.15em] text-brass-text">Almanacco</p>
       <nav class="mt-4 flex flex-col gap-2.5 font-body text-sm text-stone-text">
         {almanaccoLinks.map((item) => (
           <a href={item.href} class="w-fit transition-colors hover:text-charcoal">{item.label}</a>
@@ -75,7 +75,7 @@ const paymentBadges = ["Visa", "Mastercard", "Apple Pay", "PayPal"];
     </div>
 
     <div>
-      <p class="font-body text-xs uppercase tracking-[0.15em] text-brass">{t.footer.languagesLabel}</p>
+      <p class="font-body text-xs uppercase tracking-[0.15em] text-brass-text">{t.footer.languagesLabel}</p>
       <nav aria-label="Language switcher" class="mt-4 flex flex-col gap-2.5 font-body text-sm text-stone-text">
         {languageLinks.map((item) =>
           item.lang === lang ? (
@@ -88,7 +88,7 @@ const paymentBadges = ["Visa", "Mastercard", "Apple Pay", "PayPal"];
     </div>
 
     <div>
-      <p class="font-body text-xs uppercase tracking-[0.15em] text-brass">{t.footer.paymentsLabel}</p>
+      <p class="font-body text-xs uppercase tracking-[0.15em] text-brass-text">{t.footer.paymentsLabel}</p>
       <div class="mt-4 flex flex-wrap gap-2">
         {paymentBadges.map((name) => (
           <span class="flex h-7 items-center border border-brass/40 px-2.5 font-body text-[10px] uppercase tracking-wide text-stone-text">

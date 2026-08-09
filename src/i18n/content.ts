@@ -20,14 +20,29 @@ export interface ProductItem {
   description: string;
   /** Percorso dell'immagine in public/, es. "/images/04-olive-valeri.jpg". Se assente, la card mostra un placeholder. */
   image?: string;
+  /** Alt text descrittivo della foto prodotto (assente se `image` è assente). */
+  imageAlt?: string;
+}
+
+export interface PageMeta {
+  title: string;
+  description: string;
 }
 
 export interface SiteContent {
   htmlLang: string;
+  /** Title/description per pagina, distinti per una SEO corretta (niente duplicati). */
   meta: {
-    title: string;
-    description: string;
+    home: PageMeta;
+    shop: PageMeta;
+    sekki: PageMeta;
+    journal: PageMeta;
+    events: PageMeta;
+    about: PageMeta;
+    contact: PageMeta;
   };
+  /** Link "Salta al contenuto", visibile solo al focus da tastiera. */
+  skipToContent: string;
   nav: {
     home: string;
     shop: string;
@@ -59,18 +74,21 @@ export interface SiteContent {
     title: string;
     /** CTA generica, usata fuori dalla griglia (es. in fondo alla pagina Chi siamo). */
     ctaLabel: string;
-    items: { title: string; image?: string; ctaLabel: string }[];
+    items: { title: string; image?: string; imageAlt?: string; ctaLabel: string }[];
   };
   italyJapan: {
     title: string;
     text: string;
     ctaLabel: string;
+    imageAltItaly: string;
+    imageAltJapan: string;
   };
   journal: {
     kicker: string;
     title: string;
     text: string;
     ctaLabel: string;
+    imageAlt: string;
   };
   journalPage: {
     kicker: string;
@@ -93,11 +111,13 @@ export interface SiteContent {
     placeholder: string;
     ctaLabel: string;
     disabledNote: string;
+    imageAlt: string;
   };
   storia: {
     kicker: string;
     title: string;
     paragraphs: string[];
+    imageAlt: string;
   };
   prodotti: {
     kicker: string;
@@ -136,6 +156,7 @@ export interface SiteContent {
     socialLabel: string;
     socialValue: string;
     note: string;
+    imageAlt: string;
   };
   footer: {
     tagline: string;
@@ -158,10 +179,39 @@ export const content: Record<Lang, SiteContent> = {
   ja: {
     htmlLang: "ja",
     meta: {
-      title: "Almanacco（アルマナッコ）| 横須賀のマルケ州イタリア食材店",
-      description:
-        "神奈川県横須賀市にあるイタリア食材店 Almanacco。イタリア・マルケ州のオリーブオイルとワインを、日本の季節の暦とともにお届けします。",
+      home: {
+        title: "ALMANACCO（アルマナッコ）— 横須賀のイタリア食材店 | IKITARIA",
+        description:
+          "ALMANACCOは、オリーブオイル、ワイン、工芸品、季節、そしてマルケ州の物語を届ける、横須賀のイタリア食材店です。",
+      },
+      shop: {
+        title: "商品 | ALMANACCO — 横須賀のイタリア食材店",
+        description:
+          "マルケ州の小さな生産者から届く、エキストラバージンオリーブオイル、ワイン、パスタ。横須賀のALMANACCOで販売中です。",
+      },
+      sekki: {
+        title: "二十四節気 | ALMANACCO — 横須賀のイタリア食材店",
+        description: "日本の二十四節気の暦を、マルケ州の農事暦と共にALMANACCOが伝えます。",
+      },
+      journal: {
+        title: "ジャーナル | ALMANACCO — 横須賀のイタリア食材店",
+        description: "マルケの丘陵地帯から横須賀の街角まで。ALMANACCOの店の日記です。",
+      },
+      events: {
+        title: "イベントと集い | ALMANACCO — 横須賀のイタリア食材店",
+        description: "マルケ料理と日本の暦が出会う、ALMANACCOの季節ごとの集まりです。",
+      },
+      about: {
+        title: "私たちについて | ALMANACCO — 横須賀のイタリア食材店",
+        description:
+          "横須賀の小さな店が、なぜマルケ州の昔ながらの農事暦の名を掲げているのか。ALMANACCOの物語です。",
+      },
+      contact: {
+        title: "お問い合わせ | ALMANACCO — 横須賀のイタリア食材店",
+        description: "横須賀にあるALMANACCOの住所、メールアドレス、アクセス方法のご案内です。",
+      },
     },
+    skipToContent: "本文へスキップ",
     nav: {
       home: "ホーム",
       shop: "ショップ",
@@ -192,8 +242,8 @@ export const content: Record<Lang, SiteContent> = {
       title: "カテゴリー",
       ctaLabel: "セレクションを見る",
       items: [
-        { title: "オイル＆調味料", image: "/images/04-olive-valeri.jpg", ctaLabel: "オイルを見る" },
-        { title: "ワイン＆飲料", image: "/images/05-botti-murola.jpg", ctaLabel: "カンティーナをのぞく" },
+        { title: "オイル＆調味料", image: "/images/04-olive-valeri.jpg", imageAlt: "搾油前の摘みたてオリーブ", ctaLabel: "オイルを見る" },
+        { title: "ワイン＆飲料", image: "/images/05-botti-murola.jpg", imageAlt: "カンティーナの木樽と、田園へ続く入り口", ctaLabel: "カンティーナをのぞく" },
         { title: "陶器と手仕事", ctaLabel: "作り手を知る" },
         { title: "アルマナッコの日記帳", ctaLabel: "日記を読む" },
       ],
@@ -202,12 +252,15 @@ export const content: Record<Lang, SiteContent> = {
       title: "ふたつの国、ひとつの暮らし方。",
       text: "マルケの丘から横須賀の街角まで。時間との向き合い方を教えてくれる産品や物語、日々の所作を集めています。",
       ctaLabel: "私たちについて",
+      imageAltItaly: "マルケ州、黄金色の麦畑が広がる丘陵地帯",
+      imageAltJapan: "夜、灯りがともる横須賀のAlmanaccoの店先と庭",
     },
     journal: {
       kicker: "店の日記から",
       title: "物語、場所、出会い",
       text: "マルケの丘陵地帯から横須賀の街角まで。私たちが店に選ぶものを育て、作り、食卓に運ぶ人々の物語です。",
       ctaLabel: "ジャーナルを読む",
+      imageAlt: "夕暮れのマルケの丘陵、オリーブの木々と畑",
     },
     journalPage: {
       kicker: "店の日記から",
@@ -241,6 +294,7 @@ export const content: Record<Lang, SiteContent> = {
       placeholder: "メールアドレス",
       ctaLabel: "登録する",
       disabledNote: "登録機能は近日公開です",
+      imageAlt: "夕暮れのマルケのひまわり畑",
     },
     storia: {
       kicker: "なぜ「アルマナッコ」なのか",
@@ -250,6 +304,7 @@ export const content: Record<Lang, SiteContent> = {
         "日本には、同じように季節を読み解くための暦があります。二十四節気です。立春から大寒まで、24の名前がついた季節の節目は、農作業や暮らしのリズムを細やかに教えてくれます。マルケの農事暦と、日本の二十四節気。生まれた場所も言葉も違うのに、同じ願い——季節を見失わずに生きること——から生まれた、よく似た知恵です。",
         "私たちの店の名前を「Almanacco」としたのは、この二つの暦を並べて見せたかったからです。横須賀で暮らす私たちが、マルケ州の畑で摘まれたオリーブとぶどうを、季節の言葉とともにお届けする。それが、この小さな店の役目だと思っています。",
       ],
+      imageAlt: "マルケ州の丘陵地帯を望む風景",
     },
     prodotti: {
       kicker: "畑から棚へ",
@@ -263,6 +318,7 @@ export const content: Record<Lang, SiteContent> = {
           description:
             "マルケ州の在来品種「ミニョーラ（Mignola）」から搾られたエキストラバージンオリーブオイル。青々とした香りとほのかな辛みが特徴で、収穫からすぐに搾油する昔ながらの製法を守っています。",
           image: "/images/04-olive-valeri.jpg",
+          imageAlt: "Frantoio Valeriのオイル用に摘みたての黒と緑のオリーブ",
         },
         {
           name: "Cantina Murola",
@@ -270,6 +326,7 @@ export const content: Record<Lang, SiteContent> = {
           description:
             "マルケ州の小さな家族経営ワイナリー、ムローラ醸造所のワイン。畑仕事から瓶詰めまで家族の手で行われ、土地の個性をそのまま映した味わいです。",
           image: "/images/05-botti-murola.jpg",
+          imageAlt: "カンティーナ・ムローラの樫樽",
         },
         {
           name: "Colmone della Marca",
@@ -321,6 +378,7 @@ export const content: Record<Lang, SiteContent> = {
       socialLabel: "SNS",
       socialValue: "近日公開予定",
       note: "営業時間・SNSアカウントは現在準備中です。決まり次第、こちらに掲載いたします。",
+      imageAlt: "夜の横須賀、Almanaccoの入り口",
     },
     footer: {
       tagline: "マルケの畑から、横須賀の暦へ。",
@@ -337,10 +395,40 @@ export const content: Record<Lang, SiteContent> = {
   it: {
     htmlLang: "it",
     meta: {
-      title: "Almanacco | Olio e vino delle Marche a Yokosuka",
-      description:
-        "Almanacco è la bottega a Yokosuka, Giappone, che porta l'olio extravergine e il vino delle Marche, seguendo il ritmo delle stagioni tra Italia e Giappone.",
+      home: {
+        title: "ALMANACCO — Bottega italiana a Yokosuka | IKITARIA",
+        description:
+          "ALMANACCO è una bottega italiana a Yokosuka dedicata a olio, vino, artigianato, stagioni e storie dalle Marche.",
+      },
+      shop: {
+        title: "Prodotti | ALMANACCO — Bottega italiana a Yokosuka",
+        description:
+          "Olio extravergine, vino e pasta selezionati da piccoli produttori delle Marche, in vendita nella bottega ALMANACCO a Yokosuka.",
+      },
+      sekki: {
+        title: "I 24 Sekki | ALMANACCO — Bottega italiana a Yokosuka",
+        description:
+          "Il calendario giapponese dei 24 sekki, che ALMANACCO racconta insieme all'almanacco contadino delle Marche.",
+      },
+      journal: {
+        title: "Journal | ALMANACCO — Bottega italiana a Yokosuka",
+        description: "Racconti dalle colline marchigiane e dalle strade di Yokosuka: il diario di bottega di ALMANACCO.",
+      },
+      events: {
+        title: "Eventi & Incontri | ALMANACCO — Bottega italiana a Yokosuka",
+        description: "Gli incontri a tema stagionale di ALMANACCO, dove la cucina marchigiana incontra il calendario giapponese.",
+      },
+      about: {
+        title: "Chi siamo | ALMANACCO — Bottega italiana a Yokosuka",
+        description:
+          "La storia di ALMANACCO: perché una bottega a Yokosuka porta il nome del vecchio almanacco contadino delle Marche.",
+      },
+      contact: {
+        title: "Contatti | ALMANACCO — Bottega italiana a Yokosuka",
+        description: "Indirizzo, email e come raggiungere la bottega ALMANACCO a Yokosuka, Giappone.",
+      },
     },
+    skipToContent: "Vai al contenuto",
     nav: {
       home: "Home",
       shop: "Shop",
@@ -371,8 +459,8 @@ export const content: Record<Lang, SiteContent> = {
       title: "Le nostre categorie",
       ctaLabel: "Scopri la selezione",
       items: [
-        { title: "Olio & Condimenti", image: "/images/04-olive-valeri.jpg", ctaLabel: "Scopri gli oli" },
-        { title: "Vini & Bevande", image: "/images/05-botti-murola.jpg", ctaLabel: "Entra in cantina" },
+        { title: "Olio & Condimenti", image: "/images/04-olive-valeri.jpg", imageAlt: "Olive appena raccolte pronte per la spremitura", ctaLabel: "Scopri gli oli" },
+        { title: "Vini & Bevande", image: "/images/05-botti-murola.jpg", imageAlt: "Botti di legno nella cantina, con la porta che si apre sulla campagna", ctaLabel: "Entra in cantina" },
         { title: "Ceramica & Artigianato", ctaLabel: "Conosci gli artigiani" },
         { title: "Il Diario Almanacco", ctaLabel: "Leggi il diario" },
       ],
@@ -381,12 +469,15 @@ export const content: Record<Lang, SiteContent> = {
       title: "Due paesi. Un modo di vivere.",
       text: "Dalle colline delle Marche alle strade di Yokosuka, raccogliamo prodotti, storie e gesti che raccontano un modo diverso di vivere il tempo.",
       ctaLabel: "Scopri chi siamo",
+      imageAltItaly: "Colline delle Marche con campi di grano dorato",
+      imageAltJapan: "Il negozio Almanacco a Yokosuka illuminato di sera, con il giardino",
     },
     journal: {
       kicker: "Dal diario di bottega",
       title: "Storie, luoghi, incontri",
       text: "Racconti dalle colline marchigiane e dalle strade di Yokosuka: le persone che coltivano, producono e portano in tavola ciò che scegliamo per il negozio.",
       ctaLabel: "Leggi il Journal",
+      imageAlt: "Colline marchigiane al tramonto, tra ulivi e campi",
     },
     journalPage: {
       kicker: "Dal diario di bottega",
@@ -420,6 +511,7 @@ export const content: Record<Lang, SiteContent> = {
       placeholder: "La tua email",
       ctaLabel: "Iscriviti",
       disabledNote: "Iscrizione in arrivo",
+      imageAlt: "Campo di girasoli delle Marche al tramonto",
     },
     storia: {
       kicker: "Perché si chiama Almanacco",
@@ -429,6 +521,7 @@ export const content: Record<Lang, SiteContent> = {
         "In Giappone esiste qualcosa di sorprendentemente simile: i 24 sekki, le ventiquattro suddivisioni stagionali che dal Risshun (l'inizio della primavera) al Daikan (il freddo più intenso) scandiscono da secoli i lavori agricoli e la vita quotidiana. Nate in luoghi e lingue diverse, l'almanacco contadino marchigiano e i sekki giapponesi rispondono allo stesso bisogno: non perdere il filo delle stagioni.",
         "Abbiamo chiamato questo negozio Almanacco proprio per mettere questi due calendari fianco a fianco. Da Yokosuka, portiamo l'olio e il vino raccolti nei campi delle Marche insieme al racconto delle stagioni che li hanno fatti nascere: è questo, in fondo, il senso di questa piccola bottega.",
       ],
+      imageAlt: "Vista panoramica delle colline marchigiane",
     },
     prodotti: {
       kicker: "Dal campo allo scaffale",
@@ -442,6 +535,7 @@ export const content: Record<Lang, SiteContent> = {
           description:
             "Olio extravergine spremuto dalla cultivar autoctona Mignola. Note erbacee decise e un finale leggermente piccante, frutto di una molitura rapida che segue ancora i tempi della raccolta.",
           image: "/images/04-olive-valeri.jpg",
+          imageAlt: "Olive nere e verdi appena raccolte per l'olio Frantoio Valeri",
         },
         {
           name: "Cantina Murola",
@@ -449,6 +543,7 @@ export const content: Record<Lang, SiteContent> = {
           description:
             "I vini della Cantina Murola, piccola realtà familiare marchigiana dove la vigna e la cantina sono ancora affari di famiglia, dalla potatura all'imbottigliamento.",
           image: "/images/05-botti-murola.jpg",
+          imageAlt: "Botti di rovere nella cantina Murola",
         },
         {
           name: "Colmone della Marca",
@@ -500,6 +595,7 @@ export const content: Record<Lang, SiteContent> = {
       socialLabel: "Social",
       socialValue: "In arrivo",
       note: "Orari di apertura e canali social sono ancora in definizione: saranno pubblicati qui appena disponibili.",
+      imageAlt: "Ingresso del negozio Almanacco a Yokosuka, di sera",
     },
     footer: {
       tagline: "Dai campi delle Marche all'almanacco di Yokosuka.",
@@ -516,10 +612,39 @@ export const content: Record<Lang, SiteContent> = {
   en: {
     htmlLang: "en",
     meta: {
-      title: "Almanacco | Olive oil and wine from the Marche in Yokosuka",
-      description:
-        "Almanacco is a small shop in Yokosuka, Japan, bringing extra virgin olive oil and wine from the Marche region, following the rhythm of the seasons between Italy and Japan.",
+      home: {
+        title: "ALMANACCO — Italian Shop in Yokosuka | IKITARIA",
+        description:
+          "ALMANACCO is an Italian shop in Yokosuka devoted to olive oil, wine, craft, seasons, and stories from the Marche.",
+      },
+      shop: {
+        title: "Products | ALMANACCO — Italian Shop in Yokosuka",
+        description:
+          "Extra virgin olive oil, wine, and pasta selected from small producers in the Marche, available at ALMANACCO in Yokosuka.",
+      },
+      sekki: {
+        title: "The 24 Sekki | ALMANACCO — Italian Shop in Yokosuka",
+        description: "Japan's calendar of 24 sekki, told by ALMANACCO alongside the Marche farmers' almanac.",
+      },
+      journal: {
+        title: "Journal | ALMANACCO — Italian Shop in Yokosuka",
+        description: "Stories from the hills of the Marche and the streets of Yokosuka: the ALMANACCO shop journal.",
+      },
+      events: {
+        title: "Events & Gatherings | ALMANACCO — Italian Shop in Yokosuka",
+        description: "ALMANACCO's seasonal gatherings, where Marche cooking meets the Japanese calendar.",
+      },
+      about: {
+        title: "About | ALMANACCO — Italian Shop in Yokosuka",
+        description:
+          "The story of ALMANACCO: why a shop in Yokosuka carries the name of the old Marche farmers' almanac.",
+      },
+      contact: {
+        title: "Contact | ALMANACCO — Italian Shop in Yokosuka",
+        description: "Address, email, and how to reach the ALMANACCO shop in Yokosuka, Japan.",
+      },
     },
+    skipToContent: "Skip to content",
     nav: {
       home: "Home",
       shop: "Shop",
@@ -550,8 +675,8 @@ export const content: Record<Lang, SiteContent> = {
       title: "Our categories",
       ctaLabel: "Discover the selection",
       items: [
-        { title: "Oil & Condiments", image: "/images/04-olive-valeri.jpg", ctaLabel: "Discover the oils" },
-        { title: "Wine & Beverages", image: "/images/05-botti-murola.jpg", ctaLabel: "Step into the cellar" },
+        { title: "Oil & Condiments", image: "/images/04-olive-valeri.jpg", imageAlt: "Freshly harvested olives ready for pressing", ctaLabel: "Discover the oils" },
+        { title: "Wine & Beverages", image: "/images/05-botti-murola.jpg", imageAlt: "Wooden barrels in the cellar, with the door opening onto the countryside", ctaLabel: "Step into the cellar" },
         { title: "Ceramics & Crafts", ctaLabel: "Meet the artisans" },
         { title: "The Almanacco Diary", ctaLabel: "Read the diary" },
       ],
@@ -560,12 +685,15 @@ export const content: Record<Lang, SiteContent> = {
       title: "Two countries. One way of living.",
       text: "From the hills of the Marche to the streets of Yokosuka, we gather products, stories, and gestures that speak of a different way to experience time.",
       ctaLabel: "Discover who we are",
+      imageAltItaly: "Hills of the Marche with golden wheat fields",
+      imageAltJapan: "The Almanacco shop in Yokosuka lit up in the evening, with its garden",
     },
     journal: {
       kicker: "From the shop journal",
       title: "Stories, places, encounters",
       text: "Stories from the hills of the Marche and the streets of Yokosuka: the people who grow, make, and bring to the table what we choose for the shop.",
       ctaLabel: "Read the Journal",
+      imageAlt: "Marche hills at sunset, among olive trees and fields",
     },
     journalPage: {
       kicker: "From the shop journal",
@@ -599,6 +727,7 @@ export const content: Record<Lang, SiteContent> = {
       placeholder: "Your email",
       ctaLabel: "Subscribe",
       disabledNote: "Sign-up coming soon",
+      imageAlt: "A sunflower field in the Marche at sunset",
     },
     storia: {
       kicker: "Why we're called Almanacco",
@@ -608,6 +737,7 @@ export const content: Record<Lang, SiteContent> = {
         "Japan has something remarkably similar: the 24 sekki, the twenty-four seasonal divisions that, from Risshun (the start of spring) to Daikan (the depth of winter), have long guided farm work and daily life. Born in different places and languages, the Marche farmers' almanac and the Japanese sekki answer the same need: never losing track of the seasons.",
         "We named this shop Almanacco to place these two calendars side by side. From Yokosuka, we bring olive oil and wine harvested in the fields of the Marche, together with the story of the seasons that shaped them — that, in the end, is what this small shop is about.",
       ],
+      imageAlt: "Panoramic view of the Marche hills",
     },
     prodotti: {
       kicker: "From the field to the shelf",
@@ -621,6 +751,7 @@ export const content: Record<Lang, SiteContent> = {
           description:
             "Extra virgin olive oil pressed from the native Mignola cultivar. Bold, grassy notes and a lightly peppery finish, the result of rapid milling that still follows the pace of the harvest.",
           image: "/images/04-olive-valeri.jpg",
+          imageAlt: "Freshly harvested black and green olives for Frantoio Valeri oil",
         },
         {
           name: "Cantina Murola",
@@ -628,6 +759,7 @@ export const content: Record<Lang, SiteContent> = {
           description:
             "Wines from Cantina Murola, a small family-run winery in the Marche where the vineyard and the cellar are still a family affair, from pruning to bottling.",
           image: "/images/05-botti-murola.jpg",
+          imageAlt: "Oak barrels in the Cantina Murola cellar",
         },
         {
           name: "Colmone della Marca",
@@ -679,6 +811,7 @@ export const content: Record<Lang, SiteContent> = {
       socialLabel: "Social",
       socialValue: "Coming soon",
       note: "Opening hours and social channels are still being finalized and will be published here as soon as they're ready.",
+      imageAlt: "Entrance to the Almanacco shop in Yokosuka, in the evening",
     },
     footer: {
       tagline: "From the fields of the Marche to the Yokosuka almanac.",

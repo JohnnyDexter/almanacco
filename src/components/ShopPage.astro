@@ -57,7 +57,7 @@ const groups = [
                     {item.image ? (
                       <img
                         src={withBase(item.image)}
-                        alt={item.name}
+                        alt={item.imageAlt ?? item.name}
                         class="aspect-[4/3] w-full object-cover"
                         loading="lazy"
                       />
@@ -70,7 +70,7 @@ const groups = [
                       </div>
                     )}
                     <div class="flex flex-col gap-2 p-6">
-                      <span class="font-body text-xs uppercase tracking-[0.15em] text-brass">{item.category}</span>
+                      <span class="font-body text-xs uppercase tracking-[0.15em] text-brass-text">{item.category}</span>
                       <h3 class="font-subtitle text-xl italic text-charcoal">{item.name}</h3>
                       <p class="font-body text-sm leading-relaxed text-stone-text">{item.description}</p>
                     </div>
