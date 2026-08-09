@@ -42,6 +42,6 @@ const logoUrl = new URL(withBase("/logo.png"), Astro.site).toString();
     <main class={slug === "" ? "" : "pt-[72px] sm:pt-20"}>
       <slot />
     </main>
-    <Footer lang={lang} t={t} />
+    <Footer lang={lang} t={t} slug={slug} />
   </body>
 </html>

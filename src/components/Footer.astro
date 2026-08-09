@@ -1,15 +1,18 @@
 ---
-import type { SiteContent, Lang } from "../i18n/content";
+import { langs, langLabels, type SiteContent, type Lang } from "../i18n/content";
 import { withBase, langHref } from "../utils/paths";
 
 interface Props {
   lang: Lang;
   t: SiteContent;
+  /** Slug della pagina corrente, per restare sulla stessa pagina cambiando lingua. */
+  slug?: string;
 }
 
-const { lang, t } = Astro.props;
+const { lang, t, slug = "" } = Astro.props;
 const year = new Date().getFullYear();
 
+const homeHref = withBase(langHref(lang, ""));
 const shopHref = withBase(langHref(lang, "shop"));
 const sekkiHref = withBase(langHref(lang, "sekki"));
 
@@ -19,8 +22,8 @@ const shopLinks = t.categories.items.map((item, i) => ({
 }));
 
 const sekkiLinks = [
+  { label: t.footer.currentSekkiLabel, href: `${homeHref}#sekki-corrente` },
   { label: t.sekkiPage.title, href: sekkiHref },
-  { label: t.footer.philosophyLabel, href: `${sekkiHref}#filosofia` },
   { label: t.footer.calendarLabel, href: `${sekkiHref}#calendario` },
 ];
 
@@ -31,11 +34,13 @@ const almanaccoLinks = [
   { label: t.nav.contact, href: withBase(langHref(lang, "contact")) },
 ];
 
+const languageLinks = langs.map((l) => ({ lang: l, label: langLabels[l], href: withBase(langHref(l, slug)) }));
+
 const paymentBadges = ["Visa", "Mastercard", "Apple Pay", "PayPal"];
 ---
 
 <footer class="border-t border-brass/30 bg-ivory text-charcoal">
-  <div class="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:grid-cols-2 lg:grid-cols-5">
+  <div class="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:grid-cols-2 lg:grid-cols-6">
     <div class="sm:col-span-2 lg:col-span-1">
       <img src={withBase("/logo-swallow.png")} alt="Almanacco" class="h-10 w-auto" width="594" height="563" />
       <p class="mt-4 font-display tracking-widest text-charcoal">Almanacco</p>
@@ -66,6 +71,19 @@ const paymentBadges = ["Visa", "Mastercard", "Apple Pay", "PayPal"];
         {almanaccoLinks.map((item) => (
           <a href={item.href} class="w-fit transition-colors hover:text-charcoal">{item.label}</a>
         ))}
+      </nav>
+    </div>
+
+    <div>
+      <p class="font-body text-xs uppercase tracking-[0.15em] text-brass">{t.footer.languagesLabel}</p>
+      <nav aria-label="Language switcher" class="mt-4 flex flex-col gap-2.5 font-body text-sm text-stone-text">
+        {languageLinks.map((item) =>
+          item.lang === lang ? (
+            <span class="w-fit text-charcoal" aria-current="page">{item.label}</span>
+          ) : (
+            <a href={item.href} class="w-fit transition-colors hover:text-charcoal">{item.label}</a>
+          )
+        )}
       </nav>
     </div>
 

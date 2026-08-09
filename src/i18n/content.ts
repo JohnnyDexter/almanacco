@@ -78,6 +78,8 @@ export interface SiteContent {
     intro: string;
     articles: { title: string; excerpt: string }[];
     comingSoonNote: string;
+    /** Etichetta del terzo slot, lasciato vuoto in attesa di un articolo reale. */
+    comingSoonSlotLabel: string;
   };
   sekkiPage: {
     kicker: string;
@@ -114,6 +116,13 @@ export interface SiteContent {
     pairingText: string;
     moreNote: string;
   };
+  /** Teaser eventi in homepage: riusa il singolo evento reale di `almanacco`, con intestazione e CTA proprie. */
+  eventsTeaser: {
+    kicker: string;
+    title: string;
+    moreNote: string;
+    ctaLabel: string;
+  };
   contatti: {
     kicker: string;
     title: string;
@@ -131,8 +140,10 @@ export interface SiteContent {
   footer: {
     tagline: string;
     rights: string;
-    philosophyLabel: string;
+    /** Link "Il Sekki del momento" nella colonna Sekki del footer, verso il widget in home. */
+    currentSekkiLabel: string;
     calendarLabel: string;
+    languagesLabel: string;
     paymentsLabel: string;
     /** Testo prima del link "IKITARIA" nel credito di fondo pagina. */
     creditPrefix: string;
@@ -213,6 +224,7 @@ export const content: Record<Lang, SiteContent> = {
         },
       ],
       comingSoonNote: "全文はこちらのページに近日公開予定です。",
+      comingSoonSlotLabel: "次の物語は、まもなく。",
     },
     sekkiPage: {
       kicker: "季節を刻む暦",
@@ -224,8 +236,8 @@ export const content: Record<Lang, SiteContent> = {
       seasons: { spring: "春", summer: "夏", autumn: "秋", winter: "冬" },
     },
     newsletter: {
-      title: "つながりを保つ",
-      text: "季節のお知らせ、新着情報、次の会のご案内。急がず、店からゆっくりお届けします。",
+      title: "季節は移ろい、物語は続く。",
+      text: "店からのお知らせ、新着入荷、生産者やイベントの情報。",
       placeholder: "メールアドレス",
       ctaLabel: "登録する",
       disabledNote: "登録機能は近日公開です",
@@ -286,6 +298,12 @@ export const content: Record<Lang, SiteContent> = {
       pairingText: "Cantina Murola のワインと共に。土地の料理には、土地のワインを。",
       moreNote: "他の会も近日追加予定です。季節ごとにこのページを更新していきます。",
     },
+    eventsTeaser: {
+      kicker: "お店から",
+      title: "イベントと集い",
+      moreNote: "近日、店にて。",
+      ctaLabel: "イベントを見る",
+    },
     contatti: {
       kicker: "お店へ",
       title: "アクセス",
@@ -307,8 +325,9 @@ export const content: Record<Lang, SiteContent> = {
     footer: {
       tagline: "マルケの畑から、横須賀の暦へ。",
       rights: "All rights reserved.",
-      philosophyLabel: "考え方",
+      currentSekkiLabel: "今の節気",
       calendarLabel: "暦",
+      languagesLabel: "言語",
       paymentsLabel: "お支払い方法（近日対応）",
       creditPrefix: "Almanacco は ",
       creditSuffix: " のプロジェクトです",
@@ -384,6 +403,7 @@ export const content: Record<Lang, SiteContent> = {
         },
       ],
       comingSoonNote: "Il racconto completo, presto su questa pagina.",
+      comingSoonSlotLabel: "Il prossimo racconto sta arrivando.",
     },
     sekkiPage: {
       kicker: "Il calendario che scandisce le stagioni",
@@ -395,8 +415,8 @@ export const content: Record<Lang, SiteContent> = {
       seasons: { spring: "Primavera", summer: "Estate", autumn: "Autunno", winter: "Inverno" },
     },
     newsletter: {
-      title: "Resta in contatto",
-      text: "Novità di stagione, nuovi arrivi e le date dei prossimi incontri: dritte dalla bottega, senza fretta.",
+      title: "Le stagioni cambiano. Le storie continuano.",
+      text: "Novità dalla bottega, nuovi arrivi, produttori ed eventi.",
       placeholder: "La tua email",
       ctaLabel: "Iscriviti",
       disabledNote: "Iscrizione in arrivo",
@@ -457,6 +477,12 @@ export const content: Record<Lang, SiteContent> = {
       pairingText: "I vini della Cantina Murola: la cucina del territorio merita il vino dello stesso territorio.",
       moreNote: "Altri incontri in arrivo: torneremo ad aggiornare questa pagina a ogni nuova stagione.",
     },
+    eventsTeaser: {
+      kicker: "Dalla bottega",
+      title: "Eventi & incontri",
+      moreNote: "Prossimamente alla bottega.",
+      ctaLabel: "Scopri gli eventi",
+    },
     contatti: {
       kicker: "Vieni a trovarci",
       title: "Contatti",
@@ -478,8 +504,9 @@ export const content: Record<Lang, SiteContent> = {
     footer: {
       tagline: "Dai campi delle Marche all'almanacco di Yokosuka.",
       rights: "Tutti i diritti riservati.",
-      philosophyLabel: "La Filosofia",
+      currentSekkiLabel: "Il Sekki del momento",
       calendarLabel: "Il Calendario",
+      languagesLabel: "Lingue",
       paymentsLabel: "Metodi di pagamento (in arrivo)",
       creditPrefix: "Almanacco è un progetto di ",
       creditSuffix: "",
@@ -555,6 +582,7 @@ export const content: Record<Lang, SiteContent> = {
         },
       ],
       comingSoonNote: "The full story, coming soon to this page.",
+      comingSoonSlotLabel: "The next story is on its way.",
     },
     sekkiPage: {
       kicker: "The calendar that marks the seasons",
@@ -566,8 +594,8 @@ export const content: Record<Lang, SiteContent> = {
       seasons: { spring: "Spring", summer: "Summer", autumn: "Autumn", winter: "Winter" },
     },
     newsletter: {
-      title: "Stay in touch",
-      text: "Seasonal news, new arrivals, and dates for upcoming gatherings — straight from the shop, at our own pace.",
+      title: "The seasons change. The stories continue.",
+      text: "News from the shop, new arrivals, producers, and events.",
       placeholder: "Your email",
       ctaLabel: "Subscribe",
       disabledNote: "Sign-up coming soon",
@@ -628,6 +656,12 @@ export const content: Record<Lang, SiteContent> = {
       pairingText: "Wines from Cantina Murola — food from the land deserves wine from the same land.",
       moreNote: "More gatherings are on the way: we'll update this page with each new season.",
     },
+    eventsTeaser: {
+      kicker: "From the shop",
+      title: "Events & gatherings",
+      moreNote: "Coming soon at the shop.",
+      ctaLabel: "Discover the events",
+    },
     contatti: {
       kicker: "Come visit us",
       title: "Contact",
@@ -649,8 +683,9 @@ export const content: Record<Lang, SiteContent> = {
     footer: {
       tagline: "From the fields of the Marche to the Yokosuka almanac.",
       rights: "All rights reserved.",
-      philosophyLabel: "The Philosophy",
+      currentSekkiLabel: "The Current Sekki",
       calendarLabel: "The Calendar",
+      languagesLabel: "Languages",
       paymentsLabel: "Payment methods (coming soon)",
       creditPrefix: "Almanacco is a project by ",
       creditSuffix: "",
