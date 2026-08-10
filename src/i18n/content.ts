@@ -58,9 +58,6 @@ export interface SiteContent {
     text: string;
     ctaPrimary: string;
     ctaSecondary: string;
-    /** Etichette manoscritte sui contorni di Italia/Giappone nello sfondo decorativo. */
-    mapLabelItaly: string;
-    mapLabelJapan: string;
   };
   sekkiWidget: {
     kicker: string;
@@ -240,8 +237,6 @@ export const content: Record<Lang, SiteContent> = {
       text: "横須賀にあるイタリアの小さな店。マルケ州から届く、オイルとワイン、工芸品、そして物語。",
       ctaPrimary: "お店を見る",
       ctaSecondary: "ジャーナルを読む",
-      mapLabelItaly: "イタリア",
-      mapLabelJapan: "日本",
     },
     sekkiWidget: {
       kicker: "季節のリズム",
@@ -486,8 +481,6 @@ export const content: Record<Lang, SiteContent> = {
       text: "Una bottega italiana a Yokosuka. Olio, vino, artigianato e storie dalle Marche.",
       ctaPrimary: "Scopri la bottega",
       ctaSecondary: "Leggi il diario",
-      mapLabelItaly: "Italia",
-      mapLabelJapan: "Giappone",
     },
     sekkiWidget: {
       kicker: "Il ritmo delle stagioni",
@@ -731,8 +724,6 @@ export const content: Record<Lang, SiteContent> = {
       text: "An Italian shop in Yokosuka. Oil, wine, craft, and stories from the Marche.",
       ctaPrimary: "Discover the shop",
       ctaSecondary: "Read the journal",
-      mapLabelItaly: "Italy",
-      mapLabelJapan: "Japan",
     },
     sekkiWidget: {
       kicker: "The rhythm of the seasons",

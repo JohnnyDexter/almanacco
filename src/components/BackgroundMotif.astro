@@ -1,113 +1,23 @@
 ---
-// Sfondo decorativo chiaro/etereo condiviso: base color avorio calda, ombre di foglie,
-// contorni di Italia e Giappone con etichette manoscritte, ramo d'ulivo. Pensato per
-// stare dietro a contenuto testuale scuro (es. l'Hero della Home), riutilizzabile in
-// altre sezioni che vogliono lo stesso registro visivo.
+// Sfondo decorativo chiaro/etereo condiviso: illustrazione "mappa d'epoca" con i
+// contorni di Italia e Giappone, ramo d'ulivo e ramo di ciliegio, ombre di foglie.
+// Pensato per stare dietro a contenuto testuale scuro (es. l'Hero della Home),
+// riutilizzabile in altre sezioni che vogliono lo stesso registro visivo.
+import { withBase } from "../utils/paths";
+
 interface Props {
-  /** Mostra i contorni di Italia/Giappone con le etichette manoscritte. */
-  showMaps?: boolean;
-  /** Mostra il ramo d'ulivo nell'angolo in basso a sinistra. */
-  showBranch?: boolean;
-  /** Etichetta sul contorno dell'Italia (tradotta dal chiamante). */
-  labelItaly?: string;
-  /** Etichetta sul contorno del Giappone (tradotta dal chiamante). */
-  labelJapan?: string;
   class?: string;
 }
 
-const {
-  showMaps = true,
-  showBranch = true,
-  labelItaly = "Italia",
-  labelJapan = "Giappone",
-  class: className = "",
-} = Astro.props;
+const { class: className = "" } = Astro.props;
 ---
 
 <div class={`pointer-events-none absolute inset-0 overflow-hidden bg-ivory ${className}`} aria-hidden="true">
-  <!-- Base calda leggermente radiale, per un tono "pergamena" invece di un avorio piatto. -->
-  <div
-    class="absolute inset-0"
-    style="background-image: radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--color-brass) 8%, var(--color-ivory)) 0%, var(--color-ivory) 55%);"
-  ></div>
-
-  <!-- Ombre di foglie: sagome sfocate in alto, per un effetto di luce filtrata. -->
-  <svg class="absolute -left-10 -top-16 h-[60%] w-[55%] opacity-[0.16]" viewBox="0 0 400 400" preserveAspectRatio="xMinYMin slice">
-    <g filter="url(#leafBlur)" fill="var(--color-forest)">
-      <ellipse cx="90" cy="70" rx="70" ry="22" transform="rotate(35 90 70)" />
-      <ellipse cx="170" cy="40" rx="60" ry="18" transform="rotate(60 170 40)" />
-      <ellipse cx="60" cy="160" rx="80" ry="20" transform="rotate(15 60 160)" />
-      <ellipse cx="220" cy="110" rx="55" ry="16" transform="rotate(70 220 110)" />
-      <ellipse cx="140" cy="220" rx="65" ry="18" transform="rotate(40 140 220)" />
-    </g>
-    <defs>
-      <filter id="leafBlur"><feGaussianBlur stdDeviation="10" /></filter>
-    </defs>
-  </svg>
-
-  {showMaps && (
-    <>
-      <div class="absolute left-[2%] top-[10%] hidden w-[16%] max-w-[150px] opacity-[0.32] sm:left-[4%] sm:top-[12%] sm:block">
-        <svg viewBox="0 0 200 500" class="h-auto w-full" fill="none" stroke="var(--color-charcoal)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
-          <path
-            d="M95,20
-               C150,20 165,90 150,150
-               C190,180 185,260 155,300
-               C175,340 150,390 115,410
-               C90,395 75,350 90,310
-               C60,280 65,210 90,180
-               C65,130 75,70 95,20 Z"
-          />
-          <path d="M85,432 Q112,422 122,452 Q96,458 85,432 Z" />
-        </svg>
-        <p class="mt-1 text-center font-script text-2xl text-charcoal/50 sm:text-3xl">{labelItaly}</p>
-      </div>
-
-      <div class="absolute right-[2%] top-[8%] hidden w-[16%] max-w-[150px] opacity-[0.32] sm:right-[4%] sm:top-[10%] sm:block">
-        <svg viewBox="0 0 200 500" class="h-auto w-full" fill="none" stroke="var(--color-charcoal)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
-          <path
-            d="M110,35
-               C150,25 170,55 150,85
-               C185,105 180,160 145,180
-               C170,205 150,255 115,265
-               C130,290 105,330 70,325
-               C80,300 100,285 115,290
-               C90,265 100,225 130,220
-               C105,195 115,155 145,145
-               C120,120 125,80 110,35 Z"
-          />
-          <path d="M60,345 Q80,338 88,362 Q65,368 60,345 Z" />
-        </svg>
-        <p class="mt-1 text-center font-script text-2xl text-charcoal/50 sm:text-3xl">{labelJapan}</p>
-      </div>
-    </>
-  )}
-
-  {showBranch && (
-    <svg
-      class="absolute -bottom-4 -left-4 h-[42%] w-[34%] max-w-[280px] opacity-[0.4] sm:h-[48%]"
-      viewBox="0 0 220 320"
-      fill="none"
-      stroke="var(--color-forest)"
-      stroke-width="1.6"
-      stroke-linecap="round"
-    >
-      <path d="M14,300 C55,255 42,205 68,165 C50,130 78,95 66,55" />
-      {[
-        { x: 40, y: 260, r: 34 },
-        { x: 62, y: 220, r: -30 },
-        { x: 40, y: 190, r: 40 },
-        { x: 66, y: 155, r: -34 },
-        { x: 50, y: 120, r: 32 },
-        { x: 70, y: 88, r: -28 },
-        { x: 58, y: 60, r: 30 },
-      ].map((leaf) => (
-        <ellipse cx={leaf.x} cy={leaf.y} rx="24" ry="9" transform={`rotate(${leaf.r} ${leaf.x} ${leaf.y})`} />
-      ))}
-      <circle cx="30" cy="245" r="5" fill="var(--color-terracotta)" stroke="none" opacity="0.7" />
-      <circle cx="52" cy="175" r="5" fill="var(--color-terracotta)" stroke="none" opacity="0.7" />
-    </svg>
-  )}
-
+  <img
+    src={withBase("/images/hero-map-motif.jpg")}
+    alt=""
+    class="absolute inset-0 h-full w-full object-cover"
+    loading="eager"
+  />
   <slot />
 </div>
