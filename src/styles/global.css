@@ -62,11 +62,13 @@ body {
   background-color: var(--color-terracotta);
 }
 
-/* Header fisso: trasparente sull'hero della Home, solido altrove e dopo lo scroll. */
+/* Header fisso: trasparente sull'hero della Home, solido altrove e dopo lo scroll.
+   L'hero della Home è ora uno sfondo chiaro (BackgroundMotif), non più una foto scura:
+   il testo dell'header resta scuro in entrambi gli stati. */
 [data-header] {
   background-color: transparent;
   border-color: transparent;
-  color: var(--color-ivory);
+  color: var(--color-charcoal);
 }
 
 [data-header][data-scrolled="true"] {
@@ -80,13 +82,8 @@ body {
   color: inherit;
 }
 
-[data-header][data-scrolled="true"] [data-header-link]:hover {
+[data-header-link]:hover {
   color: var(--color-forest);
-}
-
-[data-header][data-scrolled="false"] [data-header-link]:hover {
-  text-decoration: underline;
-  text-underline-offset: 6px;
 }
 
 [data-header-link][aria-current="page"] {
@@ -120,14 +117,12 @@ body {
   text-underline-offset: 3px;
 }
 
+/* Il logo chiaro non serve più: anche l'hero della Home (BackgroundMotif) è uno sfondo
+   chiaro, quindi il logo scuro resta leggibile in ogni stato dell'header. */
 [data-header-logo-dark] {
-  display: none;
-}
-
-[data-header][data-scrolled="true"] [data-header-logo-dark] {
   display: block;
 }
 
-[data-header][data-scrolled="true"] [data-header-logo-light] {
+[data-header-logo-light] {
   display: none;
 }
