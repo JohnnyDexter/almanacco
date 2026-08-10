@@ -22,11 +22,12 @@ const t = content[lang];
       </h1>
 
       <img
-        src={withBase("/images/01-negozio.jpg")}
+        src={withBase("/images/contatti/mappa-tsukimidai.jpg")}
         alt={t.contatti.imageAlt}
-        class="mt-10 aspect-[16/9] w-full border border-brass/30 object-cover"
+        class="mt-10 w-full border border-brass/30 object-contain bg-ivory-soft"
         loading="lazy"
       />
+      <p class="mt-2 text-right font-body text-[11px] text-stone-text/70">{t.contatti.mapCredit}</p>
 
       <div class="mt-12 grid gap-10 sm:grid-cols-2">
         <div>

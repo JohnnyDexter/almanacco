@@ -166,7 +166,10 @@ export interface SiteContent {
     socialLabel: string;
     socialValue: string;
     note: string;
+    /** Alt text della mappa ufficiale del complesso Tsukimidai. */
     imageAlt: string;
+    /** Credito discreto per la mappa, concessa dal complesso Tsukimidai. */
+    mapCredit: string;
   };
   footer: {
     tagline: string;
@@ -263,14 +266,14 @@ export const content: Record<Lang, SiteContent> = {
       text: "マルケの丘から横須賀の街角まで。時間との向き合い方を教えてくれる産品や物語、日々の所作を集めています。",
       ctaLabel: "私たちについて",
       imageAltItaly: "マルケ州、ぶどう畑の間を通る未舗装の道",
-      imageAltJapan: "夜、灯りがともる横須賀のAlmanaccoの店先と庭",
+      imageAltJapan: "河口湖から望む富士山",
     },
     journal: {
       kicker: "店の日記から",
       title: "物語、場所、出会い",
       text: "マルケの丘陵地帯から横須賀の街角まで。私たちが店に選ぶものを育て、作り、食卓に運ぶ人々の物語です。",
       ctaLabel: "ジャーナルを読む",
-      imageAlt: "マルケの丘に沈む夕日",
+      imageAlt: "月見台住宅の入り口の階段と案内看板",
     },
     journalPage: {
       kicker: "店の日記から",
@@ -415,7 +418,8 @@ export const content: Record<Lang, SiteContent> = {
       socialLabel: "SNS",
       socialValue: "近日公開予定",
       note: "営業時間・SNSアカウントは現在準備中です。決まり次第、こちらに掲載いたします。",
-      imageAlt: "夜の横須賀、Almanaccoの入り口",
+      imageAlt: "月見台複合施設の案内マップ。Almanacco（A29）の位置を含む区画一覧",
+      mapCredit: "マップ提供：月見台",
     },
     footer: {
       tagline: "マルケの畑から、横須賀の暦へ。",
@@ -507,14 +511,14 @@ export const content: Record<Lang, SiteContent> = {
       text: "Dalle colline delle Marche alle strade di Yokosuka, raccogliamo prodotti, storie e gesti che raccontano un modo diverso di vivere il tempo.",
       ctaLabel: "Scopri chi siamo",
       imageAltItaly: "Una strada sterrata tra i filari di vigna delle Marche",
-      imageAltJapan: "Il negozio Almanacco a Yokosuka illuminato di sera, con il giardino",
+      imageAltJapan: "Il Monte Fuji visto dal lago Kawaguchiko",
     },
     journal: {
       kicker: "Dal diario di bottega",
       title: "Storie, luoghi, incontri",
       text: "Racconti dalle colline marchigiane e dalle strade di Yokosuka: le persone che coltivano, producono e portano in tavola ciò che scegliamo per il negozio.",
       ctaLabel: "Leggi il Journal",
-      imageAlt: "Tramonto sulle colline marchigiane",
+      imageAlt: "Le scale d'accesso al quartiere Tsukimidai, con il cartello del complesso",
     },
     journalPage: {
       kicker: "Dal diario di bottega",
@@ -659,7 +663,8 @@ export const content: Record<Lang, SiteContent> = {
       socialLabel: "Social",
       socialValue: "In arrivo",
       note: "Orari di apertura e canali social sono ancora in definizione: saranno pubblicati qui appena disponibili.",
-      imageAlt: "Ingresso del negozio Almanacco a Yokosuka, di sera",
+      imageAlt: "Mappa del complesso Tsukimidai, con la posizione di Almanacco (A29) tra le altre unità",
+      mapCredit: "Mappa gentilmente concessa da Tsukimidai",
     },
     footer: {
       tagline: "Dai campi delle Marche all'almanacco di Yokosuka.",
@@ -750,14 +755,14 @@ export const content: Record<Lang, SiteContent> = {
       text: "From the hills of the Marche to the streets of Yokosuka, we gather products, stories, and gestures that speak of a different way to experience time.",
       ctaLabel: "Discover who we are",
       imageAltItaly: "A dirt road between rows of vines in the Marche",
-      imageAltJapan: "The Almanacco shop in Yokosuka lit up in the evening, with its garden",
+      imageAltJapan: "Mount Fuji seen from Lake Kawaguchiko",
     },
     journal: {
       kicker: "From the shop journal",
       title: "Stories, places, encounters",
       text: "Stories from the hills of the Marche and the streets of Yokosuka: the people who grow, make, and bring to the table what we choose for the shop.",
       ctaLabel: "Read the Journal",
-      imageAlt: "Sunset over the hills of the Marche",
+      imageAlt: "The access stairs to the Tsukimidai neighborhood, with the complex's sign",
     },
     journalPage: {
       kicker: "From the shop journal",
@@ -902,7 +907,8 @@ export const content: Record<Lang, SiteContent> = {
       socialLabel: "Social",
       socialValue: "Coming soon",
       note: "Opening hours and social channels are still being finalized and will be published here as soon as they're ready.",
-      imageAlt: "Entrance to the Almanacco shop in Yokosuka, in the evening",
+      imageAlt: "Map of the Tsukimidai complex, showing Almanacco's location (A29) among the other units",
+      mapCredit: "Map kindly provided by Tsukimidai",
     },
     footer: {
       tagline: "From the fields of the Marche to the Yokosuka almanac.",
